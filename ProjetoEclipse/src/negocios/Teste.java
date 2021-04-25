@@ -3,7 +3,7 @@ package negocios;
 public class Teste {
 	
 	public static void main(String[] args) {
-		System.out.println("Teste Dois YAGO");
+		System.out.println("Teste Dois Leno mamão");
 	}
 
 }
