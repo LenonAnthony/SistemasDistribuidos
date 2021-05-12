@@ -13,6 +13,7 @@ public class Teste {
 		//pull Joca Cacetudo rei de todas, vo dormir flw
 		//mentira, to acordado ainda fml, agr eh a vera, flw
 		//TESTANDO, deem pull.
+		// DANDO PULL, (ATT JOCA CACETUDO 2021)
 		
 	}
 }
