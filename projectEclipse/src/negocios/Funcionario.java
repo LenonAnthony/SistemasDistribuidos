@@ -2,7 +2,7 @@ package negocios;
 
 public class Funcionario extends Pessoa {
 	
-	private String login;
+	private String loginnnnnnnn;
 	private String senha;
 	private String tipo;
 	private double salario;
