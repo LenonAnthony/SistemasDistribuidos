@@ -1,3 +1,5 @@
+package negocios;
+
 public class Cliente extends Pessoa {
 	
 	private int pontos;
