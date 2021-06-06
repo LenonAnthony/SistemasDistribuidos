@@ -1,3 +1,5 @@
+package negocios;
+
 import java.time.LocalDateTime;
 
 public class Venda {

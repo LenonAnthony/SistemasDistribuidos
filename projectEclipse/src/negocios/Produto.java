@@ -1,3 +1,5 @@
+package negocios;
+
 public class Produto {
 	
 	private String nome;
