@@ -7,6 +7,7 @@ public class TesteMain {
 		//gerando primeiro comentário
 		//testando commit.
 		//ovo ovo ovo ovo
+		//Então grupo vai ficar mesmo salvando os repositórios so em tempo de excução?
 	}
 
 }
