@@ -3,7 +3,7 @@ package negocios;
 public class Cliente extends Pessoa {
 
 	private int pontos;
-	private String endereco;
+	private String endereco;	
 
 	public Cliente(String nome, String cpf, String endereco, int pontos) {
 

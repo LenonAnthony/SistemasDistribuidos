@@ -68,7 +68,7 @@ public abstract class Pessoa {
 	@Override
 	public String toString() {
 		
-		return "\nNome: " + nome + " | CPF: " + cpf;
+		return " Nome: " + nome + " | CPF: " + cpf;
 		
 	}
 	

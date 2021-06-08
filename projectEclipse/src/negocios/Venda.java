@@ -3,6 +3,7 @@ package negocios;
 import java.time.LocalDateTime;
 
 public class Venda {
+	
 	private Carrinho carrinho;
 	private Funcionario funcionario;
 	private LocalDateTime datahora;
