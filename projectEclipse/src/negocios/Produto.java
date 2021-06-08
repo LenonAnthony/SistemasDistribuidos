@@ -7,6 +7,7 @@ public class Produto {
 	private int quantidade;
 	private double preco;
 	private boolean estoque;
+	private double precoFinal;
 	
 	public Produto(String nome, String descricao, int quantidade, double preco, boolean estoque) {
 		
@@ -15,6 +16,7 @@ public class Produto {
 		setQuantidade(quantidade);
 		setPreco(preco);
 		this.estoque = estoque;
+		setPrecoFinal(preco*quantidade);
 		
 	}
 	
@@ -72,15 +74,32 @@ public class Produto {
 		
 	}
 	
-	public void setPreco(double preco) {
+	public void setPrecoFinal(double preco) {
 		
 		if (preco > 0) {
 			
-			this.preco = preco;
+			this.precoFinal = preco;
 			
 		}
 		
 	}
+	
+public double getPrecoFinal() {
+		
+		return preco;
+		
+	}
+	
+	public void setPrecoFinal(double preco) {
+		
+		if (preco > 0) {
+			
+			this.precoFinal = preco;
+			
+		}
+		
+	}
+	
 	
 	public boolean isEstoque() {
 		
@@ -119,8 +138,8 @@ public class Produto {
 	@Override
 	public String toString() {
 		
-		return "\nNome: " + nome + " | Descrição: " + descricao + " | Quantidade: " + quantidade + " | Preço: R$ " + preco + 
-				" | Tem no estoque? " + estoque;
+		return "\nNome: " + nome + " | Descrição: " + descricao + " | Quantidade: " + quantidade +  " | Preço: R$ " + preco + 
+				" | Preço Final: R$ " + precoFinal + " | Tem no estoque? " + estoque;
 		
 	}
 	
