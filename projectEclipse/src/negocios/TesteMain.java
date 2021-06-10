@@ -1,4 +1,4 @@
-package negocios.basicos;
+package negocios;
 
 public class TesteMain {
 
