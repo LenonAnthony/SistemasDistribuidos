@@ -1,20 +1,17 @@
-package negocios;
+package negocios.basicos;
 
 import java.util.ArrayList;
 
 public class Carrinho {
 
 	private Cliente cliente;
-	private Venda venda;
 	private ArrayList<Produto> produtos;
 	private double valorTotal;
 
-	public Carrinho(Cliente cliente, Venda venda, double valorTotal) {
+	public Carrinho(Cliente cliente, ArrayList<Produto> produtos) {
 
 		this.cliente = cliente;
-		this.venda = venda;
-		setValorTotal(valorTotal);
-		produtos = new ArrayList<>();
+		this.produtos = produtos;
 
 	}
 
@@ -30,32 +27,19 @@ public class Carrinho {
 
 	}
 
-	public Venda getVenda() {
-
-		return venda;
-
-	}
-
-	public void setVenda(Venda venda) {
-
-		this.venda = venda;
-
-	}
-
 	public double getValorTotal() {
 
 		return valorTotal;
 
 	}
 
-	public void setValorTotal(double valorTotal) {
+	public double gerarValorTotal() {
 
-		if (valorTotal > 0) {
-
-			this.valorTotal = valorTotal;
-
+		double valorTotal = 0;
+		for (int i = 0; i < produtos.size(); i++) {
+			valorTotal = valorTotal + produtos.get(i).getPrecoFinal();
 		}
-
+		return valorTotal;
 	}
 
 	public ArrayList<Produto> getProdutos() {

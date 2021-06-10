@@ -1,9 +1,9 @@
-package negocios;
+package negocios.basicos;
 
 import java.time.LocalDateTime;
 
 public class Venda {
-	
+
 	private Carrinho carrinho;
 	private Funcionario funcionario;
 	private LocalDateTime datahora;
@@ -92,8 +92,8 @@ public class Venda {
 	@Override
 	public String toString() {
 
-		return "\nFuncionário encarregado: " + funcionario + " | Data/Hora da venda: " + datahora
-				+ " | A venda foi concluída? " + aprovado;
+		return "Venda: " + this.carrinho.getProdutos().toString() + " | Valor Final:"
+				+ this.getCarrinho().gerarValorTotal() + " | Funcionario Encarregado: " + this.getFuncionario().getNome();
 
 	}
 

@@ -2,7 +2,7 @@ package dados;
 
 import java.util.ArrayList;
 
-import negocios.Cliente;
+import negocios.basicos.Cliente;
 
 public class RepositorioClientes {
 

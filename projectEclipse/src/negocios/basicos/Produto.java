@@ -1,4 +1,4 @@
-package negocios;
+package negocios.basicos;
 
 public class Produto {
 
@@ -90,20 +90,11 @@ public class Produto {
 
 	public double getPrecoFinal() {
 
-		return preco;
+		return precoFinal;
 
 	}
 
-	public void setPrecoFinal(double preco) {
-
-		if (preco > 0) {
-
-			this.precoFinal = preco;
-
-		}
-
-	}
-
+	
 	public boolean isEstoque() {
 
 		return estoque;
@@ -142,7 +133,7 @@ public class Produto {
 	public String toString() {
 
 		return "\nNome: " + nome + " | Descrição: " + descricao + " | Quantidade: " + quantidade + " | Preço: R$ "
-				+ preco + " | Preço Final: R$ " + precoFinal + " | Tem no estoque? " + estoque;
+				+ preco + " | Preço Total: R$ " + precoFinal;
 
 	}
 

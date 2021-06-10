@@ -1,4 +1,4 @@
-package negocios;
+package negocios.basicos;
 
 public class Funcionario extends Pessoa {
 	
