@@ -3,7 +3,6 @@ package dados;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-import negocios.*;
 import negocios.basicos.Carrinho;
 import negocios.basicos.Cliente;
 import negocios.basicos.Funcionario;
