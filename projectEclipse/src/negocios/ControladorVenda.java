@@ -5,7 +5,7 @@ import negocios.basicos.Venda;
 
 public class ControladorVenda {
 
-	RepositorioVendas repositorioVendas = new RepositorioVendas();
+	private RepositorioVendas repositorioVendas;
 
 	public ControladorVenda() {
 		this.repositorioVendas = new RepositorioVendas();

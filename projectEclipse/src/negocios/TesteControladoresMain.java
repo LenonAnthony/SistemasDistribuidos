@@ -24,6 +24,10 @@ public class TesteControladoresMain {
 		ControladorCliente cc = new ControladorCliente();
 		ControladorProduto cp = new ControladorProduto();
 		ControladorVenda cv = new ControladorVenda();
+		ControladorFuncionario cf = new ControladorFuncionario();
+		cf.cadastrar(f1);
+		System.out.println(cf);
+		
 		ArrayList<Produto> produtos = new ArrayList<>();
 		produtos.add(p1);
 		produtos.add(p2);
