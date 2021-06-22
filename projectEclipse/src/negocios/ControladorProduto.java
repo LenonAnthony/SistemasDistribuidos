@@ -6,6 +6,7 @@ import negocios.basicos.Produto;
 public class ControladorProduto {
 
 	private RepositorioProdutos repositorioProdutos;
+	private int tamanho;
 
 	public ControladorProduto() {
 		this.repositorioProdutos = new RepositorioProdutos();
@@ -17,6 +18,7 @@ public class ControladorProduto {
 				this.repositorioProdutos.cadastrarProduto(p);
 				;
 				System.out.println("Portanto, criado com sucesso!");
+				tamanho = tamanho + 1;
 			} else {
 				System.out.println("Portanto, não foi criado!");
 
@@ -28,6 +30,7 @@ public class ControladorProduto {
 		this.repositorioProdutos.procurar(p);
 		if (p != null) {
 			this.repositorioProdutos.remover(p);
+			tamanho = tamanho - 1;
 		} else {
 
 		}
@@ -44,6 +47,23 @@ public class ControladorProduto {
 
 	public void remover(Produto p) {
 		this.repositorioProdutos.remover(p);
+	}
+
+	public RepositorioProdutos getRepositorioProdutos() {
+		return repositorioProdutos;
+	}
+
+	public void setRepositorioProdutos(RepositorioProdutos repositorioProdutos) {
+		this.repositorioProdutos = repositorioProdutos;
+	}
+	
+
+	public int getTamanho() {
+		return tamanho;
+	}
+
+	public void setTamanho(int tamanho) {
+		this.tamanho = tamanho;
 	}
 
 	@Override

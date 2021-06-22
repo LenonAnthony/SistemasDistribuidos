@@ -6,6 +6,7 @@ import negocios.basicos.Funcionario;
 public class ControladorFuncionario {
 
 	private RepositorioFuncionarios repositorioFuncionario;
+	private int tamanho;
 
 	public ControladorFuncionario() {
 		this.repositorioFuncionario = new RepositorioFuncionarios();
@@ -16,6 +17,7 @@ public class ControladorFuncionario {
 			if (!this.repositorioFuncionario.existe(f)) {
 				this.repositorioFuncionario.cadastrarFuncionario(f);
 				System.out.println("Portanto, criado com sucesso!");
+				tamanho = tamanho + 1;
 			} else {
 				System.out.println("Portanto, não foi criado!");
 
@@ -27,6 +29,7 @@ public class ControladorFuncionario {
 		this.repositorioFuncionario.procurar(f);
 		if (f != null) {
 			this.repositorioFuncionario.remover(f);
+			tamanho = tamanho - 1;
 			;
 		} else {
 
@@ -53,6 +56,15 @@ public class ControladorFuncionario {
 
 	public void setRepositorioFuncionario(RepositorioFuncionarios repositorioFuncionario) {
 		this.repositorioFuncionario = repositorioFuncionario;
+	}
+	
+
+	public int getTamanho() {
+		return tamanho;
+	}
+
+	public void setTamanho(int tamanho) {
+		this.tamanho = tamanho;
 	}
 
 	@Override

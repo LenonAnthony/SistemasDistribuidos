@@ -18,6 +18,8 @@ import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
 import negocios.basicos.Cliente;
+import negocios.basicos.Funcionario;
+import negocios.basicos.Produto;
 
 import java.awt.Color;
 import java.awt.GridBagLayout;
@@ -31,9 +33,6 @@ import javax.swing.JScrollPane;
 
 public class TelaGerente extends JFrame {
 
-	PopUpFuncionario popf = new PopUpFuncionario();
-	PopUpProduto popp = new PopUpProduto();
-	PopUpCliente popc = new PopUpCliente();
 	int contador = 0;
 	private JPanel contentPane;
 	private JTable table;
@@ -61,6 +60,13 @@ public class TelaGerente extends JFrame {
 	 */
 
 	public void atualizarJTableFuncionarios() {
+		ArrayList<Funcionario> arrays = new ArrayList<>();
+		arrays.addAll(PopUpFuncionario.getCf().getRepositorioFuncionario().getFuncionarios());
+		for (int i = 0; i < PopUpFuncionario.getCf().getTamanho(); i++) {
+			Object[] objs = { arrays.get(i).getNome(), arrays.get(i).getCpf(), arrays.get(i).getTipo() };
+			dtm.addRow(objs);
+			table.setModel(dtm);
+		}
 
 	}
 
@@ -76,7 +82,13 @@ public class TelaGerente extends JFrame {
 	}
 
 	public void atualizarJTableProdutos() {
-
+		ArrayList<Produto> arrays = new ArrayList<>();
+		arrays.addAll(PopUpProduto.getCp().getRepositorioProdutos().getProdutos());
+		for (int i = 0; i < PopUpProduto.getCp().getTamanho(); i++) {
+			Object[] objs = { arrays.get(i).getNome(), arrays.get(i).getPreco(), arrays.get(i).getDescricao() };
+			dtm.addRow(objs);
+			table.setModel(dtm);
+		}
 	}
 
 	public TelaGerente() {
@@ -115,6 +127,7 @@ public class TelaGerente extends JFrame {
 				String aux2[] = new String[] { "Funcionario", "CPF", "Tipo" };
 				dtm = new DefaultTableModel(aux2, 0);
 				table.setModel(dtm);
+				atualizarJTableFuncionarios();
 			}
 		});
 		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 24));
@@ -148,6 +161,7 @@ public class TelaGerente extends JFrame {
 				table.setModel(dtm);
 				System.out.println(contador);
 				System.out.println(contador);
+				atualizarJTableProdutos();
 			}
 		});
 		btnNewButton_1_1.setBounds(10, 208, 161, 72);
@@ -188,7 +202,7 @@ public class TelaGerente extends JFrame {
 		JButton btnNewButton_2_2 = new JButton("Atualizar");
 		btnNewButton_2_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 			}
 		});
 		btnNewButton_2_2.setBounds(543, 536, 89, 23);
