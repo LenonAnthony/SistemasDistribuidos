@@ -77,19 +77,19 @@ public class TelaDeLogin extends JFrame {
 		JButton logarButton = new JButton("Logar");
 		logarButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				Funcionario f = new Funcionario("Lenon", "711", "Gerente", login.getText(), password.getText(), 0);
+
+				Funcionario f = new Funcionario("", "", "", login.getText(), password.getText(), 0);
 				System.out.println(PopUpFuncionario.getCf());
 				if (PopUpFuncionario.getCf().existe(f)) {
 					JOptionPane.showMessageDialog(null, "Logado com Sucesso.");
 					frame.dispose();
 					TelaGerente tg = new TelaGerente();
 					tg.setVisible(true);
-					
+
 				} else {
 					JOptionPane.showMessageDialog(null, "Dados Incorretos.");
 				}
-				
+
 			}
 		});
 		logarButton.setFont(new Font("Tahoma", Font.PLAIN, 24));
@@ -110,6 +110,21 @@ public class TelaDeLogin extends JFrame {
 		panel.add(button);
 
 		JButton btnNewButton_1 = new JButton("Deletar\r\n");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				Funcionario f = new Funcionario("", "", "", login.getText(), password.getText(), 0);
+				System.out.println(PopUpFuncionario.getCf());
+				if (PopUpFuncionario.getCf().existe(f)) {
+					PopUpFuncionario.getCf().remover(f);
+					JOptionPane.showMessageDialog(null, "Deletado com Sucesso!");
+
+				} else {
+					JOptionPane.showMessageDialog(null, "Dados Incorretos.");
+				}
+
+			}
+		});
 		panel.add(btnNewButton_1);
 
 	}
