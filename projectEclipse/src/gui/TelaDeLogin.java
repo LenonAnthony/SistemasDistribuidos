@@ -11,24 +11,27 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 import javax.swing.JTextField;
+
+import negocios.ControladorFuncionario;
+import negocios.basicos.Funcionario;
+
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 
 public class TelaDeLogin {
-
+	
 	private JFrame frame;
 	private JTextField password;
 	private JTextField login;
 
-	/**
-	 * Launch the application.
-	 */
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					TelaDeLogin window = new TelaDeLogin();
 					window.frame.setVisible(true);
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -81,8 +84,19 @@ public class TelaDeLogin {
 		panel.setBounds(0, 0, 641, 466);
 		frame.getContentPane().add(panel);
 		
-		JLabel lblNewLabel_2 = new JLabel("");
-		lblNewLabel_2.setIcon(new ImageIcon(TelaDeLogin.class.getResource("/images/73eaa7ce4e6fe5c6b158fbf55d2cd6bf.jpg")));
-		panel.add(lblNewLabel_2);
+		JButton button = new JButton("Cadastrar");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			PopUpFuncionario popf = new PopUpFuncionario();
+			popf.setVisible(true);
+			}
+		});
+		panel.add(button);
+		
+		
+		
+		JButton btnNewButton_1 = new JButton("Deletar\r\n");
+		panel.add(btnNewButton_1);
+		
 	}
 }

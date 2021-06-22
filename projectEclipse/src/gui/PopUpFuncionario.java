@@ -6,17 +6,25 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import negocios.ControladorFuncionario;
+import negocios.basicos.Funcionario;
+
 import java.awt.SystemColor;
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.Font;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class PopUpFuncionario extends JFrame {
-
+	ControladorFuncionario cf = new ControladorFuncionario();
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTextField textField_1;
@@ -51,30 +59,48 @@ public class PopUpFuncionario extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		JButton btnNewButton = new JButton("Confirmar");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (textField.getText().isEmpty() || textField_1.getText().isEmpty() || textField_2.getText().isEmpty()
+						|| textField_3.getText().isEmpty() || textField_4.getText().isEmpty()) {
+					JOptionPane.showMessageDialog(null, "Favor, preencher tudo.");
+				} else {
+					// ajeitar depois
+					Funcionario f = new Funcionario();
+					f.setNome(textField.getText());
+					f.setCpf(textField_1.getText());
+					f.setLogin(textField_2.getText());
+					f.setSenha(textField_3.getText());
+					f.setTipo(textField_4.getText());
+					cf.cadastrar(f);
+					JOptionPane.showMessageDialog(null, "Funcionário Cadastrado com Sucesso!");
+				}
+			}
+		});
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		btnNewButton.setBounds(106, 193, 207, 57);
 		contentPane.add(btnNewButton);
-		
+
 		JPanel panel = new JPanel();
 		panel.setBackground(SystemColor.info);
 		panel.setBounds(10, 11, 414, 171);
 		contentPane.add(panel);
 		GridBagLayout gbl_panel = new GridBagLayout();
-		gbl_panel.columnWidths = new int[]{0, 0, 0, 0};
-		gbl_panel.rowHeights = new int[]{0, 0, 0, 0, 0, 0};
-		gbl_panel.columnWeights = new double[]{0.0, 0.0, 1.0, Double.MIN_VALUE};
-		gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_panel.columnWidths = new int[] { 0, 0, 0, 0 };
+		gbl_panel.rowHeights = new int[] { 0, 0, 0, 0, 0, 0 };
+		gbl_panel.columnWeights = new double[] { 0.0, 0.0, 1.0, Double.MIN_VALUE };
+		gbl_panel.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
 		panel.setLayout(gbl_panel);
-		
+
 		JLabel lblNewLabel = new JLabel("Nome:");
 		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
 		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel.gridx = 0;
 		gbc_lblNewLabel.gridy = 0;
 		panel.add(lblNewLabel, gbc_lblNewLabel);
-		
+
 		textField = new JTextField();
 		GridBagConstraints gbc_textField = new GridBagConstraints();
 		gbc_textField.insets = new Insets(0, 0, 5, 0);
@@ -83,14 +109,14 @@ public class PopUpFuncionario extends JFrame {
 		gbc_textField.gridy = 0;
 		panel.add(textField, gbc_textField);
 		textField.setColumns(10);
-		
+
 		JLabel lblNewLabel_1 = new JLabel("CPF:");
 		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
 		gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_1.gridx = 0;
 		gbc_lblNewLabel_1.gridy = 1;
 		panel.add(lblNewLabel_1, gbc_lblNewLabel_1);
-		
+
 		textField_1 = new JTextField();
 		GridBagConstraints gbc_textField_1 = new GridBagConstraints();
 		gbc_textField_1.insets = new Insets(0, 0, 5, 0);
@@ -99,14 +125,14 @@ public class PopUpFuncionario extends JFrame {
 		gbc_textField_1.gridy = 1;
 		panel.add(textField_1, gbc_textField_1);
 		textField_1.setColumns(10);
-		
+
 		JLabel lblNewLabel_2 = new JLabel("Login:");
 		GridBagConstraints gbc_lblNewLabel_2 = new GridBagConstraints();
 		gbc_lblNewLabel_2.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_2.gridx = 0;
 		gbc_lblNewLabel_2.gridy = 2;
 		panel.add(lblNewLabel_2, gbc_lblNewLabel_2);
-		
+
 		textField_2 = new JTextField();
 		GridBagConstraints gbc_textField_2 = new GridBagConstraints();
 		gbc_textField_2.insets = new Insets(0, 0, 5, 0);
@@ -115,14 +141,14 @@ public class PopUpFuncionario extends JFrame {
 		gbc_textField_2.gridy = 2;
 		panel.add(textField_2, gbc_textField_2);
 		textField_2.setColumns(10);
-		
+
 		JLabel lblNewLabel_3 = new JLabel("Senha:");
 		GridBagConstraints gbc_lblNewLabel_3 = new GridBagConstraints();
 		gbc_lblNewLabel_3.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_3.gridx = 0;
 		gbc_lblNewLabel_3.gridy = 3;
 		panel.add(lblNewLabel_3, gbc_lblNewLabel_3);
-		
+
 		textField_3 = new JTextField();
 		GridBagConstraints gbc_textField_3 = new GridBagConstraints();
 		gbc_textField_3.insets = new Insets(0, 0, 5, 0);
@@ -131,14 +157,14 @@ public class PopUpFuncionario extends JFrame {
 		gbc_textField_3.gridy = 3;
 		panel.add(textField_3, gbc_textField_3);
 		textField_3.setColumns(10);
-		
+
 		JLabel lblNewLabel_4 = new JLabel("Tipo:");
 		GridBagConstraints gbc_lblNewLabel_4 = new GridBagConstraints();
 		gbc_lblNewLabel_4.insets = new Insets(0, 0, 0, 5);
 		gbc_lblNewLabel_4.gridx = 0;
 		gbc_lblNewLabel_4.gridy = 4;
 		panel.add(lblNewLabel_4, gbc_lblNewLabel_4);
-		
+
 		textField_4 = new JTextField();
 		textField_4.setToolTipText("Valores permitidos: \"Gerente\" ou \"Funcion\u00E1rio\"");
 		GridBagConstraints gbc_textField_4 = new GridBagConstraints();
