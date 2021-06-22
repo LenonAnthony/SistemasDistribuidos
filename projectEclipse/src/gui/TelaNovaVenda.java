@@ -141,7 +141,7 @@ public class TelaNovaVenda extends JFrame {
 		lblNewLabel_2.setToolTipText("Valor \u00E0 ser pago");
 		lblNewLabel_2.setBounds(10, 24, 257, 149);
 		panel_1.add(lblNewLabel_2);
-		
+		//teste
 		btnNewButton_3 = new JButton("Atualizar");
 		btnNewButton_3.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		btnNewButton_3.setBounds(10, 343, 267, 55);
