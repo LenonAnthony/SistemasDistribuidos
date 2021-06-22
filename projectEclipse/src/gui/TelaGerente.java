@@ -14,6 +14,8 @@ import javax.swing.JLabel;
 import javax.swing.UIManager;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
+import javax.swing.table.DefaultTableModel;
+
 import java.awt.Color;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
@@ -32,6 +34,9 @@ public class TelaGerente extends JFrame {
 	int contador = 0;
 	private JPanel contentPane;
 	private JTable table;
+	
+	
+	
 
 	/**
 	 * Launch the application.
@@ -85,6 +90,10 @@ public class TelaGerente extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				contador = 1;
 				System.out.println(contador);
+				String aux2[] = new String[] { "Funcionario", "CPF", "Tipo" };
+				DefaultTableModel dtm;
+				dtm = new DefaultTableModel(aux2, 0);
+				table.setModel(dtm);
 			}
 		});
 		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 24));
@@ -95,6 +104,10 @@ public class TelaGerente extends JFrame {
 		btnNewButton_1_1_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				contador = 2;
+				String aux1[] = new String[] { "Nome", "CPF", "Endereco" , "Pontos"};
+				DefaultTableModel dtm;
+				dtm = new DefaultTableModel(aux1, 0);
+				table.setModel(dtm);
 				System.out.println(contador);
 			}
 		});
@@ -109,6 +122,11 @@ public class TelaGerente extends JFrame {
 		btnNewButton_1_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				contador = 3;
+				String aux[] = new String[] { "Produto", "Valor", "Descricao" };
+				DefaultTableModel dtm;
+				dtm = new DefaultTableModel(aux, 0);
+				table.setModel(dtm);
+				System.out.println(contador);
 				System.out.println(contador);
 			}
 		});
@@ -122,7 +140,12 @@ public class TelaGerente extends JFrame {
 
 		table = new JTable();
 		scrollPane.setViewportView(table);
-
+		
+		
+		
+		
+		
+		
 		JButton btnNewButton_2 = new JButton("Adicionar");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

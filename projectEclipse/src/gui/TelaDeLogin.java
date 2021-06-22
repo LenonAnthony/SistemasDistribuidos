@@ -30,7 +30,7 @@ public class TelaDeLogin extends JFrame {
 				try {
 					TelaDeLogin window = new TelaDeLogin();
 					window.frame.setVisible(true);
-
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
