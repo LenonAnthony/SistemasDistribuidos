@@ -24,6 +24,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class PopUpFuncionario extends JFrame {
+	
+	
 	ControladorFuncionario cf = new ControladorFuncionario();
 	private JPanel contentPane;
 	private JTextField textField;
@@ -68,14 +70,16 @@ public class PopUpFuncionario extends JFrame {
 					JOptionPane.showMessageDialog(null, "Favor, preencher tudo.");
 				} else {
 					// ajeitar depois
-					Funcionario f = new Funcionario();
-					f.setNome(textField.getText());
-					f.setCpf(textField_1.getText());
-					f.setLogin(textField_2.getText());
-					f.setSenha(textField_3.getText());
-					f.setTipo(textField_4.getText());
-					cf.cadastrar(f);
-					JOptionPane.showMessageDialog(null, "Funcionário Cadastrado com Sucesso!");
+					Funcionario f = new Funcionario(textField.getText(), textField_1.getText(), textField_4.getText(),
+							textField_2.getText(), textField_3.getText(), 0);
+
+					if (cf.existe(f)) {
+						JOptionPane.showMessageDialog(null, "Funcionário já existe.");
+					} else {
+						cf.cadastrar(f);
+						JOptionPane.showMessageDialog(null, "Funcionário Cadastrado com Sucesso!");
+					}
+
 				}
 			}
 		});
