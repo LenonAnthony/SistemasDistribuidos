@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 import javax.swing.JLabel;
@@ -15,6 +16,8 @@ import javax.swing.UIManager;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
+
+import negocios.basicos.Cliente;
 
 import java.awt.Color;
 import java.awt.GridBagLayout;
@@ -34,6 +37,8 @@ public class TelaGerente extends JFrame {
 	int contador = 0;
 	private JPanel contentPane;
 	private JTable table;
+
+	private DefaultTableModel dtm;
 
 	/**
 	 * Launch the application.
@@ -60,11 +65,13 @@ public class TelaGerente extends JFrame {
 	}
 
 	public void atualizarJTableClientes() {
-		
-		
-
+		ArrayList<Cliente> arrays = new ArrayList<>();
+		arrays.addAll(PopUpCliente.getCc().getRepositorioClientes().getClientes());
 		for (int i = 0; i < PopUpCliente.getCc().getTamanho(); i++) {
-			Object[] objs = {
+			Object[] objs = { arrays.get(i).getNome(), arrays.get(i).getCpf(), arrays.get(i).getEndereco(),
+					arrays.get(i).getPontos() };
+			dtm.addRow(objs);
+			table.setModel(dtm);
 		}
 	}
 
@@ -106,7 +113,6 @@ public class TelaGerente extends JFrame {
 				contador = 1;
 				System.out.println(contador);
 				String aux2[] = new String[] { "Funcionario", "CPF", "Tipo" };
-				DefaultTableModel dtm;
 				dtm = new DefaultTableModel(aux2, 0);
 				table.setModel(dtm);
 			}
@@ -120,10 +126,10 @@ public class TelaGerente extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				contador = 2;
 				String aux1[] = new String[] { "Nome", "CPF", "Endereco", "Pontos" };
-				DefaultTableModel dtm;
 				dtm = new DefaultTableModel(aux1, 0);
 				table.setModel(dtm);
 				System.out.println(contador);
+				atualizarJTableClientes();
 			}
 		});
 		btnNewButton_1_1_1.setFont(new Font("Tahoma", Font.PLAIN, 24));
@@ -138,7 +144,6 @@ public class TelaGerente extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				contador = 3;
 				String aux[] = new String[] { "Produto", "Valor", "Descricao" };
-				DefaultTableModel dtm;
 				dtm = new DefaultTableModel(aux, 0);
 				table.setModel(dtm);
 				System.out.println(contador);
@@ -181,6 +186,11 @@ public class TelaGerente extends JFrame {
 		panel_1.add(btnNewButton_2_1);
 
 		JButton btnNewButton_2_2 = new JButton("Atualizar");
+		btnNewButton_2_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
 		btnNewButton_2_2.setBounds(543, 536, 89, 23);
 		panel_1.add(btnNewButton_2_2);
 

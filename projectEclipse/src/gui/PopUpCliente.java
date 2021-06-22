@@ -142,6 +142,7 @@ public class PopUpCliente extends JFrame {
 				} else {
 					Cliente c = new Cliente(textField.getText(), textField_1.getText(), textField_2.getText(), 0);
 					cc.cadastrar(c);
+					JOptionPane.showMessageDialog(null, "Cliente Cadastrado com Sucesso!");
 					System.out.println(cc);
 				}
 
