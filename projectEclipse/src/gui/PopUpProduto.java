@@ -31,6 +31,14 @@ public class PopUpProduto extends JFrame {
 	private JTextField textField_1;
 	private JTextField textField_2;
 
+	public static ControladorProduto getCp() {
+		return cp;
+	}
+
+	public static void setCp(ControladorProduto cp) {
+		PopUpProduto.cp = cp;
+	}
+
 	/**
 	 * Launch the application.
 	 */
@@ -50,7 +58,7 @@ public class PopUpProduto extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	//TESTE
+	// TESTE
 	public PopUpProduto() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -127,6 +135,7 @@ public class PopUpProduto extends JFrame {
 				} else {
 					Produto p = new Produto(textField.getText(), textField_2.getText(), 1,
 							Double.parseDouble(textField_1.getText()), true);
+					JOptionPane.showMessageDialog(null, "Produto adicionado!");
 					cp.cadastrar(p);
 					System.out.println(cp);
 

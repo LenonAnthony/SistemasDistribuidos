@@ -45,6 +45,15 @@ public class ControladorFuncionario {
 	public void remover(Funcionario f) {
 		this.repositorioFuncionario.remover(f);
 	}
+	
+
+	public RepositorioFuncionarios getRepositorioFuncionario() {
+		return repositorioFuncionario;
+	}
+
+	public void setRepositorioFuncionario(RepositorioFuncionarios repositorioFuncionario) {
+		this.repositorioFuncionario = repositorioFuncionario;
+	}
 
 	@Override
 	public String toString() {

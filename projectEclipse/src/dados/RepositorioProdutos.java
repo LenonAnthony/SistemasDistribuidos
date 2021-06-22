@@ -5,14 +5,13 @@ import java.util.ArrayList;
 import negocios.basicos.Produto;
 
 public class RepositorioProdutos {
-	
+
 	ArrayList<Produto> produtos = new ArrayList<>();
 	private int tamanho;
-	
+
 	public RepositorioProdutos() {
-		
+
 	}
-	
 
 	public void cadastrarProduto(Produto p) {
 		this.produtos.add(p);
@@ -32,7 +31,6 @@ public class RepositorioProdutos {
 		return i;
 	}
 
-	
 	public Produto procurar(Produto p) {
 		int i = this.procurarIndice(p);
 		Produto resultado = null;
@@ -66,9 +64,24 @@ public class RepositorioProdutos {
 		tamanho = this.produtos.size();
 	}
 
-	public String toString() {
-		return "Produtos: "+produtos;
+	public ArrayList<Produto> getProdutos() {
+		return produtos;
 	}
-	
+
+	public void setProdutos(ArrayList<Produto> produtos) {
+		this.produtos = produtos;
+	}
+
+	public int getTamanho() {
+		return tamanho;
+	}
+
+	public void setTamanho(int tamanho) {
+		this.tamanho = tamanho;
+	}
+
+	public String toString() {
+		return "Produtos: " + produtos;
+	}
 
 }

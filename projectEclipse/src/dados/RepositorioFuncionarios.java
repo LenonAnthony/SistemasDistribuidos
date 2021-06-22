@@ -62,6 +62,24 @@ public class RepositorioFuncionarios {
 		}
 		tamanho = this.funcionarios.size();
 	}
+	
+
+	public ArrayList<Funcionario> getFuncionarios() {
+		return funcionarios;
+	}
+
+	public void setFuncionarios(ArrayList<Funcionario> funcionarios) {
+		this.funcionarios = funcionarios;
+	}
+	
+
+	public int getTamanho() {
+		return tamanho;
+	}
+
+	public void setTamanho(int tamanho) {
+		this.tamanho = tamanho;
+	}
 
 	public String toString() {
 		return "Funcionarios: " + funcionarios;

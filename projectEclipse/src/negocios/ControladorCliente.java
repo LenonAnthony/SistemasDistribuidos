@@ -6,6 +6,7 @@ import negocios.basicos.Cliente;
 public class ControladorCliente {
 
 	private RepositorioClientes repositorioClientes;
+	private int tamanho;
 
 	public ControladorCliente() {
 		this.repositorioClientes = new RepositorioClientes();
@@ -16,6 +17,7 @@ public class ControladorCliente {
 			if (!this.repositorioClientes.existe(c)) {
 				this.repositorioClientes.cadastrarCliente(c);
 				System.out.println("Portanto, criado com sucesso!");
+				tamanho = tamanho + 1;
 			} else {
 				System.out.println("Portanto, não foi criado!");
 
@@ -27,6 +29,7 @@ public class ControladorCliente {
 		this.repositorioClientes.procurar(c);
 		if (c != null) {
 			this.repositorioClientes.remover(c);
+			tamanho = tamanho - 1;
 		} else {
 
 		}
@@ -43,6 +46,22 @@ public class ControladorCliente {
 
 	public void remover(Cliente c) {
 		this.repositorioClientes.remover(c);
+	}
+
+	public int getTamanho() {
+		return tamanho;
+	}
+
+	public void setTamanho(int tamanho) {
+		this.tamanho = tamanho;
+	}
+
+	public RepositorioClientes getRepositorioClientes() {
+		return repositorioClientes;
+	}
+
+	public void setRepositorioClientes(RepositorioClientes repositorioClientes) {
+		this.repositorioClientes = repositorioClientes;
 	}
 
 	@Override

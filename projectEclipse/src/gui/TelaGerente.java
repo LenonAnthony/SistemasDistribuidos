@@ -54,6 +54,24 @@ public class TelaGerente extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+
+	public void atualizarJTableFuncionarios() {
+
+	}
+
+	public void atualizarJTableClientes() {
+		
+		
+
+		for (int i = 0; i < PopUpCliente.getCc().getTamanho(); i++) {
+			Object[] objs = {
+		}
+	}
+
+	public void atualizarJTableProdutos() {
+
+	}
+
 	public TelaGerente() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1280, 720);

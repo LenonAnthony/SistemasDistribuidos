@@ -30,7 +30,6 @@ public class RepositorioClientes {
 		return i;
 	}
 
-	
 	public Cliente procurar(Cliente c) {
 		int i = this.procurarIndice(c);
 		Cliente resultado = null;
@@ -64,8 +63,24 @@ public class RepositorioClientes {
 		tamanho = this.clientes.size();
 	}
 
+	public ArrayList<Cliente> getClientes() {
+		return clientes;
+	}
+
+	public void setClientes(ArrayList<Cliente> clientes) {
+		this.clientes = clientes;
+	}
+
+	public int getTamanho() {
+		return tamanho;
+	}
+
+	public void setTamanho(int tamanho) {
+		this.tamanho = tamanho;
+	}
+
 	public String toString() {
-		return "Clientes: "+clientes;
+		return "Clientes: " + clientes;
 	}
 
 }

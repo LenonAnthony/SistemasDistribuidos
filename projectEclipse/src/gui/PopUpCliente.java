@@ -32,6 +32,14 @@ public class PopUpCliente extends JFrame {
 	private JTextField textField_1;
 	private JTextField textField_2;
 
+	public static ControladorCliente getCc() {
+		return cc;
+	}
+
+	public static void setCc(ControladorCliente cc) {
+		PopUpCliente.cc = cc;
+	}
+
 	/**
 	 * Launch the application.
 	 */
@@ -131,8 +139,7 @@ public class PopUpCliente extends JFrame {
 				if (textField.getText().isEmpty() || textField_1.getText().isEmpty()
 						|| textField_2.getText().isEmpty()) {
 					JOptionPane.showMessageDialog(null, "Favor, preencher tudo.");
-				}
-				else {
+				} else {
 					Cliente c = new Cliente(textField.getText(), textField_1.getText(), textField_2.getText(), 0);
 					cc.cadastrar(c);
 					System.out.println(cc);

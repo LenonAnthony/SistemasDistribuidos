@@ -116,7 +116,7 @@ public class TelaDeLogin extends JFrame {
 				Funcionario f = new Funcionario("", "", "", login.getText(), password.getText(), 0);
 				System.out.println(PopUpFuncionario.getCf());
 				if (PopUpFuncionario.getCf().existe(f)) {
-					PopUpFuncionario.getCf().remover(f);
+					PopUpFuncionario.getCf().descadastrar(f);
 					JOptionPane.showMessageDialog(null, "Deletado com Sucesso!");
 
 				} else {
