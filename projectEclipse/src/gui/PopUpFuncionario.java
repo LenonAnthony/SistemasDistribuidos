@@ -24,8 +24,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class PopUpFuncionario extends JFrame {
-	
-	
+
 	ControladorFuncionario cf = new ControladorFuncionario();
 	private JPanel contentPane;
 	private JTextField textField;
@@ -40,9 +39,11 @@ public class PopUpFuncionario extends JFrame {
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
+
 				try {
 					PopUpFuncionario frame = new PopUpFuncionario();
 					frame.setVisible(true);
+
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -69,7 +70,6 @@ public class PopUpFuncionario extends JFrame {
 						|| textField_3.getText().isEmpty() || textField_4.getText().isEmpty()) {
 					JOptionPane.showMessageDialog(null, "Favor, preencher tudo.");
 				} else {
-					// ajeitar depois
 					Funcionario f = new Funcionario(textField.getText(), textField_1.getText(), textField_4.getText(),
 							textField_2.getText(), textField_3.getText(), 0);
 
@@ -78,6 +78,8 @@ public class PopUpFuncionario extends JFrame {
 					} else {
 						cf.cadastrar(f);
 						JOptionPane.showMessageDialog(null, "Funcionário Cadastrado com Sucesso!");
+						dispose();
+						System.out.println(cf);
 					}
 
 				}

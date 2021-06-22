@@ -50,7 +50,5 @@ public class ControladorFuncionario {
 	public String toString() {
 		return repositorioFuncionario.toString();
 	}
-	
-	
 
 }

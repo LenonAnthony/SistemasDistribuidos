@@ -7,7 +7,7 @@ import negocios.basicos.Funcionario;
 public class RepositorioFuncionarios {
 	private ArrayList<Funcionario> funcionarios = new ArrayList<>();
 	private int tamanho;
-	
+
 	public RepositorioFuncionarios() {
 	}
 
@@ -15,7 +15,7 @@ public class RepositorioFuncionarios {
 		this.funcionarios.add(f);
 		tamanho = this.funcionarios.size();
 	}
-  
+
 	private int procurarIndice(Funcionario f) {
 		int i = 0;
 		boolean achou = false;
@@ -29,7 +29,6 @@ public class RepositorioFuncionarios {
 		return i;
 	}
 
-	
 	public Funcionario procurar(Funcionario f) {
 		int i = this.procurarIndice(f);
 		Funcionario resultado = null;
@@ -51,6 +50,7 @@ public class RepositorioFuncionarios {
 		}
 		return existe;
 	}
+	
 
 	public void remover(Funcionario f) {
 		int i = this.procurarIndice(f);
@@ -64,10 +64,7 @@ public class RepositorioFuncionarios {
 	}
 
 	public String toString() {
-		return "Funcionarios: "+funcionarios;
+		return "Funcionarios: " + funcionarios;
 	}
-	
 
 }
-
-

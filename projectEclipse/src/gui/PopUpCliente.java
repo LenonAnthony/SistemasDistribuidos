@@ -6,6 +6,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import negocios.ControladorFuncionario;
+
 import java.awt.SystemColor;
 
 import javax.swing.JLabel;
@@ -17,7 +20,6 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 
 public class PopUpCliente extends JFrame {
-
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTextField textField_1;
