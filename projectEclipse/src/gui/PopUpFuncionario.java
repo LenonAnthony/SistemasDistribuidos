@@ -32,8 +32,6 @@ public class PopUpFuncionario extends JFrame {
 	private JTextField textField_2;
 	private JTextField textField_3;
 	private JTextField textField_4;
-	
-	
 
 	public static ControladorFuncionario getCf() {
 		return cf;
@@ -87,7 +85,6 @@ public class PopUpFuncionario extends JFrame {
 						JOptionPane.showMessageDialog(null, "Funcionário já existe.");
 					} else {
 						cf.cadastrar(f);
-						JOptionPane.showMessageDialog(null, "Funcionário Cadastrado com Sucesso!");
 						dispose();
 						System.out.println(cf);
 					}
