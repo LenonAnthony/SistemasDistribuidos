@@ -34,9 +34,6 @@ public class TelaGerente extends JFrame {
 	int contador = 0;
 	private JPanel contentPane;
 	private JTable table;
-	
-	
-	
 
 	/**
 	 * Launch the application.
@@ -104,7 +101,7 @@ public class TelaGerente extends JFrame {
 		btnNewButton_1_1_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				contador = 2;
-				String aux1[] = new String[] { "Nome", "CPF", "Endereco" , "Pontos"};
+				String aux1[] = new String[] { "Nome", "CPF", "Endereco", "Pontos" };
 				DefaultTableModel dtm;
 				dtm = new DefaultTableModel(aux1, 0);
 				table.setModel(dtm);
@@ -140,12 +137,7 @@ public class TelaGerente extends JFrame {
 
 		table = new JTable();
 		scrollPane.setViewportView(table);
-		
-		
-		
-		
-		
-		
+
 		JButton btnNewButton_2 = new JButton("Adicionar");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
