@@ -25,13 +25,23 @@ import java.awt.event.ActionEvent;
 
 public class PopUpFuncionario extends JFrame {
 
-	ControladorFuncionario cf = new ControladorFuncionario();
+	public static ControladorFuncionario cf = new ControladorFuncionario();
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
 	private JTextField textField_3;
 	private JTextField textField_4;
+	
+	
+
+	public static ControladorFuncionario getCf() {
+		return cf;
+	}
+
+	public static void setCf(ControladorFuncionario cf) {
+		PopUpFuncionario.cf = cf;
+	}
 
 	/**
 	 * Launch the application.

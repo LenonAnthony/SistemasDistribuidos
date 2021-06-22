@@ -18,8 +18,8 @@ import negocios.basicos.Funcionario;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 
-public class TelaDeLogin extends PopUpFuncionario {
-	
+public class TelaDeLogin extends JFrame {
+	PopUpFuncionario popf = new PopUpFuncionario();
 	private JFrame frame;
 	private JTextField password;
 	private JTextField login;
@@ -79,13 +79,14 @@ public class TelaDeLogin extends PopUpFuncionario {
 			public void actionPerformed(ActionEvent e) {
 				
 				Funcionario f = new Funcionario("Lenon", "711", "Gerente", login.getText(), password.getText(), 0);
-				System.out.println(cf);
-				if (cf.existe(f)) {
+				System.out.println(PopUpFuncionario.getCf());
+				if (PopUpFuncionario.getCf().existe(f)) {
 					JOptionPane.showMessageDialog(null, "Logado com Sucesso.");
+					dispose();
+					
 				} else {
 					JOptionPane.showMessageDialog(null, "Dados Incorretos.");
 				}
-
 			}
 		});
 		logarButton.setFont(new Font("Tahoma", Font.PLAIN, 24));
