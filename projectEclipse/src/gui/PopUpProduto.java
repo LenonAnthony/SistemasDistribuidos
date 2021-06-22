@@ -50,6 +50,7 @@ public class PopUpProduto extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+	//TESTE
 	public PopUpProduto() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
