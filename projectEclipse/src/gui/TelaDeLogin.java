@@ -82,11 +82,14 @@ public class TelaDeLogin extends JFrame {
 				System.out.println(PopUpFuncionario.getCf());
 				if (PopUpFuncionario.getCf().existe(f)) {
 					JOptionPane.showMessageDialog(null, "Logado com Sucesso.");
-					dispose();
+					frame.dispose();
+					TelaGerente tg = new TelaGerente();
+					tg.setVisible(true);
 					
 				} else {
 					JOptionPane.showMessageDialog(null, "Dados Incorretos.");
 				}
+				
 			}
 		});
 		logarButton.setFont(new Font("Tahoma", Font.PLAIN, 24));
