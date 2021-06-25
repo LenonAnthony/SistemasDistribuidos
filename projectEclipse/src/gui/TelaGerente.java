@@ -30,12 +30,17 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class TelaGerente extends JFrame {
 
 	int contador = 0;
 	private JPanel contentPane;
 	private JTable table;
+	private int linha;
+	private String campoDeTexto;
+	private String campoDeTexto_1;
 
 	private DefaultTableModel dtm;
 
@@ -60,35 +65,44 @@ public class TelaGerente extends JFrame {
 	 */
 
 	public void atualizarJTableFuncionarios() {
-		ArrayList<Funcionario> arrays = new ArrayList<>();
-		arrays.addAll(PopUpFuncionario.getCf().getRepositorioFuncionario().getFuncionarios());
-		for (int i = 0; i < PopUpFuncionario.getCf().getTamanho(); i++) {
-			Object[] objs = { arrays.get(i).getNome(), arrays.get(i).getCpf(), arrays.get(i).getTipo() };
-			dtm.addRow(objs);
-			table.setModel(dtm);
-		}
+		if (PopUpFuncionario.getCf().getRepositorioFuncionario().getFuncionarios().size() == 0) {
 
+		} else {
+			ArrayList<Funcionario> arrays = new ArrayList<>();
+			arrays.addAll(PopUpFuncionario.getCf().getRepositorioFuncionario().getFuncionarios());
+			for (int i = 0; i < PopUpFuncionario.getCf().getTamanho(); i++) {
+				Object[] objs = { arrays.get(i).getNome(), arrays.get(i).getCpf(), arrays.get(i).getTipo() };
+				dtm.addRow(objs);
+				table.setModel(dtm);
+			}
+		}
 	}
 
 	public void atualizarJTableClientes() {
-		ArrayList<Cliente> arrays = new ArrayList<>();
-		arrays.addAll(PopUpCliente.getCc().getRepositorioClientes().getClientes());
-		for (int i = 0; i < PopUpCliente.getCc().getTamanho(); i++) {
-			Object[] objs = { arrays.get(i).getNome(), arrays.get(i).getCpf(), arrays.get(i).getEndereco(),
-					arrays.get(i).getPontos() };
-			dtm.addRow(objs);
-			table.setModel(dtm);
+		if (PopUpCliente.getCc().getRepositorioClientes().getClientes().size() != 0) {
+			ArrayList<Cliente> arrays = new ArrayList<>();
+			arrays.addAll(PopUpCliente.getCc().getRepositorioClientes().getClientes());
+			for (int i = 0; i < PopUpCliente.getCc().getTamanho(); i++) {
+				Object[] objs = { arrays.get(i).getNome(), arrays.get(i).getCpf(), arrays.get(i).getEndereco(),
+						arrays.get(i).getPontos() };
+				dtm.addRow(objs);
+				table.setModel(dtm);
+			}
 		}
+
 	}
 
 	public void atualizarJTableProdutos() {
-		ArrayList<Produto> arrays = new ArrayList<>();
-		arrays.addAll(PopUpProduto.getCp().getRepositorioProdutos().getProdutos());
-		for (int i = 0; i < PopUpProduto.getCp().getTamanho(); i++) {
-			Object[] objs = { arrays.get(i).getNome(), arrays.get(i).getPreco(), arrays.get(i).getDescricao() };
-			dtm.addRow(objs);
-			table.setModel(dtm);
+		if (PopUpProduto.getCp().getRepositorioProdutos().getProdutos().size() != 0) {
+			ArrayList<Produto> arrays = new ArrayList<>();
+			arrays.addAll(PopUpProduto.getCp().getRepositorioProdutos().getProdutos());
+			for (int i = 0; i < PopUpProduto.getCp().getTamanho(); i++) {
+				Object[] objs = { arrays.get(i).getNome(), arrays.get(i).getPreco(), arrays.get(i).getDescricao() };
+				dtm.addRow(objs);
+				table.setModel(dtm);
+			}
 		}
+
 	}
 
 	public TelaGerente() {
@@ -169,10 +183,22 @@ public class TelaGerente extends JFrame {
 		btnNewButton_1_1.setFont(new Font("Tahoma", Font.PLAIN, 24));
 
 		JScrollPane scrollPane = new JScrollPane();
+
 		scrollPane.setBounds(181, 42, 798, 483);
 		panel_1.add(scrollPane);
 
 		table = new JTable();
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				linha = table.getSelectedRow();
+				campoDeTexto = dtm.getValueAt(linha, 0).toString();
+				System.out.println(campoDeTexto);
+				campoDeTexto_1 = dtm.getValueAt(linha, 1).toString();
+				System.out.println(campoDeTexto_1);
+
+			}
+		});
 		scrollPane.setViewportView(table);
 
 		JButton btnNewButton_2 = new JButton("Adicionar");
@@ -199,12 +225,22 @@ public class TelaGerente extends JFrame {
 		btnNewButton_2_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (contador == 1) {
-					
+					for (int i = 0; i < PopUpFuncionario.getCf().getRepositorioFuncionario().getFuncionarios()
+							.size(); i++) {
+						if (campoDeTexto.equals(
+								PopUpFuncionario.getCf().getRepositorioFuncionario().getFuncionarios().get(i).getNome())
+								&& campoDeTexto_1.equals(PopUpFuncionario.getCf().getRepositorioFuncionario()
+										.getFuncionarios().get(i).getCpf())) {
+							PopUpFuncionario.getCf().remover(
+									PopUpFuncionario.getCf().getRepositorioFuncionario().getFuncionarios().get(i));
+							System.out.println(PopUpFuncionario.getCf());
+						}
+
+					}
+
 				} else if (contador == 2) {
-					
 
 				} else if (contador == 3) {
-					
 
 				}
 			}
