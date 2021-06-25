@@ -6,14 +6,21 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import negocios.basicos.Funcionario;
+
 import java.awt.SystemColor;
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.Font;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.awt.event.ActionEvent;
 
 public class PopUpBuscaFuncionario extends JFrame {
 
@@ -48,25 +55,25 @@ public class PopUpBuscaFuncionario extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		JPanel panel = new JPanel();
 		panel.setBackground(SystemColor.info);
 		panel.setBounds(10, 11, 414, 171);
 		contentPane.add(panel);
 		GridBagLayout gbl_panel = new GridBagLayout();
-		gbl_panel.columnWidths = new int[]{0, 0, 0, 0};
-		gbl_panel.rowHeights = new int[]{0, 0, 0, 0, 0, 0};
-		gbl_panel.columnWeights = new double[]{0.0, 0.0, 1.0, Double.MIN_VALUE};
-		gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_panel.columnWidths = new int[] { 0, 0, 0, 0 };
+		gbl_panel.rowHeights = new int[] { 0, 0, 0, 0, 0, 0 };
+		gbl_panel.columnWeights = new double[] { 0.0, 0.0, 1.0, Double.MIN_VALUE };
+		gbl_panel.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
 		panel.setLayout(gbl_panel);
-		
+
 		JLabel lblNewLabel = new JLabel("Nome:");
 		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
 		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel.gridx = 0;
 		gbc_lblNewLabel.gridy = 0;
 		panel.add(lblNewLabel, gbc_lblNewLabel);
-		
+
 		textField = new JTextField();
 		textField.setColumns(10);
 		GridBagConstraints gbc_textField = new GridBagConstraints();
@@ -75,14 +82,14 @@ public class PopUpBuscaFuncionario extends JFrame {
 		gbc_textField.gridx = 2;
 		gbc_textField.gridy = 0;
 		panel.add(textField, gbc_textField);
-		
+
 		JLabel lblNewLabel_1 = new JLabel("CPF:");
 		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
 		gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_1.gridx = 0;
 		gbc_lblNewLabel_1.gridy = 1;
 		panel.add(lblNewLabel_1, gbc_lblNewLabel_1);
-		
+
 		textField_1 = new JTextField();
 		textField_1.setColumns(10);
 		GridBagConstraints gbc_textField_1 = new GridBagConstraints();
@@ -91,8 +98,28 @@ public class PopUpBuscaFuncionario extends JFrame {
 		gbc_textField_1.gridx = 2;
 		gbc_textField_1.gridy = 1;
 		panel.add(textField_1, gbc_textField_1);
-		
+
 		JButton btnNewButton = new JButton("Confirmar");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				boolean achou = false;
+				ArrayList<Funcionario> arrays = new ArrayList<>();
+				arrays.addAll(PopUpFuncionario.getCf().getRepositorioFuncionario().getFuncionarios());
+
+				int tamanho = PopUpFuncionario.getCf().getRepositorioFuncionario().getFuncionarios().size();
+				for (int i = 0; i < tamanho; i++) {
+					if (textField.getText().equals(arrays.get(i).getNome())
+							&& textField_1.getText().equals(arrays.get(i).getCpf())) {
+						JOptionPane.showMessageDialog(null, "Funcionario Encontrado!.");
+						achou = true;
+					}
+				}
+				if (!achou) {
+					JOptionPane.showMessageDialog(null, "Funcionario não Encontrado!.");
+				}
+				dispose();
+			}
+		});
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		btnNewButton.setBounds(106, 193, 207, 57);
 		contentPane.add(btnNewButton);
