@@ -303,8 +303,12 @@ public class TelaGerente extends JFrame {
 		btnNewButton_2_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (contador == 1) {
-					PopUpAuxFunc popf = new PopUpAuxFunc(campoDeTexto,campoDeTexto_1,campoDeTexto_2);
-					popf.setVisible(true);
+					PopUpFuncionario.getCf().getRepositorioFuncionario().getFuncionarios().get(linha).setNome(campoDeTexto);
+					PopUpFuncionario.getCf().getRepositorioFuncionario().getFuncionarios().get(linha).setCpf(campoDeTexto_1);
+					PopUpFuncionario.getCf().getRepositorioFuncionario().getFuncionarios().get(linha).setTipo(campoDeTexto_2);
+					
+					//PopUpAuxFunc popf = new PopUpAuxFunc(campoDeTexto,campoDeTexto_1,campoDeTexto_2);
+					//popf.setVisible(true);
 				}
 				if (contador == 2)
 				{
