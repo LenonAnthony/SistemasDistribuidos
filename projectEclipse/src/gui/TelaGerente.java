@@ -67,12 +67,13 @@ public class TelaGerente extends JFrame {
 	 */
 
 	public void atualizarJTableFuncionarios() {
-		if (PopUpFuncionario.getCf().getRepositorioFuncionario().getFuncionarios().size() == 0) {
+		int tamanho = PopUpFuncionario.getCf().getRepositorioFuncionario().getFuncionarios().size();
+		if (tamanho == 0) {
 
 		} else {
 			ArrayList<Funcionario> arrays = new ArrayList<>();
 			arrays.addAll(PopUpFuncionario.getCf().getRepositorioFuncionario().getFuncionarios());
-			for (int i = 0; i < PopUpFuncionario.getCf().getTamanho(); i++) {
+			for (int i = 0; i < tamanho; i++) {
 				Object[] objs = { arrays.get(i).getNome(), arrays.get(i).getCpf(), arrays.get(i).getTipo() };
 				dtm.addRow(objs);
 				table.setModel(dtm);
@@ -81,12 +82,13 @@ public class TelaGerente extends JFrame {
 	}
 
 	public void atualizarJTableClientes() {
-		if (PopUpCliente.getCc().getRepositorioClientes().getClientes().size() == 0) {
+		int tamanho = PopUpCliente.getCc().getRepositorioClientes().getClientes().size();
+		if (tamanho == 0) {
 
 		} else {
 			ArrayList<Cliente> arrays = new ArrayList<>();
 			arrays.addAll(PopUpCliente.getCc().getRepositorioClientes().getClientes());
-			for (int i = 0; i < PopUpCliente.getCc().getTamanho(); i++) {
+			for (int i = 0; i < tamanho; i++) {
 				Object[] objs = { arrays.get(i).getNome(), arrays.get(i).getCpf(), arrays.get(i).getEndereco(),
 						arrays.get(i).getPontos() };
 				dtm.addRow(objs);
@@ -97,12 +99,13 @@ public class TelaGerente extends JFrame {
 	}
 
 	public void atualizarJTableProdutos() {
-		if (PopUpProduto.getCp().getRepositorioProdutos().getProdutos().size() == 0) {
+		int tamanho = PopUpProduto.getCp().getRepositorioProdutos().getProdutos().size();
+		if (tamanho == 0) {
 
 		} else {
 			ArrayList<Produto> arrays = new ArrayList<>();
 			arrays.addAll(PopUpProduto.getCp().getRepositorioProdutos().getProdutos());
-			for (int i = 0; i < PopUpProduto.getCp().getTamanho(); i++) {
+			for (int i = 0; i < tamanho; i++) {
 				Object[] objs = { arrays.get(i).getNome(), arrays.get(i).getPreco(), arrays.get(i).getDescricao() };
 				dtm.addRow(objs);
 				table.setModel(dtm);
@@ -310,7 +313,8 @@ public class TelaGerente extends JFrame {
 
 				}
 				if (contador == 3) {
-					PopUpProduto.getCp().getRepositorioProdutos().getProdutos().get(linha).setPreco(Double.parseDouble(campoDePreco));
+					PopUpProduto.getCp().getRepositorioProdutos().getProdutos().get(linha)
+							.setPreco(Double.parseDouble(campoDePreco));
 					PopUpProduto.getCp().getRepositorioProdutos().getProdutos().get(linha).setNome(campoDeTexto);
 					PopUpProduto.getCp().getRepositorioProdutos().getProdutos().get(linha).setDescricao(campoDeTexto_2);
 
