@@ -87,9 +87,11 @@ public class PopUpFuncionario extends JFrame {
 						cf.cadastrar(f);
 						dispose();
 						System.out.println(cf);
+
 					}
 
 				}
+			
 			}
 		});
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 30));

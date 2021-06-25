@@ -138,6 +138,7 @@ public class PopUpProduto extends JFrame {
 					JOptionPane.showMessageDialog(null, "Produto adicionado!");
 					cp.cadastrar(p);
 					System.out.println(cp);
+					dispose();
 
 				}
 

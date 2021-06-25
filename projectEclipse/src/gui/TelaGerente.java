@@ -1,5 +1,6 @@
 package gui;
 
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -17,6 +18,8 @@ import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
+import guiAuxPopUps.*;
+import guiAuxPopUps.PopUpAuxProduto;
 import negocios.basicos.Cliente;
 import negocios.basicos.Funcionario;
 import negocios.basicos.Produto;
@@ -42,9 +45,6 @@ public class TelaGerente extends JFrame {
 	private String campoDeTexto;
 	private String campoDeTexto_1;
 	private String campoDeTexto_2;
-	private String campoDeTexto_3;
-	private String campoDeTexto_4;
-	private String campoDeTexto_5;
 	private Double campoDePreco;
 	
 	private DefaultTableModel dtm;
@@ -228,7 +228,7 @@ public class TelaGerente extends JFrame {
 					campoDeTexto = dtm.getValueAt(linha, 0).toString();
 					System.out.println(campoDeTexto);
 					campoDePreco = (Double) dtm.getValueAt(linha, 1);
-					campoDeTexto_1 = dtm.getValueAt(linha, 1).toString();
+					campoDeTexto_2 = dtm.getValueAt(linha, 2).toString();
 					
 				}
 			}
@@ -305,6 +305,17 @@ public class TelaGerente extends JFrame {
 				if (contador == 1) {
 					PopUpAuxFunc popf = new PopUpAuxFunc(campoDeTexto,campoDeTexto_1,campoDeTexto_2);
 					popf.setVisible(true);
+				}
+				if (contador == 2)
+				{
+					PopUpAuxCliente popc = new PopUpAuxCliente(campoDeTexto,campoDeTexto_1,campoDeTexto_2);
+					popc.setVisible(true);
+
+				}
+				if (contador == 3)
+				{
+					PopUpAuxProduto popp = new PopUpAuxProduto(campoDeTexto, campoDePreco, campoDeTexto_2);
+					popp.setVisible(true);
 				}
 			}
 		});
