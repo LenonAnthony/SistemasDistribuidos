@@ -26,7 +26,7 @@ public class ControladorFuncionario {
 	}
 
 	public void descadastrar(Funcionario f) {
-		this.repositorioFuncionario.procurar(f);
+		this.repositorioFuncionario.procurarIndice(f);
 		if (f != null) {
 			this.repositorioFuncionario.remover(f);
 			tamanho = tamanho - 1;
@@ -38,11 +38,18 @@ public class ControladorFuncionario {
 	}
 
 	public Funcionario procurar(Funcionario f) {
-		return this.repositorioFuncionario.procurar(f);
+		return this.repositorioFuncionario.procurarFuncionario(f);
+	}
+	public Funcionario procurarSenha(Funcionario f) {
+		return this.repositorioFuncionario.procurarLoginSenha(f);
 	}
 
 	public boolean existe(Funcionario f) {
 		return this.repositorioFuncionario.existe(f);
+	}
+	
+	public boolean existeLoginSenha(Funcionario f) {
+		return this.repositorioFuncionario.existeLoginSenha(f);
 	}
 
 	public void remover(Funcionario f) {

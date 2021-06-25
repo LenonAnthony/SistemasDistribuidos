@@ -196,6 +196,20 @@ public class TelaGerente extends JFrame {
 		panel_1.add(btnNewButton_2);
 
 		JButton btnNewButton_2_1 = new JButton("Remover");
+		btnNewButton_2_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (contador == 1) {
+					
+				} else if (contador == 2) {
+					
+
+				} else if (contador == 3) {
+					
+
+				}
+			}
+		});
+
 		btnNewButton_2_1.setBounds(428, 536, 89, 23);
 		panel_1.add(btnNewButton_2_1);
 

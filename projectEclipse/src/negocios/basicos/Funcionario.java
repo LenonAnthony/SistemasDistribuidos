@@ -80,26 +80,52 @@ public class Funcionario extends Pessoa {
 		}
 
 	}
-
-	@Override
-	public boolean equals(Object obj) {
+	
+	public boolean verificaAcesso(Object obj) {
 
 		boolean resultado = false;
 
 		if (obj instanceof Funcionario) {
 
 			Funcionario f = (Funcionario) obj;
-			//Depois adicionar CPF.
+			// Depois adicionar CPF.
 			if (this.login.equals(f.login) && this.senha.equals(f.senha)) {
 
 				resultado = true;
-
 			}
-
 		}
 
 		return resultado;
 
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Funcionario other = (Funcionario) obj;
+		if (login == null) {
+			if (other.login != null)
+				return false;
+		} else if (!login.equals(other.login))
+			return false;
+		if (Double.doubleToLongBits(salario) != Double.doubleToLongBits(other.salario))
+			return false;
+		if (senha == null) {
+			if (other.senha != null)
+				return false;
+		} else if (!senha.equals(other.senha))
+			return false;
+		if (tipo == null) {
+			if (other.tipo != null)
+				return false;
+		} else if (!tipo.equals(other.tipo))
+			return false;
+		return true;
 	}
 
 	@Override

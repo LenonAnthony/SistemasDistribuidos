@@ -16,7 +16,20 @@ public class RepositorioFuncionarios {
 		tamanho = this.funcionarios.size();
 	}
 
-	private int procurarIndice(Funcionario f) {
+	public int procurarIndiceLoginSenha(Funcionario f) {
+		int i = 0;
+		boolean achou = false;
+		while ((!achou) && (i < tamanho)) {
+			if (f.verificaAcesso(this.funcionarios.get(i))) {
+				achou = true;
+			} else {
+				i++;
+			}
+		}
+		return i;
+	}
+
+	public int procurarIndice(Funcionario f) {
 		int i = 0;
 		boolean achou = false;
 		while ((!achou) && (i < tamanho)) {
@@ -29,7 +42,17 @@ public class RepositorioFuncionarios {
 		return i;
 	}
 
-	public Funcionario procurar(Funcionario f) {
+	public Funcionario procurarLoginSenha(Funcionario f) {
+		int i = this.procurarIndiceLoginSenha(f);
+		Funcionario resultado = null;
+		if (i != this.funcionarios.size()) {
+			resultado = f;
+
+		}
+		return resultado;
+	}
+
+	public Funcionario procurarFuncionario(Funcionario f) {
 		int i = this.procurarIndice(f);
 		Funcionario resultado = null;
 		if (i != this.funcionarios.size()) {
@@ -38,6 +61,7 @@ public class RepositorioFuncionarios {
 		}
 		return resultado;
 	}
+
 
 	public boolean existe(Funcionario f) {
 		boolean existe = false;
@@ -50,7 +74,18 @@ public class RepositorioFuncionarios {
 		}
 		return existe;
 	}
-	
+
+	public boolean existeLoginSenha(Funcionario f) {
+		boolean existe = false;
+		int indice = this.procurarIndiceLoginSenha(f);
+		if (indice != tamanho) {
+			existe = true;
+			System.out.println("A conta existe");
+		} else {
+			System.out.println("A conta não existe");
+		}
+		return existe;
+	}
 
 	public void remover(Funcionario f) {
 		int i = this.procurarIndice(f);
@@ -62,7 +97,6 @@ public class RepositorioFuncionarios {
 		}
 		tamanho = this.funcionarios.size();
 	}
-	
 
 	public ArrayList<Funcionario> getFuncionarios() {
 		return funcionarios;
@@ -71,7 +105,6 @@ public class RepositorioFuncionarios {
 	public void setFuncionarios(ArrayList<Funcionario> funcionarios) {
 		this.funcionarios = funcionarios;
 	}
-	
 
 	public int getTamanho() {
 		return tamanho;

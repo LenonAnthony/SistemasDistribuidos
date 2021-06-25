@@ -80,7 +80,7 @@ public class TelaDeLogin extends JFrame {
 
 				Funcionario f = new Funcionario("", "", "", login.getText(), password.getText(), 0);
 				System.out.println(PopUpFuncionario.getCf());
-				if (PopUpFuncionario.getCf().existe(f)) {
+				if (PopUpFuncionario.getCf().existeLoginSenha(f)) {
 					JOptionPane.showMessageDialog(null, "Logado com Sucesso.");
 					frame.dispose();
 					TelaGerente tg = new TelaGerente();

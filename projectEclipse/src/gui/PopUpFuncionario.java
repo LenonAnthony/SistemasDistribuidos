@@ -81,7 +81,7 @@ public class PopUpFuncionario extends JFrame {
 					Funcionario f = new Funcionario(textField.getText(), textField_1.getText(), textField_4.getText(),
 							textField_2.getText(), textField_3.getText(), 0);
 
-					if (cf.existe(f)) {
+					if (cf.existeLoginSenha(f)) {
 						JOptionPane.showMessageDialog(null, "Funcionário já existe.");
 					} else {
 						cf.cadastrar(f);
