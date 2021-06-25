@@ -325,6 +325,15 @@ public class TelaGerente extends JFrame {
 		panel_1.add(btnNewButton_2_2);
 
 		JButton btnNewButton_2_3 = new JButton("Buscar");
+		btnNewButton_2_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+				
+				
+				
+			}
+		});
 
 		btnNewButton_2_3.setBounds(659, 536, 89, 23);
 		panel_1.add(btnNewButton_2_3);
