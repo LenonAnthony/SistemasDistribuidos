@@ -33,7 +33,7 @@ public class TelaNovaVenda extends JFrame {
 	private JButton btnNewButton_2;
 	private JPanel panel_1;
 	private JLabel lblNewLabel_1;
-	private JLabel lblNewLabel_2;
+	private JLabel valorFinal;
 	private JButton btnNewButton_3;
 	private JTable table;
 
@@ -104,7 +104,7 @@ public class TelaNovaVenda extends JFrame {
 		scrollPane.setViewportView(table);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(287, 437, 967, 233);
+		scrollPane_1.setBounds(287, 436, 977, 233);
 		contentPane.add(scrollPane_1);
 		
 		table_1 = new JTable();
@@ -136,11 +136,11 @@ public class TelaNovaVenda extends JFrame {
 		lblNewLabel_1.setBounds(10, 11, 83, 14);
 		panel_1.add(lblNewLabel_1);
 		
-		lblNewLabel_2 = new JLabel("uga");
-		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 35));
-		lblNewLabel_2.setToolTipText("Valor \u00E0 ser pago");
-		lblNewLabel_2.setBounds(10, 24, 257, 149);
-		panel_1.add(lblNewLabel_2);
+		valorFinal = new JLabel("uga");
+		valorFinal.setFont(new Font("Tahoma", Font.PLAIN, 35));
+		valorFinal.setToolTipText("Valor \u00E0 ser pago");
+		valorFinal.setBounds(10, 24, 257, 149);
+		panel_1.add(valorFinal);
 		//teste
 		btnNewButton_3 = new JButton("Atualizar");
 		btnNewButton_3.setFont(new Font("Tahoma", Font.PLAIN, 17));
