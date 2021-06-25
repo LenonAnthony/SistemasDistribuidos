@@ -1,6 +1,5 @@
 package gui;
 
-
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -18,8 +17,6 @@ import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
-import guiAuxPopUps.*;
-import guiAuxPopUps.PopUpAuxProduto;
 import negocios.basicos.Cliente;
 import negocios.basicos.Funcionario;
 import negocios.basicos.Produto;
@@ -45,8 +42,8 @@ public class TelaGerente extends JFrame {
 	private String campoDeTexto;
 	private String campoDeTexto_1;
 	private String campoDeTexto_2;
-	private Double campoDePreco;
-	
+	private String campoDePreco;
+
 	private DefaultTableModel dtm;
 
 	/**
@@ -85,10 +82,8 @@ public class TelaGerente extends JFrame {
 
 	public void atualizarJTableClientes() {
 		if (PopUpCliente.getCc().getRepositorioClientes().getClientes().size() == 0) {
-			
-		}
-		else
-		{
+
+		} else {
 			ArrayList<Cliente> arrays = new ArrayList<>();
 			arrays.addAll(PopUpCliente.getCc().getRepositorioClientes().getClientes());
 			for (int i = 0; i < PopUpCliente.getCc().getTamanho(); i++) {
@@ -103,10 +98,8 @@ public class TelaGerente extends JFrame {
 
 	public void atualizarJTableProdutos() {
 		if (PopUpProduto.getCp().getRepositorioProdutos().getProdutos().size() == 0) {
-			
-		}
-		else
-		{
+
+		} else {
 			ArrayList<Produto> arrays = new ArrayList<>();
 			arrays.addAll(PopUpProduto.getCp().getRepositorioProdutos().getProdutos());
 			for (int i = 0; i < PopUpProduto.getCp().getTamanho(); i++) {
@@ -203,32 +196,27 @@ public class TelaGerente extends JFrame {
 		table.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(contador == 1)
-				{
+				if (contador == 1) {
 					linha = table.getSelectedRow();
 					campoDeTexto = dtm.getValueAt(linha, 0).toString();
 					System.out.println(campoDeTexto);
 					campoDeTexto_1 = dtm.getValueAt(linha, 1).toString();
 					System.out.println(campoDeTexto_1);
 					campoDeTexto_2 = dtm.getValueAt(linha, 2).toString();
-				}
-				else if(contador == 2)
-				{
+				} else if (contador == 2) {
 					linha = table.getSelectedRow();
 					campoDeTexto = dtm.getValueAt(linha, 0).toString();
 					System.out.println(campoDeTexto);
 					campoDeTexto_1 = dtm.getValueAt(linha, 1).toString();
 					System.out.println(campoDeTexto_1);
 					campoDeTexto_2 = dtm.getValueAt(linha, 2).toString();
-				}
-				else if(contador == 3)
-				{
+				} else if (contador == 3) {
 					linha = table.getSelectedRow();
 					campoDeTexto = dtm.getValueAt(linha, 0).toString();
 					System.out.println(campoDeTexto);
-					campoDePreco = (Double) dtm.getValueAt(linha, 1);
+					campoDePreco = dtm.getValueAt(linha, 1).toString();
 					campoDeTexto_2 = dtm.getValueAt(linha, 2).toString();
-					
+
 				}
 			}
 		});
@@ -273,10 +261,12 @@ public class TelaGerente extends JFrame {
 
 				} else if (contador == 2) {
 					for (int i = 0; i < PopUpCliente.getCc().getRepositorioClientes().getClientes().size(); i++) {
-						if (campoDeTexto.equals(
-								PopUpCliente.getCc().getRepositorioClientes().getClientes().get(i).getNome())
-								&& campoDeTexto_1.equals(PopUpCliente.getCc().getRepositorioClientes().getClientes().get(i).getCpf())) {
-							PopUpCliente.getCc().remover(PopUpCliente.getCc().getRepositorioClientes().getClientes().get(i));
+						if (campoDeTexto
+								.equals(PopUpCliente.getCc().getRepositorioClientes().getClientes().get(i).getNome())
+								&& campoDeTexto_1.equals(
+										PopUpCliente.getCc().getRepositorioClientes().getClientes().get(i).getCpf())) {
+							PopUpCliente.getCc()
+									.remover(PopUpCliente.getCc().getRepositorioClientes().getClientes().get(i));
 							System.out.println(PopUpCliente.getCc());
 						}
 
@@ -284,8 +274,10 @@ public class TelaGerente extends JFrame {
 
 				} else if (contador == 3) {
 					for (int i = 0; i < PopUpProduto.getCp().getRepositorioProdutos().getProdutos().size(); i++) {
-						if (campoDeTexto == (PopUpProduto.getCp().getRepositorioProdutos().getProdutos().get(i).getNome())) {
-							PopUpProduto.getCp().remover(PopUpProduto.getCp().getRepositorioProdutos().getProdutos().get(i));
+						if (campoDeTexto == (PopUpProduto.getCp().getRepositorioProdutos().getProdutos().get(i)
+								.getNome())) {
+							PopUpProduto.getCp()
+									.remover(PopUpProduto.getCp().getRepositorioProdutos().getProdutos().get(i));
 							System.out.println(PopUpProduto.getCp());
 						}
 
@@ -302,23 +294,26 @@ public class TelaGerente extends JFrame {
 		btnNewButton_2_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (contador == 1) {
-					
-					PopUpFuncionario.getCf().getRepositorioFuncionario().getFuncionarios().get(linha).setNome(campoDeTexto);
-					PopUpFuncionario.getCf().getRepositorioFuncionario().getFuncionarios().get(linha).setCpf(campoDeTexto_1);
-					PopUpFuncionario.getCf().getRepositorioFuncionario().getFuncionarios().get(linha).setTipo(campoDeTexto_2);
-					
+
+					PopUpFuncionario.getCf().getRepositorioFuncionario().getFuncionarios().get(linha)
+							.setNome(campoDeTexto);
+					PopUpFuncionario.getCf().getRepositorioFuncionario().getFuncionarios().get(linha)
+							.setCpf(campoDeTexto_1);
+					PopUpFuncionario.getCf().getRepositorioFuncionario().getFuncionarios().get(linha)
+							.setTipo(campoDeTexto_2);
+
 				}
-				if (contador == 2)
-				{
+				if (contador == 2) {
 					PopUpCliente.getCc().getRepositorioClientes().getClientes().get(linha).setNome(campoDeTexto);
 					PopUpCliente.getCc().getRepositorioClientes().getClientes().get(linha).setCpf(campoDeTexto_1);
 					PopUpCliente.getCc().getRepositorioClientes().getClientes().get(linha).setEndereco(campoDeTexto_2);
 
 				}
-				if (contador == 3)
-				{
-					PopUpAuxProduto popp = new PopUpAuxProduto(campoDeTexto, campoDePreco, campoDeTexto_2);
-					popp.setVisible(true);
+				if (contador == 3) {
+					PopUpProduto.getCp().getRepositorioProdutos().getProdutos().get(linha).setPreco(Double.parseDouble(campoDePreco));
+					PopUpProduto.getCp().getRepositorioProdutos().getProdutos().get(linha).setNome(campoDeTexto);
+					PopUpProduto.getCp().getRepositorioProdutos().getProdutos().get(linha).setDescricao(campoDeTexto_2);
+
 				}
 			}
 		});
@@ -326,7 +321,7 @@ public class TelaGerente extends JFrame {
 		panel_1.add(btnNewButton_2_2);
 
 		JButton btnNewButton_2_3 = new JButton("Buscar");
-		
+
 		btnNewButton_2_3.setBounds(659, 536, 89, 23);
 		panel_1.add(btnNewButton_2_3);
 
