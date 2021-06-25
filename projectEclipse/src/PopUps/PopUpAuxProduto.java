@@ -1,4 +1,4 @@
-package guiAuxPopUps;
+package PopUps;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;

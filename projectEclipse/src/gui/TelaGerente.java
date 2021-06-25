@@ -115,7 +115,6 @@ public class TelaGerente extends JFrame {
 				table.setModel(dtm);
 			}
 		}
-
 	}
 
 	public TelaGerente() {
@@ -303,17 +302,17 @@ public class TelaGerente extends JFrame {
 		btnNewButton_2_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (contador == 1) {
+					
 					PopUpFuncionario.getCf().getRepositorioFuncionario().getFuncionarios().get(linha).setNome(campoDeTexto);
 					PopUpFuncionario.getCf().getRepositorioFuncionario().getFuncionarios().get(linha).setCpf(campoDeTexto_1);
 					PopUpFuncionario.getCf().getRepositorioFuncionario().getFuncionarios().get(linha).setTipo(campoDeTexto_2);
 					
-					//PopUpAuxFunc popf = new PopUpAuxFunc(campoDeTexto,campoDeTexto_1,campoDeTexto_2);
-					//popf.setVisible(true);
 				}
 				if (contador == 2)
 				{
-					PopUpAuxCliente popc = new PopUpAuxCliente(campoDeTexto,campoDeTexto_1,campoDeTexto_2);
-					popc.setVisible(true);
+					PopUpCliente.getCc().getRepositorioClientes().getClientes().get(linha).setNome(campoDeTexto);
+					PopUpCliente.getCc().getRepositorioClientes().getClientes().get(linha).setCpf(campoDeTexto_1);
+					PopUpCliente.getCc().getRepositorioClientes().getClientes().get(linha).setEndereco(campoDeTexto_2);
 
 				}
 				if (contador == 3)
@@ -327,6 +326,7 @@ public class TelaGerente extends JFrame {
 		panel_1.add(btnNewButton_2_2);
 
 		JButton btnNewButton_2_3 = new JButton("Buscar");
+		
 		btnNewButton_2_3.setBounds(659, 536, 89, 23);
 		panel_1.add(btnNewButton_2_3);
 
