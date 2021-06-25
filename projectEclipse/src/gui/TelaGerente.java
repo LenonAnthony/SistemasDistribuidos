@@ -41,7 +41,12 @@ public class TelaGerente extends JFrame {
 	private int linha;
 	private String campoDeTexto;
 	private String campoDeTexto_1;
-
+	private String campoDeTexto_2;
+	private String campoDeTexto_3;
+	private String campoDeTexto_4;
+	private String campoDeTexto_5;
+	private Double campoDePreco;
+	
 	private DefaultTableModel dtm;
 
 	/**
@@ -79,7 +84,11 @@ public class TelaGerente extends JFrame {
 	}
 
 	public void atualizarJTableClientes() {
-		if (PopUpCliente.getCc().getRepositorioClientes().getClientes().size() != 0) {
+		if (PopUpCliente.getCc().getRepositorioClientes().getClientes().size() == 0) {
+			
+		}
+		else
+		{
 			ArrayList<Cliente> arrays = new ArrayList<>();
 			arrays.addAll(PopUpCliente.getCc().getRepositorioClientes().getClientes());
 			for (int i = 0; i < PopUpCliente.getCc().getTamanho(); i++) {
@@ -93,7 +102,11 @@ public class TelaGerente extends JFrame {
 	}
 
 	public void atualizarJTableProdutos() {
-		if (PopUpProduto.getCp().getRepositorioProdutos().getProdutos().size() != 0) {
+		if (PopUpProduto.getCp().getRepositorioProdutos().getProdutos().size() == 0) {
+			
+		}
+		else
+		{
 			ArrayList<Produto> arrays = new ArrayList<>();
 			arrays.addAll(PopUpProduto.getCp().getRepositorioProdutos().getProdutos());
 			for (int i = 0; i < PopUpProduto.getCp().getTamanho(); i++) {
@@ -191,12 +204,33 @@ public class TelaGerente extends JFrame {
 		table.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				linha = table.getSelectedRow();
-				campoDeTexto = dtm.getValueAt(linha, 0).toString();
-				System.out.println(campoDeTexto);
-				campoDeTexto_1 = dtm.getValueAt(linha, 1).toString();
-				System.out.println(campoDeTexto_1);
-
+				if(contador == 1)
+				{
+					linha = table.getSelectedRow();
+					campoDeTexto = dtm.getValueAt(linha, 0).toString();
+					System.out.println(campoDeTexto);
+					campoDeTexto_1 = dtm.getValueAt(linha, 1).toString();
+					System.out.println(campoDeTexto_1);
+					campoDeTexto_2 = dtm.getValueAt(linha, 2).toString();
+				}
+				else if(contador == 2)
+				{
+					linha = table.getSelectedRow();
+					campoDeTexto = dtm.getValueAt(linha, 0).toString();
+					System.out.println(campoDeTexto);
+					campoDeTexto_1 = dtm.getValueAt(linha, 1).toString();
+					System.out.println(campoDeTexto_1);
+					campoDeTexto_2 = dtm.getValueAt(linha, 2).toString();
+				}
+				else if(contador == 3)
+				{
+					linha = table.getSelectedRow();
+					campoDeTexto = dtm.getValueAt(linha, 0).toString();
+					System.out.println(campoDeTexto);
+					campoDePreco = (Double) dtm.getValueAt(linha, 1);
+					campoDeTexto_1 = dtm.getValueAt(linha, 1).toString();
+					
+				}
 			}
 		});
 		scrollPane.setViewportView(table);
@@ -239,8 +273,24 @@ public class TelaGerente extends JFrame {
 					}
 
 				} else if (contador == 2) {
+					for (int i = 0; i < PopUpCliente.getCc().getRepositorioClientes().getClientes().size(); i++) {
+						if (campoDeTexto.equals(
+								PopUpCliente.getCc().getRepositorioClientes().getClientes().get(i).getNome())
+								&& campoDeTexto_1.equals(PopUpCliente.getCc().getRepositorioClientes().getClientes().get(i).getCpf())) {
+							PopUpCliente.getCc().remover(PopUpCliente.getCc().getRepositorioClientes().getClientes().get(i));
+							System.out.println(PopUpCliente.getCc());
+						}
+
+					}
 
 				} else if (contador == 3) {
+					for (int i = 0; i < PopUpProduto.getCp().getRepositorioProdutos().getProdutos().size(); i++) {
+						if (campoDeTexto == (PopUpProduto.getCp().getRepositorioProdutos().getProdutos().get(i).getNome())) {
+							PopUpProduto.getCp().remover(PopUpProduto.getCp().getRepositorioProdutos().getProdutos().get(i));
+							System.out.println(PopUpProduto.getCp());
+						}
+
+					}
 
 				}
 			}
@@ -252,7 +302,10 @@ public class TelaGerente extends JFrame {
 		JButton btnNewButton_2_2 = new JButton("Atualizar");
 		btnNewButton_2_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				if (contador == 1) {
+					PopUpAuxFunc popf = new PopUpAuxFunc(campoDeTexto,campoDeTexto_1,campoDeTexto_2);
+					popf.setVisible(true);
+				}
 			}
 		});
 		btnNewButton_2_2.setBounds(543, 536, 89, 23);
