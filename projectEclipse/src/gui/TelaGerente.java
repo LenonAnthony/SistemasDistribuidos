@@ -39,7 +39,7 @@ public class TelaGerente extends JFrame {
 	private JPanel contentPane;
 	private JTable table;
 	private static int linha;
-	private static int linhaCliente;
+	private static int linhaCliente = -1;
 	private String campoDeTexto;
 	private String campoDeTexto_1;
 	private String campoDeTexto_2;
