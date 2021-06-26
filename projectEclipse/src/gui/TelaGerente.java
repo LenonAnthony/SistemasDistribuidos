@@ -231,6 +231,7 @@ public class TelaGerente extends JFrame {
 					campoDeTexto_1 = dtm.getValueAt(linha, 1).toString();
 					System.out.println(campoDeTexto_1);
 					campoDeTexto_2 = dtm.getValueAt(linha, 2).toString();
+					System.out.println(campoDeTexto_2);
 					linhaCliente = -1;
 				} else if (contador == 2) {
 					linhaCliente = table.getSelectedRow();
@@ -309,6 +310,7 @@ public class TelaGerente extends JFrame {
 							PopUpProduto.getCp()
 									.remover(PopUpProduto.getCp().getRepositorioProdutos().getProdutos().get(i));
 							System.out.println(PopUpProduto.getCp());
+							
 						}
 
 					}

@@ -51,8 +51,11 @@ public class TelaNovaVenda extends JFrame {
 	private String campoDeTexto;
 	private String campoDeTexto_1;
 	private String campoDeTexto_2;
+	private String campoDeTextoCarrinho;
+	private String campoDeTexto_1Carrinho;
+	private String campoDeTexto_2Carrinho;
 	private ArrayList<Produto> produtosNoCarrinho = new ArrayList<>();
-	public double valorCarrinho;
+	private double valorCarrinho;
 
 	/**
 	 * Launch the application.
@@ -108,7 +111,7 @@ public class TelaNovaVenda extends JFrame {
 		int tamanho = produtosNoCarrinho.size();
 		double valorFinal = 0;
 		for (int i = 0; i < tamanho; i++) {
-			valorFinal = valorFinal + produtosNoCarrinho.get(i).getPrecoFinal();
+			valorFinal = valorFinal + (produtosNoCarrinho.get(i).getPreco() * produtosNoCarrinho.get(i).getQuantidade());
 
 		}
 		txtValorFinal.setText(String.valueOf(valorFinal));
@@ -190,7 +193,7 @@ public class TelaNovaVenda extends JFrame {
 				System.out.println(campoDeTexto_1);
 				campoDeTexto_2 = dtm.getValueAt(linha, 2).toString();
 				System.out.println(campoDeTexto_2);
-				System.out.println("Linha: " +linha);
+				System.out.println("Linha: " + linha);
 			}
 		});
 		scrollPane.setViewportView(table);
@@ -210,15 +213,10 @@ public class TelaNovaVenda extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				linhaCarrinho = table_1.getSelectedRow();
-				campoDeTexto = dtm.getValueAt(linhaCarrinho, 0).toString();
-				System.out.println(campoDeTexto);
-				campoDeTexto_1 = dtm.getValueAt(linhaCarrinho, 1).toString();
-				System.out.println(campoDeTexto_1);
-				campoDeTexto_2 = dtm.getValueAt(linhaCarrinho, 2).toString();
-				System.out.println(campoDeTexto_2);
-				
-				System.out.println("LinhaCarrinho:" +linhaCarrinho);
-
+				campoDeTextoCarrinho = dtm1.getValueAt(linhaCarrinho, 0).toString();
+				campoDeTexto_1Carrinho = dtm1.getValueAt(linhaCarrinho, 1).toString();
+				campoDeTexto_2Carrinho = dtm1.getValueAt(linhaCarrinho, 2).toString();
+				System.out.println("Quantidade:" + campoDeTexto_2Carrinho);
 			}
 		});
 		scrollPane_1.setViewportView(table_1);
@@ -267,11 +265,10 @@ public class TelaNovaVenda extends JFrame {
 		btnNewButton_3 = new JButton("Atualizar");
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//outro commit
-				produtosNoCarrinho.get(linhaCarrinho).setQuantidade(Integer.parseInt(campoDeTexto_2));
-				atualizarValorFinal();
-				System.out.println(produtosNoCarrinho.get(linhaCarrinho).getQuantidade());
-				
+
+				produtosNoCarrinho.get(linhaCarrinho).setQuantidade(Integer.parseInt(campoDeTexto_2Carrinho));
+				valorCarrinho = atualizarValorFinal();
+
 			}
 		});
 		btnNewButton_3.setFont(new Font("Tahoma", Font.PLAIN, 17));

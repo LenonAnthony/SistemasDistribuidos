@@ -64,11 +64,7 @@ public class Produto {
 
 	public void setQuantidade(int quantidade) {
 
-		if (quantidade > -1) {
-
-			this.quantidade = quantidade;
-
-		}
+		this.quantidade = quantidade;
 
 	}
 
@@ -94,7 +90,6 @@ public class Produto {
 
 	}
 
-	
 	public boolean isEstoque() {
 
 		return estoque;
