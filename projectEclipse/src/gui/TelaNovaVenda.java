@@ -74,7 +74,7 @@ public class TelaNovaVenda extends JFrame {
 			}
 		});
 	}
-
+	
 	public void mostrarJTableProdutos() {
 		int tamanho = PopUpProduto.getCp().getRepositorioProdutos().getProdutos().size();
 		if (tamanho == 0) {
@@ -146,10 +146,10 @@ public class TelaNovaVenda extends JFrame {
 
 		txtNome = new JTextField();
 		if (TelaGerente.getLinhaCliente() == -1) {
-			txtNome.setText("Nome: ");
+			txtNome.setText("");
 		} else {
-			txtNome.setText("Nome: " + PopUpCliente.getCc().getRepositorioClientes().getClientes()
-					.get(TelaGerente.getLinha()).getNome());
+			txtNome.setText("" + PopUpCliente.getCc().getRepositorioClientes().getClientes()
+					.get(TelaGerente.getLinhaCliente()).getNome());
 		}
 		txtNome.setHorizontalAlignment(SwingConstants.LEFT);
 		txtNome.setBounds(10, 40, 247, 20);
@@ -159,10 +159,10 @@ public class TelaNovaVenda extends JFrame {
 		txtCpf = new JTextField();
 		txtCpf.setHorizontalAlignment(SwingConstants.LEFT);
 		if (TelaGerente.getLinhaCliente() == -1) {
-			txtCpf.setText("CPF: ");
+			txtCpf.setText("");
 		} else {
-			txtCpf.setText("CPF: "
-					+ PopUpCliente.getCc().getRepositorioClientes().getClientes().get(TelaGerente.getLinha()).getCpf());
+			txtCpf.setText(""
+					+ PopUpCliente.getCc().getRepositorioClientes().getClientes().get(TelaGerente.getLinhaCliente()).getCpf());
 		}
 
 		txtCpf.setColumns(10);
@@ -171,10 +171,10 @@ public class TelaNovaVenda extends JFrame {
 
 		txtEndereo = new JTextField();
 		if (TelaGerente.getLinhaCliente() == -1) {
-			txtEndereo.setText("Endereco: ");
+			txtEndereo.setText("");
 		} else {
-			txtEndereo.setText("Endere\u00E7o: " + PopUpCliente.getCc().getRepositorioClientes().getClientes()
-					.get(TelaGerente.getLinha()).getEndereco());
+			txtEndereo.setText("" + PopUpCliente.getCc().getRepositorioClientes().getClientes()
+					.get(TelaGerente.getLinhaCliente()).getEndereco());
 		}
 
 		txtEndereo.setColumns(10);
@@ -229,7 +229,7 @@ public class TelaNovaVenda extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				adicionarAoCarrinho();
 				valorCarrinho = atualizarValorFinal();
-				System.out.println(valorCarrinho);
+				//System.out.println(valorCarrinho);
 			}
 		});
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 17));
@@ -261,18 +261,19 @@ public class TelaNovaVenda extends JFrame {
 
 					int tamanho = PopUpCliente.getCc().getRepositorioClientes().getClientes().size();
 					for (int i = 0; i < tamanho; i++) {
-
+						
 						if (txtNome.getText().equals(arrays.get(i).getNome())
-								&& txtCpf.getText().equals(arrays.get(i).getCpf())) {
-							achou = true;
+								&& txtCpf.getText().equals(arrays.get(i).getCpf()) 
+								&& true ) 
+							{
+							
 							JOptionPane.showMessageDialog(null, "Cliente Encontrado!.");
 							PopUpCliente.getCc().getRepositorioClientes().getClientes().get(i).addPontos();
-
+							System.out.println("Baila: " + PopUpCliente.getCc().getRepositorioClientes().getClientes().get(i).getPontos());
 						}
 					}
-					if (!achou) {
-						JOptionPane.showMessageDialog(null, "Cliente não Encontrado!.");
-
+					if (true) {
+						
 					}
 					JOptionPane.showMessageDialog(null, "Venda Finalizada!");
 					dispose();

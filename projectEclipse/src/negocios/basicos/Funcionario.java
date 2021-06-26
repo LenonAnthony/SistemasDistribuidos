@@ -7,6 +7,13 @@ public class Funcionario extends Pessoa {
 	private String tipo;
 	private double salario;
 
+	private boolean logado;
+	
+	public Funcionario()
+	{
+		
+	}
+
 	public Funcionario(String nome, String cpf, String tipo, String login, String senha, double salario) {
 
 		super(nome, cpf);
@@ -16,6 +23,15 @@ public class Funcionario extends Pessoa {
 		setSalario(salario);
 
 	}
+	
+	public boolean getLogado() {
+		return logado;
+	}
+
+	public void setLogado(boolean logado) {
+		this.logado = logado;
+	}
+
 
 	public String getLogin() {
 

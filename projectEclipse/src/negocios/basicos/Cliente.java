@@ -2,7 +2,7 @@ package negocios.basicos;
 
 public class Cliente extends Pessoa {
 
-	private int pontos;
+	private int pontos = 0;
 	private String endereco;
 
 	public Cliente(String nome, String cpf, String endereco, int pontos) {
@@ -47,7 +47,7 @@ public class Cliente extends Pessoa {
 
 	// FALTANDO ESSE MÉTODO.
 	public void addPontos() {
-		this.setPontos(this.getPontos() + 1);
+		this.pontos ++;
 
 	}
 

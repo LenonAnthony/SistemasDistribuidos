@@ -134,6 +134,22 @@ public class TelaGerente extends JFrame {
 		}
 	}
 
+	
+	public Funcionario funcLogado()
+	{
+		Funcionario desgracado = new Funcionario();
+		for(int i = 0;  i < PopUpFuncionario.getCf().getRepositorioFuncionario().getFuncionarios().size();i++)
+		{
+			if(PopUpFuncionario.getCf().getRepositorioFuncionario().getFuncionarios().get(i).getLogado())
+			{
+				desgracado = PopUpFuncionario.getCf().getRepositorioFuncionario().getFuncionarios().get(i);
+				return desgracado;
+			}
+		}
+		return null;
+	}
+	
+	
 	public TelaGerente() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1280, 720);
@@ -373,6 +389,9 @@ public class TelaGerente extends JFrame {
 			}
 		});
 
+		
+		
+		
 		btnNewButton_2_3.setBounds(659, 536, 89, 23);
 		panel_1.add(btnNewButton_2_3);
 
@@ -402,7 +421,7 @@ public class TelaGerente extends JFrame {
 		gbc_lblNewLabel_3.gridy = 1;
 		panel_2.add(lblNewLabel_3, gbc_lblNewLabel_3);
 
-		JLabel lblNewLabel_5 = new JLabel("Teste");
+		JLabel lblNewLabel_5 = new JLabel(this.funcLogado().getNome());
 		GridBagConstraints gbc_lblNewLabel_5 = new GridBagConstraints();
 		gbc_lblNewLabel_5.insets = new Insets(0, 0, 5, 0);
 		gbc_lblNewLabel_5.gridx = 1;
@@ -416,7 +435,7 @@ public class TelaGerente extends JFrame {
 		gbc_lblNewLabel_4.gridy = 2;
 		panel_2.add(lblNewLabel_4, gbc_lblNewLabel_4);
 
-		JLabel lblNewLabel_6 = new JLabel("teste");
+		JLabel lblNewLabel_6 = new JLabel(this.funcLogado().getCpf());
 		GridBagConstraints gbc_lblNewLabel_6 = new GridBagConstraints();
 		gbc_lblNewLabel_6.gridx = 1;
 		gbc_lblNewLabel_6.gridy = 2;

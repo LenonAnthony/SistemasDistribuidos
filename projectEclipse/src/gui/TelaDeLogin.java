@@ -24,6 +24,7 @@ public class TelaDeLogin extends JFrame {
 	private JTextField password;
 	private JTextField login;
 
+
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -81,6 +82,14 @@ public class TelaDeLogin extends JFrame {
 				Funcionario f = new Funcionario("", "", "", login.getText(), password.getText(), 0);
 				System.out.println(PopUpFuncionario.getCf());
 				if (PopUpFuncionario.getCf().existeLoginSenha(f)) {
+					for(int i = 0; i<PopUpFuncionario.getCf().getRepositorioFuncionario().getFuncionarios().size();i++)
+					{
+						if (PopUpFuncionario.getCf().existeLoginSenha(f))
+						{
+							PopUpFuncionario.getCf().getRepositorioFuncionario().getFuncionarios().get(i).setLogado(true);
+						}
+					}
+					
 					JOptionPane.showMessageDialog(null, "Logado com Sucesso.");
 					frame.dispose();
 					TelaGerente tg = new TelaGerente();
