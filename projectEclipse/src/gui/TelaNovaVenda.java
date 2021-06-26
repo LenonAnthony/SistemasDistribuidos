@@ -23,6 +23,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import negocios.ControladorVenda;
+import negocios.basicos.Cliente;
 import negocios.basicos.Produto;
 
 import javax.swing.JTextField;
@@ -112,7 +113,8 @@ public class TelaNovaVenda extends JFrame {
 		int tamanho = produtosNoCarrinho.size();
 		double valorFinal = 0;
 		for (int i = 0; i < tamanho; i++) {
-			valorFinal = valorFinal + (produtosNoCarrinho.get(i).getPreco() * produtosNoCarrinho.get(i).getQuantidade());
+			valorFinal = valorFinal
+					+ (produtosNoCarrinho.get(i).getPreco() * produtosNoCarrinho.get(i).getQuantidade());
 
 		}
 		txtValorFinal.setText(String.valueOf(valorFinal));
@@ -249,9 +251,29 @@ public class TelaNovaVenda extends JFrame {
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int res = JOptionPane.YES_NO_OPTION;
-				int dialogResult = JOptionPane.showConfirmDialog(getParent(), "Deseja finalizar a Venda?", "Venda", res);
-				if(dialogResult == 0) {
-					
+				int dialogResult = JOptionPane.showConfirmDialog(getParent(), "Deseja finalizar a Venda?", "Venda",
+						res);
+				if (dialogResult == 0) {
+
+					boolean achou = false;
+					ArrayList<Cliente> arrays = new ArrayList<>();
+					arrays.addAll(PopUpCliente.getCc().getRepositorioClientes().getClientes());
+
+					int tamanho = PopUpCliente.getCc().getRepositorioClientes().getClientes().size();
+					for (int i = 0; i < tamanho; i++) {
+
+						if (txtNome.getText().equals(arrays.get(i).getNome())
+								&& txtCpf.getText().equals(arrays.get(i).getCpf())) {
+							achou = true;
+							JOptionPane.showMessageDialog(null, "Cliente Encontrado!.");
+							PopUpCliente.getCc().getRepositorioClientes().getClientes().get(i).addPontos();
+
+						}
+					}
+					if (!achou) {
+						JOptionPane.showMessageDialog(null, "Cliente não Encontrado!.");
+
+					}
 					JOptionPane.showMessageDialog(null, "Venda Finalizada!");
 					dispose();
 					TelaGerente tg = new TelaGerente();
