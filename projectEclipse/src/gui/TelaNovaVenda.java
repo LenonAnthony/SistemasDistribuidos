@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
@@ -32,7 +33,7 @@ import java.awt.event.MouseEvent;
 
 public class TelaNovaVenda extends JFrame {
 
-	ControladorVenda cv = new ControladorVenda();
+	private ControladorVenda cv = new ControladorVenda();
 	DefaultTableModel dtm;
 	DefaultTableModel dtm1;
 	private JPanel contentPane;
@@ -245,6 +246,19 @@ public class TelaNovaVenda extends JFrame {
 		contentPane.add(btnNewButton_1);
 
 		btnNewButton_2 = new JButton("Finalizar Compra");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int res = JOptionPane.YES_NO_OPTION;
+				int dialogResult = JOptionPane.showConfirmDialog(getParent(), "Deseja finalizar a Venda?", "Venda", res);
+				if(dialogResult == 0) {
+					
+					JOptionPane.showMessageDialog(null, "Venda Finalizada!");
+					dispose();
+					TelaGerente tg = new TelaGerente();
+					tg.setVisible(true);
+				}
+			}
+		});
 		btnNewButton_2.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		btnNewButton_2.setToolTipText("Finaliza a compra e fecha a aba");
 		btnNewButton_2.setBounds(10, 593, 267, 77);

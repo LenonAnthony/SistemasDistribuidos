@@ -426,6 +426,7 @@ public class TelaGerente extends JFrame {
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 38));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				dispose();
 				TelaNovaVenda tnv = new TelaNovaVenda();
 				tnv.setVisible(true);
 			}
