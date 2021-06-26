@@ -268,6 +268,10 @@ public class TelaNovaVenda extends JFrame {
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//outro commit
+				produtosNoCarrinho.get(linhaCarrinho).setQuantidade(Integer.parseInt(campoDeTexto_2));
+				atualizarValorFinal();
+				System.out.println(produtosNoCarrinho.get(linhaCarrinho).getQuantidade());
+				
 			}
 		});
 		btnNewButton_3.setFont(new Font("Tahoma", Font.PLAIN, 17));
