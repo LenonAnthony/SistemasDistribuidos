@@ -44,6 +44,7 @@ public class TelaGerente extends JFrame {
 	private String campoDeTexto_1;
 	private String campoDeTexto_2;
 	private String campoDePreco;
+	
 
 	private DefaultTableModel dtm;
 	

@@ -21,6 +21,7 @@ import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
+import negocios.ControladorVenda;
 import negocios.basicos.Produto;
 
 import javax.swing.JTextField;
@@ -31,7 +32,9 @@ import java.awt.event.MouseEvent;
 
 public class TelaNovaVenda extends JFrame {
 
+	ControladorVenda cv = new ControladorVenda();
 	DefaultTableModel dtm;
+	DefaultTableModel dtm1;
 	private JPanel contentPane;
 	private JTextField txtNome;
 	private JTextField txtCpf;
@@ -44,10 +47,12 @@ public class TelaNovaVenda extends JFrame {
 	private JTable table;
 	private JTextField txtValorFinal;
 	private int linha;
+	private int linhaCarrinho;
 	private String campoDeTexto;
 	private String campoDeTexto_1;
 	private String campoDeTexto_2;
-
+	private ArrayList<Produto> produtosNoCarrinho = new ArrayList<>();
+	public double valorCarrinho;
 
 	/**
 	 * Launch the application.
@@ -81,11 +86,33 @@ public class TelaNovaVenda extends JFrame {
 	}
 
 	public void adicionarAoCarrinho() {
-		
+		ArrayList<Produto> arrays = new ArrayList<>();
+		arrays.addAll(PopUpProduto.getCp().getRepositorioProdutos().getProdutos());
+		Object[] objs = { arrays.get(linha).getNome(), arrays.get(linha).getPreco(),
+				arrays.get(linha).getQuantidade() };
+		Produto pTest = new Produto(arrays.get(linha).getNome(), arrays.get(linha).getDescricao(),
+				arrays.get(linha).getQuantidade(), arrays.get(linha).getPreco(), false);
+		produtosNoCarrinho.add(pTest);
+		dtm1.addRow(objs);
+		table_1.setModel(dtm1);
 	}
 
-	public void atualizarValorFinal() {
+	public void removerDoCarrinho() {
 
+		produtosNoCarrinho.remove(linhaCarrinho);
+		dtm1.removeRow(linhaCarrinho);
+
+	}
+
+	public double atualizarValorFinal() {
+		int tamanho = produtosNoCarrinho.size();
+		double valorFinal = 0;
+		for (int i = 0; i < tamanho; i++) {
+			valorFinal = valorFinal + produtosNoCarrinho.get(i).getPrecoFinal();
+
+		}
+		txtValorFinal.setText(String.valueOf(valorFinal));
+		return valorFinal;
 	}
 
 	/**
@@ -163,6 +190,7 @@ public class TelaNovaVenda extends JFrame {
 				System.out.println(campoDeTexto_1);
 				campoDeTexto_2 = dtm.getValueAt(linha, 2).toString();
 				System.out.println(campoDeTexto_2);
+				System.out.println("Linha: " +linha);
 			}
 		});
 		scrollPane.setViewportView(table);
@@ -176,11 +204,21 @@ public class TelaNovaVenda extends JFrame {
 		contentPane.add(scrollPane_1);
 
 		table_1 = new JTable();
+		dtm1 = new DefaultTableModel(aux1, 0);
+		table_1.setModel(dtm1);
 		table_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				linhaCarrinho = table_1.getSelectedRow();
+				campoDeTexto = dtm.getValueAt(linhaCarrinho, 0).toString();
+				System.out.println(campoDeTexto);
+				campoDeTexto_1 = dtm.getValueAt(linhaCarrinho, 1).toString();
+				System.out.println(campoDeTexto_1);
+				campoDeTexto_2 = dtm.getValueAt(linhaCarrinho, 2).toString();
+				System.out.println(campoDeTexto_2);
 				
-				
+				System.out.println("LinhaCarrinho:" +linhaCarrinho);
+
 			}
 		});
 		scrollPane_1.setViewportView(table_1);
@@ -188,7 +226,9 @@ public class TelaNovaVenda extends JFrame {
 		JButton btnNewButton = new JButton("Adicionar");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				adicionarAoCarrinho();
+				valorCarrinho = atualizarValorFinal();
+				System.out.println(valorCarrinho);
 			}
 		});
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 17));
@@ -196,6 +236,12 @@ public class TelaNovaVenda extends JFrame {
 		contentPane.add(btnNewButton);
 
 		btnNewButton_1 = new JButton("Remover");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				removerDoCarrinho();
+				atualizarValorFinal();
+			}
+		});
 		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		btnNewButton_1.setBounds(10, 255, 267, 55);
 		contentPane.add(btnNewButton_1);
@@ -219,6 +265,11 @@ public class TelaNovaVenda extends JFrame {
 		txtValorFinal.setBounds(10, 73, 247, 20);
 		panel_1.add(txtValorFinal);
 		btnNewButton_3 = new JButton("Atualizar");
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
 		btnNewButton_3.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		btnNewButton_3.setBounds(10, 343, 267, 55);
 		contentPane.add(btnNewButton_3);
