@@ -96,6 +96,8 @@ public class PopUpCliente extends JFrame {
 		gbc_textField.gridy = 1;
 		panel.add(textField, gbc_textField);
 		textField.setColumns(10);
+		
+	
 
 		JLabel lblNewLabel_1 = new JLabel("CPF:");
 		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
@@ -114,6 +116,7 @@ public class PopUpCliente extends JFrame {
 		gbc_textField_1.gridy = 3;
 		panel.add(textField_1, gbc_textField_1);
 		textField_1.setColumns(10);
+		
 
 		JLabel lblNewLabel_2 = new JLabel("Endere\u00E7o:");
 		GridBagConstraints gbc_lblNewLabel_2 = new GridBagConstraints();

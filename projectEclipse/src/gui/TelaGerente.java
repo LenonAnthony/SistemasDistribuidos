@@ -38,13 +38,33 @@ public class TelaGerente extends JFrame {
 	int contador = 0;
 	private JPanel contentPane;
 	private JTable table;
-	private int linha;
+	private static int linha;
+	private static int linhaCliente;
 	private String campoDeTexto;
 	private String campoDeTexto_1;
 	private String campoDeTexto_2;
 	private String campoDePreco;
 
 	private DefaultTableModel dtm;
+	
+	
+
+	public static int getLinha() {
+		return linha;
+	}
+
+	public static void setLinha(int linha) {
+		TelaGerente.linha = linha;
+	}
+	
+
+	public static int getLinhaCliente() {
+		return linhaCliente;
+	}
+
+	public static void setLinhaCliente(int linhaCliente) {
+		TelaGerente.linhaCliente = linhaCliente;
+	}
 
 	/**
 	 * Launch the application.
@@ -150,6 +170,7 @@ public class TelaGerente extends JFrame {
 				dtm = new DefaultTableModel(aux2, 0);
 				table.setModel(dtm);
 				atualizarJTableFuncionarios();
+				linhaCliente = -1;
 			}
 		});
 		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 24));
@@ -165,6 +186,8 @@ public class TelaGerente extends JFrame {
 				table.setModel(dtm);
 				System.out.println(contador);
 				atualizarJTableClientes();
+				linhaCliente = -1;
+				System.out.println(linhaCliente);
 			}
 		});
 		btnNewButton_1_1_1.setFont(new Font("Tahoma", Font.PLAIN, 24));
@@ -184,6 +207,7 @@ public class TelaGerente extends JFrame {
 				System.out.println(contador);
 				System.out.println(contador);
 				atualizarJTableProdutos();
+				linhaCliente = -1;
 			}
 		});
 		btnNewButton_1_1.setBounds(10, 208, 161, 72);
@@ -206,20 +230,23 @@ public class TelaGerente extends JFrame {
 					campoDeTexto_1 = dtm.getValueAt(linha, 1).toString();
 					System.out.println(campoDeTexto_1);
 					campoDeTexto_2 = dtm.getValueAt(linha, 2).toString();
+					linhaCliente = -1;
 				} else if (contador == 2) {
-					linha = table.getSelectedRow();
-					campoDeTexto = dtm.getValueAt(linha, 0).toString();
+					linhaCliente = table.getSelectedRow();
+					campoDeTexto = dtm.getValueAt(linhaCliente, 0).toString();
 					System.out.println(campoDeTexto);
-					campoDeTexto_1 = dtm.getValueAt(linha, 1).toString();
+					campoDeTexto_1 = dtm.getValueAt(linhaCliente, 1).toString();
 					System.out.println(campoDeTexto_1);
-					campoDeTexto_2 = dtm.getValueAt(linha, 2).toString();
+					campoDeTexto_2 = dtm.getValueAt(linhaCliente, 2).toString();
+					System.out.println(campoDeTexto_2);
+					
 				} else if (contador == 3) {
 					linha = table.getSelectedRow();
 					campoDeTexto = dtm.getValueAt(linha, 0).toString();
 					System.out.println(campoDeTexto);
 					campoDePreco = dtm.getValueAt(linha, 1).toString();
 					campoDeTexto_2 = dtm.getValueAt(linha, 2).toString();
-
+					
 				}
 			}
 		});
@@ -259,7 +286,6 @@ public class TelaGerente extends JFrame {
 									PopUpFuncionario.getCf().getRepositorioFuncionario().getFuncionarios().get(i));
 							System.out.println(PopUpFuncionario.getCf());
 						}
-
 					}
 
 				} else if (contador == 2) {
@@ -272,7 +298,7 @@ public class TelaGerente extends JFrame {
 									.remover(PopUpCliente.getCc().getRepositorioClientes().getClientes().get(i));
 							System.out.println(PopUpCliente.getCc());
 						}
-
+						
 					}
 
 				} else if (contador == 3) {
@@ -307,9 +333,9 @@ public class TelaGerente extends JFrame {
 
 				}
 				if (contador == 2) {
-					PopUpCliente.getCc().getRepositorioClientes().getClientes().get(linha).setNome(campoDeTexto);
-					PopUpCliente.getCc().getRepositorioClientes().getClientes().get(linha).setCpf(campoDeTexto_1);
-					PopUpCliente.getCc().getRepositorioClientes().getClientes().get(linha).setEndereco(campoDeTexto_2);
+					PopUpCliente.getCc().getRepositorioClientes().getClientes().get(linhaCliente).setNome(campoDeTexto);
+					PopUpCliente.getCc().getRepositorioClientes().getClientes().get(linhaCliente).setCpf(campoDeTexto_1);
+					PopUpCliente.getCc().getRepositorioClientes().getClientes().get(linhaCliente).setEndereco(campoDeTexto_2);
 
 				}
 				if (contador == 3) {
