@@ -38,7 +38,16 @@ import java.time.LocalDateTime;
 
 public class TelaNovaVenda extends JFrame {
 
-	private ControladorVenda cv = new ControladorVenda();
+	private static ControladorVenda cv = new ControladorVenda();
+	//cansei
+	public static ControladorVenda getCv() {
+		return cv;
+	}
+
+	public void setCv(ControladorVenda cv) {
+		this.cv = cv;
+	}
+
 	DefaultTableModel dtm;
 	DefaultTableModel dtm1;
 	private JPanel contentPane;
@@ -276,6 +285,7 @@ public class TelaNovaVenda extends JFrame {
 							PopUpCliente.getCc().getRepositorioClientes().getClientes().get(i).addPontos();
 							System.out.println("Baila: " + PopUpCliente.getCc().getRepositorioClientes().getClientes().get(i).getPontos());
 							Carrinho prov = new Carrinho(PopUpCliente.getCc().getRepositorioClientes().getClientes().get(i), produtosNoCarrinho);
+							prov.gerarValorTotal();
 							Venda provisoria = new Venda(prov, TelaGerente.funcLogado(), LocalDateTime.now(), true);
 							cv.cadastrar(provisoria);
 							}

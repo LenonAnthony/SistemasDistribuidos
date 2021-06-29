@@ -6,6 +6,11 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
+
+import negocios.basicos.Produto;
+import negocios.basicos.Venda;
+
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import java.awt.Color;
@@ -17,6 +22,7 @@ import javax.swing.JButton;
 import java.awt.SystemColor;
 import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 public class TelaControleVendas extends JFrame {
@@ -28,6 +34,11 @@ public class TelaControleVendas extends JFrame {
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
+	private boolean filtroCliente;
+	private boolean filtroFuncionario;
+	private boolean filtroArea;
+	private String aux[] = {"Funcionario", "Cliente", "Area", "Data/Hora", "Valor Total"};
+	private DefaultTableModel dtm = new DefaultTableModel(aux, 0);
 
 	/**
 	 * Launch the application.
@@ -48,6 +59,22 @@ public class TelaControleVendas extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+	//da funcao recebe os filtros relativos aos botes e atualiza a tabela em funcao dos mesmos.
+	public void atualizarSemFiltros(boolean filtro1, boolean filtro2, boolean filtro3)
+	{
+		int tamanho = TelaNovaVenda.getCv().getRepositorioVendas().getTamanho();
+		ArrayList<Venda> arrays = new ArrayList<>();
+		arrays.addAll(TelaNovaVenda.getCv().getRepositorioVendas().getVendas());
+		for (int i = 0; i < tamanho; i++) {
+			Object[] objs = { arrays.get(i).getFuncionario().getNome(), arrays.get(i).getCarrinho().getCliente().getNome(), 
+					arrays.get(i).getCarrinho().getCliente().getEndereco(), arrays.get(i).getDatahora(), arrays.get(i).getCarrinho().getValorTotal() };
+			dtm.addRow(objs);
+		}
+	}
+	
+	
+	
+	
 	public TelaControleVendas() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1280, 720);
@@ -62,6 +89,7 @@ public class TelaControleVendas extends JFrame {
 		
 		table = new JTable();
 		scrollPane.setViewportView(table);
+		table.setModel(dtm);
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(244, 164, 96));
@@ -101,6 +129,15 @@ public class TelaControleVendas extends JFrame {
 		panel.add(txtFim);
 		
 		JButton btnNewButton = new JButton("Filtrar");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//atualizar a table em relação aos filtros
+				//ta com problema no valor final.
+				atualizarSemFiltros(filtroArea, filtroCliente, filtroFuncionario);
+				
+				
+			}
+		});
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 40));
 		btnNewButton.setBounds(10, 544, 289, 70);
 		panel.add(btnNewButton);

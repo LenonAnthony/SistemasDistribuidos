@@ -50,4 +50,12 @@ public class ControladorVenda {
 		return repositorioVendas.toString();
 	}
 
+	public RepositorioVendas getRepositorioVendas() {
+		return repositorioVendas;
+	}
+
+	public void setRepositorioVendas(RepositorioVendas repositorioVendas) {
+		this.repositorioVendas = repositorioVendas;
+	}
+
 }

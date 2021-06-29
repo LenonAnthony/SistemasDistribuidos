@@ -68,4 +68,20 @@ public class RepositorioVendas {
 		return "Vendas: "+vendas;
 	}
 
+	public ArrayList<Venda> getVendas() {
+		return vendas;
+	}
+
+	public void setVendas(ArrayList<Venda> vendas) {
+		this.vendas = vendas;
+	}
+
+	public int getTamanho() {
+		return tamanho;
+	}
+
+	public void setTamanho(int tamanho) {
+		this.tamanho = tamanho;
+	}
+
 }
