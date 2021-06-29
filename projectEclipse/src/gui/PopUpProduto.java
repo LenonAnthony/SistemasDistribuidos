@@ -35,6 +35,7 @@ public class PopUpProduto extends JFrame {
 		return cp;
 	}
 
+	
 	public static void setCp(ControladorProduto cp) {
 		PopUpProduto.cp = cp;
 	}
@@ -147,6 +148,13 @@ public class PopUpProduto extends JFrame {
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		btnNewButton.setBounds(111, 193, 207, 57);
 		contentPane.add(btnNewButton);
+	
+		//String nome, String descricao, int quantidade, double preco, boolean estoqu
+		//Produto p1 = new Produto("hamburguer", "2 pães, 1 carne e queijo prato", 1, 10.0, true);
+		//cp.getRepositorioProdutos().cadastrarProduto(p1);
+			
+	
+	
 	}
 
 }

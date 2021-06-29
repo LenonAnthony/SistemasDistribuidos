@@ -23,14 +23,18 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import negocios.ControladorVenda;
+import negocios.basicos.Carrinho;
 import negocios.basicos.Cliente;
 import negocios.basicos.Produto;
+import negocios.basicos.Venda;
 
 import javax.swing.JTextField;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class TelaNovaVenda extends JFrame {
 
@@ -90,6 +94,8 @@ public class TelaNovaVenda extends JFrame {
 		}
 	}
 
+	
+// carrinho de mentira, é so o da Jtable
 	public void adicionarAoCarrinho() {
 		ArrayList<Produto> arrays = new ArrayList<>();
 		arrays.addAll(PopUpProduto.getCp().getRepositorioProdutos().getProdutos());
@@ -255,7 +261,7 @@ public class TelaNovaVenda extends JFrame {
 						res);
 				if (dialogResult == 0) {
 
-					boolean achou = false;
+
 					ArrayList<Cliente> arrays = new ArrayList<>();
 					arrays.addAll(PopUpCliente.getCc().getRepositorioClientes().getClientes());
 
@@ -263,22 +269,23 @@ public class TelaNovaVenda extends JFrame {
 					for (int i = 0; i < tamanho; i++) {
 						
 						if (txtNome.getText().equals(arrays.get(i).getNome())
-								&& txtCpf.getText().equals(arrays.get(i).getCpf()) 
-								&& true ) 
+								&& txtCpf.getText().equals(arrays.get(i).getCpf()) ) 
 							{
 							
 							JOptionPane.showMessageDialog(null, "Cliente Encontrado!.");
 							PopUpCliente.getCc().getRepositorioClientes().getClientes().get(i).addPontos();
 							System.out.println("Baila: " + PopUpCliente.getCc().getRepositorioClientes().getClientes().get(i).getPontos());
-						}
+							Carrinho prov = new Carrinho(PopUpCliente.getCc().getRepositorioClientes().getClientes().get(i), produtosNoCarrinho);
+							Venda provisoria = new Venda(prov, TelaGerente.funcLogado(), LocalDateTime.now(), true);
+							cv.cadastrar(provisoria);
+							}
 					}
-					if (true) {
-						
-					}
+				
 					JOptionPane.showMessageDialog(null, "Venda Finalizada!");
 					dispose();
 					TelaGerente tg = new TelaGerente();
 					tg.setVisible(true);
+					System.out.println(cv);
 				}
 			}
 		});

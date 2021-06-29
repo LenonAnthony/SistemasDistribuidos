@@ -135,7 +135,7 @@ public class TelaGerente extends JFrame {
 	}
 
 	
-	public Funcionario funcLogado()
+	public static Funcionario funcLogado()
 	{
 		Funcionario desgracado = new Funcionario();
 		for(int i = 0;  i < PopUpFuncionario.getCf().getRepositorioFuncionario().getFuncionarios().size();i++)
@@ -225,6 +225,7 @@ public class TelaGerente extends JFrame {
 				System.out.println(contador);
 				atualizarJTableProdutos();
 				linhaCliente = -1;
+				
 			}
 		});
 		btnNewButton_1_1.setBounds(10, 208, 161, 72);
