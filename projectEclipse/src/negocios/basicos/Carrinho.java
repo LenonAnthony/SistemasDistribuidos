@@ -33,6 +33,10 @@ public class Carrinho {
 
 	}
 
+	public void setValorTotal(double valorTotal) {
+		this.valorTotal = valorTotal;
+	}
+
 	public double gerarValorTotal() {
 
 		double valorTotal = 0;

@@ -39,13 +39,14 @@ import java.time.LocalDateTime;
 public class TelaNovaVenda extends JFrame {
 
 	private static ControladorVenda cv = new ControladorVenda();
-	//cansei
+
+	// cansei
 	public static ControladorVenda getCv() {
 		return cv;
 	}
 
 	public void setCv(ControladorVenda cv) {
-		this.cv = cv;
+		TelaNovaVenda.cv = cv;
 	}
 
 	DefaultTableModel dtm;
@@ -71,6 +72,7 @@ public class TelaNovaVenda extends JFrame {
 	private String campoDeTexto_2Carrinho;
 	private ArrayList<Produto> produtosNoCarrinho = new ArrayList<>();
 	private double valorCarrinho;
+	private double valorFinal;
 
 	/**
 	 * Launch the application.
@@ -87,7 +89,7 @@ public class TelaNovaVenda extends JFrame {
 			}
 		});
 	}
-	
+
 	public void mostrarJTableProdutos() {
 		int tamanho = PopUpProduto.getCp().getRepositorioProdutos().getProdutos().size();
 		if (tamanho == 0) {
@@ -103,7 +105,6 @@ public class TelaNovaVenda extends JFrame {
 		}
 	}
 
-	
 // carrinho de mentira, é so o da Jtable
 	public void adicionarAoCarrinho() {
 		ArrayList<Produto> arrays = new ArrayList<>();
@@ -126,12 +127,19 @@ public class TelaNovaVenda extends JFrame {
 
 	public double atualizarValorFinal() {
 		int tamanho = produtosNoCarrinho.size();
-		double valorFinal = 0;
+		valorFinal = 0;
 		for (int i = 0; i < tamanho; i++) {
 			valorFinal = valorFinal
 					+ (produtosNoCarrinho.get(i).getPreco() * produtosNoCarrinho.get(i).getQuantidade());
-
+			int tamanhoClientes = PopUpCliente.getCc().getRepositorioClientes().getClientes().size();
+			for (int y = 0; y < tamanhoClientes; y++) {
+				if (PopUpCliente.getCc().getRepositorioClientes().getClientes().get(y).getPontos() >= 1) {
+					PopUpCliente.getCc().getRepositorioClientes().getClientes().get(y).setPontos(1);
+					valorFinal = valorFinal * 0.90;
+				}
+			}
 		}
+
 		txtValorFinal.setText(String.valueOf(valorFinal));
 		return valorFinal;
 	}
@@ -176,8 +184,8 @@ public class TelaNovaVenda extends JFrame {
 		if (TelaGerente.getLinhaCliente() == -1) {
 			txtCpf.setText("");
 		} else {
-			txtCpf.setText(""
-					+ PopUpCliente.getCc().getRepositorioClientes().getClientes().get(TelaGerente.getLinhaCliente()).getCpf());
+			txtCpf.setText("" + PopUpCliente.getCc().getRepositorioClientes().getClientes()
+					.get(TelaGerente.getLinhaCliente()).getCpf());
 		}
 
 		txtCpf.setColumns(10);
@@ -244,7 +252,7 @@ public class TelaNovaVenda extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				adicionarAoCarrinho();
 				valorCarrinho = atualizarValorFinal();
-				//System.out.println(valorCarrinho);
+				// System.out.println(valorCarrinho);
 			}
 		});
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 17));
@@ -270,27 +278,35 @@ public class TelaNovaVenda extends JFrame {
 						res);
 				if (dialogResult == 0) {
 
-
 					ArrayList<Cliente> arrays = new ArrayList<>();
 					arrays.addAll(PopUpCliente.getCc().getRepositorioClientes().getClientes());
 
 					int tamanho = PopUpCliente.getCc().getRepositorioClientes().getClientes().size();
 					for (int i = 0; i < tamanho; i++) {
-						
+
 						if (txtNome.getText().equals(arrays.get(i).getNome())
-								&& txtCpf.getText().equals(arrays.get(i).getCpf()) ) 
-							{
-							
+								&& txtCpf.getText().equals(arrays.get(i).getCpf())) {
+
 							JOptionPane.showMessageDialog(null, "Cliente Encontrado!.");
 							PopUpCliente.getCc().getRepositorioClientes().getClientes().get(i).addPontos();
-							System.out.println("Baila: " + PopUpCliente.getCc().getRepositorioClientes().getClientes().get(i).getPontos());
-							Carrinho prov = new Carrinho(PopUpCliente.getCc().getRepositorioClientes().getClientes().get(i), produtosNoCarrinho);
-							prov.gerarValorTotal();
+							System.out.println("Baila: "
+									+ PopUpCliente.getCc().getRepositorioClientes().getClientes().get(i).getPontos());
+							Carrinho prov = new Carrinho(
+									PopUpCliente.getCc().getRepositorioClientes().getClientes().get(i),
+									produtosNoCarrinho);
+							if (PopUpCliente.getCc().getRepositorioClientes().getClientes().get(i).getPontos() >= 1) {
+								JOptionPane.showMessageDialog(null, "Cupom!");
+
+							}
+
+							prov.setValorTotal(valorFinal);
+							System.out.println(prov.getValorTotal());
+
 							Venda provisoria = new Venda(prov, TelaGerente.funcLogado(), LocalDateTime.now(), true);
 							cv.cadastrar(provisoria);
-							}
+						}
 					}
-				
+
 					JOptionPane.showMessageDialog(null, "Venda Finalizada!");
 					dispose();
 					TelaGerente tg = new TelaGerente();

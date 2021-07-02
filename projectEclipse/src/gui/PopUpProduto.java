@@ -35,7 +35,6 @@ public class PopUpProduto extends JFrame {
 		return cp;
 	}
 
-	
 	public static void setCp(ControladorProduto cp) {
 		PopUpProduto.cp = cp;
 	}
@@ -134,13 +133,16 @@ public class PopUpProduto extends JFrame {
 						|| textField_2.getText().isEmpty()) {
 					JOptionPane.showMessageDialog(null, "Favor, preencher tudo.");
 				} else {
-					Produto p = new Produto(textField.getText(), textField_2.getText(), 1,
-							Double.parseDouble(textField_1.getText()), true);
-					JOptionPane.showMessageDialog(null, "Produto adicionado!");
-					cp.cadastrar(p);
-					System.out.println(cp);
-					dispose();
-
+					if (Double.parseDouble(textField_1.getText()) <= 0) {
+						JOptionPane.showMessageDialog(null, "Valor do Produto não pode ser negativo ou nulo.");
+					} else {
+						Produto p = new Produto(textField.getText(), textField_2.getText(), 1,
+								Double.parseDouble(textField_1.getText()), true);
+						JOptionPane.showMessageDialog(null, "Produto adicionado!");
+						cp.cadastrar(p);
+						System.out.println(cp);
+						dispose();
+					}
 				}
 
 			}
@@ -148,13 +150,12 @@ public class PopUpProduto extends JFrame {
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		btnNewButton.setBounds(111, 193, 207, 57);
 		contentPane.add(btnNewButton);
-	
-		//String nome, String descricao, int quantidade, double preco, boolean estoqu
-		//Produto p1 = new Produto("hamburguer", "2 pães, 1 carne e queijo prato", 1, 10.0, true);
-		//cp.getRepositorioProdutos().cadastrarProduto(p1);
-			
-	
-	
+
+		// String nome, String descricao, int quantidade, double preco, boolean estoqu
+		// Produto p1 = new Produto("hamburguer", "2 pães, 1 carne e queijo prato", 1,
+		// 10.0, true);
+		// cp.getRepositorioProdutos().cadastrarProduto(p1);
+
 	}
 
 }
