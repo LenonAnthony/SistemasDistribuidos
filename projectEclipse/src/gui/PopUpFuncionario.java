@@ -181,7 +181,7 @@ public class PopUpFuncionario extends JFrame {
 		panel.add(lblNewLabel_4, gbc_lblNewLabel_4);
 
 		textField_4 = new JTextField();
-		textField_4.setToolTipText("Valores permitidos: \"Gerente\" ou \"Funcion\u00E1rio\"");
+		textField_4.setToolTipText("Valores permitidos: \"Gerente\" ou \"Funcionario\"");
 		GridBagConstraints gbc_textField_4 = new GridBagConstraints();
 		gbc_textField_4.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textField_4.gridx = 2;

@@ -1,6 +1,5 @@
 package gui;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -8,7 +7,6 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
-import negocios.basicos.Produto;
 import negocios.basicos.Venda;
 
 import javax.swing.JScrollPane;
@@ -19,9 +17,13 @@ import java.awt.Font;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.JButton;
-import java.awt.SystemColor;
+
+
+import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
@@ -31,12 +33,14 @@ public class TelaControleVendas extends JFrame {
 	private JTable table;
 	private JTextField txtInicio;
 	private JTextField txtFim;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private boolean filtroCliente;
-	private boolean filtroFuncionario;
-	private boolean filtroArea;
+	private JTextField campoCliente;
+	private JTextField campoFunc;
+	private JTextField campoArea;
+	private boolean filtroCliente=false;
+	private boolean filtroFuncionario=false;
+	private boolean filtroArea=false;
+	private boolean filtroPeriodo=false;
+	
 	private String aux[] = {"Funcionario", "Cliente", "Area", "Data/Hora", "Valor Total"};
 	private DefaultTableModel dtm = new DefaultTableModel(aux, 0);
 
@@ -60,16 +64,106 @@ public class TelaControleVendas extends JFrame {
 	 * Create the frame.
 	 */
 	//da funcao recebe os filtros relativos aos botes e atualiza a tabela em funcao dos mesmos.
-	public void atualizarSemFiltros(boolean filtro1, boolean filtro2, boolean filtro3)
+	public void atualizar()
 	{
-		int tamanho = TelaNovaVenda.getCv().getRepositorioVendas().getTamanho();
-		ArrayList<Venda> arrays = new ArrayList<>();
-		arrays.addAll(TelaNovaVenda.getCv().getRepositorioVendas().getVendas());
-		for (int i = 0; i < tamanho; i++) {
-			Object[] objs = { arrays.get(i).getFuncionario().getNome(), arrays.get(i).getCarrinho().getCliente().getNome(), 
-					arrays.get(i).getCarrinho().getCliente().getEndereco(), arrays.get(i).getDatahora(), arrays.get(i).getCarrinho().getValorTotal() };
-			dtm.addRow(objs);
+		
+		
+		if(filtroArea == false && filtroFuncionario == false && filtroCliente == false && filtroPeriodo == false)
+		{
+			dtm.setRowCount(0);
+			int tamanho = TelaNovaVenda.getCv().getRepositorioVendas().getTamanho();
+			ArrayList<Venda> arrays = new ArrayList<>();
+			arrays.addAll(TelaNovaVenda.getCv().getRepositorioVendas().getVendas());
+			for (int i = 0; i < tamanho; i++) {
+				Object[] objs = { arrays.get(i).getFuncionario().getNome(), arrays.get(i).getCarrinho().getCliente().getNome(), 
+						arrays.get(i).getCarrinho().getCliente().getEndereco(), arrays.get(i).getDatahora(), arrays.get(i).getCarrinho().getValorTotal() };
+				dtm.addRow(objs);
+				
+			}
+				
 		}
+		else if(filtroArea)
+		{
+			dtm.setRowCount(0);
+			int tamanho = TelaNovaVenda.getCv().getRepositorioVendas().getTamanho();
+			ArrayList<Venda> arrays = new ArrayList<>();
+			arrays.addAll(TelaNovaVenda.getCv().getRepositorioVendas().getVendas());
+			for (int i = 0; i < tamanho; i++) {
+				if(campoArea.getText().equalsIgnoreCase(arrays.get(i).getCarrinho().getCliente().getEndereco()))
+				{
+					Object[] objs = { arrays.get(i).getFuncionario().getNome(), arrays.get(i).getCarrinho().getCliente().getNome(), 
+							arrays.get(i).getCarrinho().getCliente().getEndereco(), arrays.get(i).getDatahora(), arrays.get(i).getCarrinho().getValorTotal() };
+					dtm.addRow(objs);	
+					
+				}
+				
+			}
+		}
+		else if(filtroFuncionario)
+		{
+			dtm.setRowCount(0);
+			int tamanho = TelaNovaVenda.getCv().getRepositorioVendas().getTamanho();
+			ArrayList<Venda> arrays = new ArrayList<>();
+			arrays.addAll(TelaNovaVenda.getCv().getRepositorioVendas().getVendas());
+			for (int i = 0; i < tamanho; i++) {
+				if(campoFunc.getText().equalsIgnoreCase(arrays.get(i).getFuncionario().getNome()))
+				{
+					Object[] objs = { arrays.get(i).getFuncionario().getNome(), arrays.get(i).getCarrinho().getCliente().getNome(), 
+							arrays.get(i).getCarrinho().getCliente().getEndereco(), arrays.get(i).getDatahora(), arrays.get(i).getCarrinho().getValorTotal() };
+					dtm.addRow(objs);	
+					
+				}
+				
+			}
+		}
+		else if(filtroCliente)
+		{
+			dtm.setRowCount(0);
+			int tamanho = TelaNovaVenda.getCv().getRepositorioVendas().getTamanho();
+			ArrayList<Venda> arrays = new ArrayList<>();
+			arrays.addAll(TelaNovaVenda.getCv().getRepositorioVendas().getVendas());
+			for (int i = 0; i < tamanho; i++) {
+				if(campoCliente.getText().equalsIgnoreCase(arrays.get(i).getCarrinho().getCliente().getNome()))
+				{
+					Object[] objs = { arrays.get(i).getFuncionario().getNome(), arrays.get(i).getCarrinho().getCliente().getNome(), 
+							arrays.get(i).getCarrinho().getCliente().getEndereco(), arrays.get(i).getDatahora(), arrays.get(i).getCarrinho().getValorTotal() };
+					dtm.addRow(objs);	
+					
+				}
+				
+			}
+		}
+		else if(filtroPeriodo)
+		{
+			dtm.setRowCount(0);
+			 
+			
+			int tamanho = TelaNovaVenda.getCv().getRepositorioVendas().getTamanho();
+			ArrayList<Venda> arrays = new ArrayList<>();
+			arrays.addAll(TelaNovaVenda.getCv().getRepositorioVendas().getVendas());
+			
+			DateTimeFormatter form = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+			LocalDate dataInicio = LocalDate.parse(txtInicio.getText(),form);
+			LocalDate dataFim = LocalDate.parse(txtFim.getText(),form);
+			
+			
+			
+			
+			for (int i = 0; i < tamanho; i++) {
+				
+				LocalDate dataVenda = LocalDate.of(arrays.get(i).getDatahora().getYear(), arrays.get(i).getDatahora().getMonth(), arrays.get(i).getDatahora().getDayOfYear());
+				
+				if(dataInicio.isBefore(dataVenda) && dataFim.isAfter(dataVenda))
+				{
+					Object[] objs = { arrays.get(i).getFuncionario().getNome(), arrays.get(i).getCarrinho().getCliente().getNome(), 
+							arrays.get(i).getCarrinho().getCliente().getEndereco(), arrays.get(i).getDatahora(), arrays.get(i).getCarrinho().getValorTotal() };
+					dtm.addRow(objs);	
+					
+				}
+				
+			}
+		}
+		
 	}
 	
 	
@@ -102,30 +196,108 @@ public class TelaControleVendas extends JFrame {
 		lblNewLabel.setBounds(10, 11, 289, 27);
 		panel.add(lblNewLabel);
 		
-		JRadioButton rdbtnNewRadioButton = new JRadioButton("Area");
-		rdbtnNewRadioButton.setBounds(10, 55, 54, 23);
-		panel.add(rdbtnNewRadioButton);
+		JRadioButton radioArea = new JRadioButton("Area");
+		radioArea.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				filtroArea = true;
+				filtroFuncionario = false;
+				filtroCliente = false;
+				filtroPeriodo = false;
+				campoFunc.setText("");
+				campoCliente.setText("");
+				txtInicio.setText("");
+				txtFim.setText("");
+				
+				
+			}
+		});
+		radioArea.setBounds(10, 55, 54, 23);
+		panel.add(radioArea);
 		
-		JRadioButton rdbtnNewRadioButton_1 = new JRadioButton("Funcion\u00E1rio");
-		rdbtnNewRadioButton_1.setBounds(10, 147, 103, 23);
-		panel.add(rdbtnNewRadioButton_1);
+		JRadioButton radioFunc = new JRadioButton("Funcion\u00E1rio");
+		radioFunc.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				filtroArea = false;
+				filtroFuncionario = true;
+				filtroCliente = false;
+				filtroPeriodo = false;
+				campoArea.setText("");
+				campoCliente.setText("");
+				txtInicio.setText("");
+				txtFim.setText("");
+			}
+		});
+		radioFunc.setBounds(10, 121, 103, 23);
+		panel.add(radioFunc);
 		
-		JRadioButton rdbtnNewRadioButton_2 = new JRadioButton("Cliente");
-		rdbtnNewRadioButton_2.setBounds(10, 242, 66, 23);
-		panel.add(rdbtnNewRadioButton_2);
+		JRadioButton radioCliente = new JRadioButton("Cliente");
+		radioCliente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				filtroArea = false;
+				filtroFuncionario = false;
+				filtroCliente = true;
+				filtroPeriodo = false;
+				campoFunc.setText("");
+				campoArea.setText("");
+				txtInicio.setText("");
+				txtFim.setText("");
+			}
+		});
+		radioCliente.setBounds(10, 189, 66, 23);
+		panel.add(radioCliente);
 		
-		JRadioButton rdbtnNewRadioButton_3 = new JRadioButton("Per\u00EDodo");
-		rdbtnNewRadioButton_3.setBounds(10, 458, 75, 23);
-		panel.add(rdbtnNewRadioButton_3);
+		JRadioButton radioPeriodo = new JRadioButton("Per\u00EDodo");
+		radioPeriodo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				filtroArea = false;
+				filtroFuncionario = false;
+				filtroCliente = false;
+				filtroPeriodo = true;
+				campoFunc.setText("");
+				campoCliente.setText("");
+				campoArea.setText("");
+				
+			}
+		});
+		radioPeriodo.setBounds(10, 245, 75, 23);
+		panel.add(radioPeriodo);
+		
+		
+		JRadioButton radioLimpa = new JRadioButton("Limpar Sele\u00E7\u00E3o");
+		radioLimpa.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				filtroArea = false;
+				filtroFuncionario = false;
+				filtroCliente = false;
+				filtroPeriodo = false;
+				campoFunc.setText("");
+				campoCliente.setText("");
+				campoArea.setText("");
+				txtInicio.setText("");
+				txtFim.setText("");
+			}
+		});
+		radioLimpa.setBounds(93, 339, 126, 23);
+		panel.add(radioLimpa);
+		
+		
+		ButtonGroup bg=new ButtonGroup();    
+		bg.add(radioArea);
+		bg.add(radioFunc); 
+		bg.add(radioPeriodo);
+		bg.add(radioCliente);
+		bg.add(radioLimpa);
 		
 		txtInicio = new JTextField();
-		txtInicio.setBounds(10, 510, 134, 23);
+		txtInicio.setToolTipText("DD/MM/AAAA");
+		txtInicio.setBounds(10, 289, 134, 23);
 		panel.add(txtInicio);
 		txtInicio.setColumns(10);
 		
 		txtFim = new JTextField();
+		txtFim.setToolTipText("DD/MM/AAAA");
 		txtFim.setColumns(10);
-		txtFim.setBounds(165, 510, 134, 23);
+		txtFim.setBounds(165, 289, 134, 23);
 		panel.add(txtFim);
 		
 		JButton btnNewButton = new JButton("Filtrar");
@@ -133,8 +305,10 @@ public class TelaControleVendas extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				//atualizar a table em relação aos filtros
 				//ta com problema no valor final.
-				atualizarSemFiltros(filtroArea, filtroCliente, filtroFuncionario);
-				
+				//att essa funcão
+				atualizar();
+		
+		
 				
 			}
 		});
@@ -151,31 +325,31 @@ public class TelaControleVendas extends JFrame {
 		btnNewButton_1.setBounds(10, 625, 289, 23);
 		panel.add(btnNewButton_1);
 		
-		textField = new JTextField();
-		textField.setBounds(10, 272, 289, 20);
-		panel.add(textField);
-		textField.setColumns(10);
+		campoCliente = new JTextField();
+		campoCliente.setBounds(10, 218, 289, 20);
+		panel.add(campoCliente);
+		campoCliente.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(10, 177, 289, 20);
-		panel.add(textField_1);
-		textField_1.setColumns(10);
+		campoFunc = new JTextField();
+		campoFunc.setBounds(10, 151, 289, 20);
+		panel.add(campoFunc);
+		campoFunc.setColumns(10);
 		
-		textField_2 = new JTextField();
-		textField_2.setBounds(10, 85, 289, 20);
-		panel.add(textField_2);
-		textField_2.setColumns(10);
+		campoArea = new JTextField();
+		campoArea.setBounds(10, 85, 289, 20);
+		panel.add(campoArea);
+		campoArea.setColumns(10);
 		
 		JLabel lblNewLabel_1 = new JLabel("Data de inicio");
-		lblNewLabel_1.setBounds(10, 488, 134, 14);
+		lblNewLabel_1.setBounds(10, 275, 134, 14);
 		panel.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_1_1 = new JLabel("Data Final");
-		lblNewLabel_1_1.setBounds(165, 488, 134, 14);
+		lblNewLabel_1_1.setBounds(165, 275, 134, 14);
 		panel.add(lblNewLabel_1_1);
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(10, 303, 289, 145);
+		panel_1.setBounds(10, 388, 289, 145);
 		panel.add(panel_1);
 		panel_1.setLayout(null);
 		
@@ -183,5 +357,7 @@ public class TelaControleVendas extends JFrame {
 		lblNewLabel_2.setBounds(32, 5, 225, 225);
 		lblNewLabel_2.setIcon(new ImageIcon(TelaControleVendas.class.getResource("/images/download (1).jpg")));
 		panel_1.add(lblNewLabel_2);
+		
+		
 	}
 }

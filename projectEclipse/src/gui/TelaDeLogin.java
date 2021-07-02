@@ -23,6 +23,7 @@ public class TelaDeLogin extends JFrame {
 	private JFrame frame;
 	private JTextField password;
 	private JTextField login;
+	private String aux;
 
 
 	public static void main(String[] args) {
@@ -87,13 +88,23 @@ public class TelaDeLogin extends JFrame {
 						if (PopUpFuncionario.getCf().existeLoginSenha(f))
 						{
 							PopUpFuncionario.getCf().getRepositorioFuncionario().getFuncionarios().get(i).setLogado(true);
+							aux = PopUpFuncionario.getCf().getRepositorioFuncionario().getFuncionarios().get(i).getTipo();
+							
 						}
 					}
 					
 					JOptionPane.showMessageDialog(null, "Logado com Sucesso.");
 					frame.dispose();
-					TelaGerente tg = new TelaGerente();
-					tg.setVisible(true);
+					if(aux.equals("Gerente"))
+					{
+						TelaGerente tg = new TelaGerente();
+						tg.setVisible(true);	
+					}
+					else 
+					{
+						TelaDeFuncionario tf = new TelaDeFuncionario();
+						tf.setVisible(true);
+					}
 
 				} else {
 					JOptionPane.showMessageDialog(null, "Dados Incorretos.");
