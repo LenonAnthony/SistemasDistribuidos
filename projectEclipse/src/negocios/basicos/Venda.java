@@ -93,7 +93,7 @@ public class Venda {
 	public String toString() {
 
 		return "Venda: " + this.carrinho.getProdutos().toString() + " | Valor Final:"
-				+ this.getCarrinho().gerarValorTotal() + " | Funcionario Encarregado: " + this.getFuncionario().getNome();
+				+ this.getCarrinho().getValorTotal() + " | Funcionario Encarregado: " + this.getFuncionario().getNome();
 
 	}
 

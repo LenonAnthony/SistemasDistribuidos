@@ -133,9 +133,9 @@ public class TelaNovaVenda extends JFrame {
 					+ (produtosNoCarrinho.get(i).getPreco() * produtosNoCarrinho.get(i).getQuantidade());
 			int tamanhoClientes = PopUpCliente.getCc().getRepositorioClientes().getClientes().size();
 			for (int y = 0; y < tamanhoClientes; y++) {
-				if (PopUpCliente.getCc().getRepositorioClientes().getClientes().get(y).getPontos() >= 1) {
-					PopUpCliente.getCc().getRepositorioClientes().getClientes().get(y).setPontos(1);
+				if (PopUpCliente.getCc().getRepositorioClientes().getClientes().get(y).getPontos() >= 5) {
 					valorFinal = valorFinal * 0.90;
+					System.out.println(valorFinal);
 				}
 			}
 		}
@@ -273,47 +273,51 @@ public class TelaNovaVenda extends JFrame {
 		btnNewButton_2 = new JButton("Finalizar Compra");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int res = JOptionPane.YES_NO_OPTION;
-				int dialogResult = JOptionPane.showConfirmDialog(getParent(), "Deseja finalizar a Venda?", "Venda",
-						res);
-				if (dialogResult == 0) {
+				if (valorFinal == 0) {
+					JOptionPane.showMessageDialog(null, "Carrinho Vazio!");
+				} else {
+					int res = JOptionPane.YES_NO_OPTION;
+					int dialogResult = JOptionPane.showConfirmDialog(getParent(), "Deseja finalizar a Venda?", "Venda",
+							res);
+					if (dialogResult == 0) {
 
-					ArrayList<Cliente> arrays = new ArrayList<>();
-					arrays.addAll(PopUpCliente.getCc().getRepositorioClientes().getClientes());
+						ArrayList<Cliente> arrays = new ArrayList<>();
+						arrays.addAll(PopUpCliente.getCc().getRepositorioClientes().getClientes());
 
-					int tamanho = PopUpCliente.getCc().getRepositorioClientes().getClientes().size();
-					for (int i = 0; i < tamanho; i++) {
+						int tamanho = PopUpCliente.getCc().getRepositorioClientes().getClientes().size();
+						for (int i = 0; i < tamanho; i++) {
 
-						if (txtNome.getText().equals(arrays.get(i).getNome())
-								&& txtCpf.getText().equals(arrays.get(i).getCpf())) {
+							if (txtNome.getText().equals(arrays.get(i).getNome())
+									&& txtCpf.getText().equals(arrays.get(i).getCpf())) {
 
-							JOptionPane.showMessageDialog(null, "Cliente Encontrado!.");
-							PopUpCliente.getCc().getRepositorioClientes().getClientes().get(i).addPontos();
-							System.out.println("Baila: "
-									+ PopUpCliente.getCc().getRepositorioClientes().getClientes().get(i).getPontos());
-							Carrinho prov = new Carrinho(
-									PopUpCliente.getCc().getRepositorioClientes().getClientes().get(i),
-									produtosNoCarrinho);
-							if (PopUpCliente.getCc().getRepositorioClientes().getClientes().get(i).getPontos() >= 1) {
-								JOptionPane.showMessageDialog(null, "Cupom!");
-
+								JOptionPane.showMessageDialog(null, "Cliente Encontrado!.");
+								PopUpCliente.getCc().getRepositorioClientes().getClientes().get(i).addPontos();
+								System.out.println("Baila: " + PopUpCliente.getCc().getRepositorioClientes()
+										.getClientes().get(i).getPontos());
+								Carrinho prov = new Carrinho(
+										PopUpCliente.getCc().getRepositorioClientes().getClientes().get(i),
+										produtosNoCarrinho);
+								if (PopUpCliente.getCc().getRepositorioClientes().getClientes().get(i)
+										.getPontos() > 5) {
+									PopUpCliente.getCc().getRepositorioClientes().getClientes().get(i).setPontos(0);
+									JOptionPane.showMessageDialog(null, "Cupom!");
+								}
+								prov.setValorTotal(valorFinal);
+								System.out.println(prov.getValorTotal());
+								Venda provisoria = new Venda(prov, TelaGerente.funcLogado(), LocalDateTime.now(), true);
+								cv.cadastrar(provisoria);
 							}
-
-							prov.setValorTotal(valorFinal);
-							System.out.println(prov.getValorTotal());
-
-							Venda provisoria = new Venda(prov, TelaGerente.funcLogado(), LocalDateTime.now(), true);
-							cv.cadastrar(provisoria);
 						}
-					}
 
-					JOptionPane.showMessageDialog(null, "Venda Finalizada!");
-					dispose();
-					TelaGerente tg = new TelaGerente();
-					tg.setVisible(true);
-					System.out.println(cv);
+						JOptionPane.showMessageDialog(null, "Venda Finalizada!");
+						dispose();
+						TelaGerente tg = new TelaGerente();
+						tg.setVisible(true);
+						System.out.println(cv);
+					}
 				}
 			}
+
 		});
 		btnNewButton_2.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		btnNewButton_2.setToolTipText("Finaliza a compra e fecha a aba");

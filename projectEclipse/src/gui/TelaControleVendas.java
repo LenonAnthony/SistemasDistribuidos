@@ -68,7 +68,7 @@ public class TelaControleVendas extends JFrame {
 
 		if (filtroArea == false && filtroFuncionario == false && filtroCliente == false && filtroPeriodo == false) {
 			dtm.setRowCount(0);
-			int tamanho = TelaNovaVenda.getCv().getRepositorioVendas().getTamanho();
+			int tamanho = TelaNovaVenda.getCv().getRepositorioVendas().getVendas().size();
 			ArrayList<Venda> arrays = new ArrayList<>();
 			arrays.addAll(TelaNovaVenda.getCv().getRepositorioVendas().getVendas());
 			for (int i = 0; i < tamanho; i++) {
@@ -76,14 +76,14 @@ public class TelaControleVendas extends JFrame {
 				Object[] objs = { arrays.get(i).getFuncionario().getNome(),
 						arrays.get(i).getCarrinho().getCliente().getNome(),
 						arrays.get(i).getCarrinho().getCliente().getEndereco(), arrays.get(i).getDatahora(),
-						arrays.get(i).getCarrinho().gerarValorTotal() };
+						arrays.get(i).getCarrinho().getValorTotal() };
 				dtm.addRow(objs);
 
 			}
 
 		} else if (filtroArea) {
 			dtm.setRowCount(0);
-			int tamanho = TelaNovaVenda.getCv().getRepositorioVendas().getTamanho();
+			int tamanho = TelaNovaVenda.getCv().getRepositorioVendas().getVendas().size();
 			ArrayList<Venda> arrays = new ArrayList<>();
 			arrays.addAll(TelaNovaVenda.getCv().getRepositorioVendas().getVendas());
 			for (int i = 0; i < tamanho; i++) {
@@ -99,7 +99,7 @@ public class TelaControleVendas extends JFrame {
 			}
 		} else if (filtroFuncionario) {
 			dtm.setRowCount(0);
-			int tamanho = TelaNovaVenda.getCv().getRepositorioVendas().getTamanho();
+			int tamanho = TelaNovaVenda.getCv().getRepositorioVendas().getVendas().size();
 			ArrayList<Venda> arrays = new ArrayList<>();
 			arrays.addAll(TelaNovaVenda.getCv().getRepositorioVendas().getVendas());
 			for (int i = 0; i < tamanho; i++) {
@@ -115,7 +115,7 @@ public class TelaControleVendas extends JFrame {
 			}
 		} else if (filtroCliente) {
 			dtm.setRowCount(0);
-			int tamanho = TelaNovaVenda.getCv().getRepositorioVendas().getTamanho();
+			int tamanho = TelaNovaVenda.getCv().getRepositorioVendas().getVendas().size();
 			ArrayList<Venda> arrays = new ArrayList<>();
 			arrays.addAll(TelaNovaVenda.getCv().getRepositorioVendas().getVendas());
 			for (int i = 0; i < tamanho; i++) {
@@ -132,7 +132,7 @@ public class TelaControleVendas extends JFrame {
 		} else if (filtroPeriodo) {
 			dtm.setRowCount(0);
 
-			int tamanho = TelaNovaVenda.getCv().getRepositorioVendas().getTamanho();
+			int tamanho = TelaNovaVenda.getCv().getRepositorioVendas().getVendas().size();
 			ArrayList<Venda> arrays = new ArrayList<>();
 			arrays.addAll(TelaNovaVenda.getCv().getRepositorioVendas().getVendas());
 
