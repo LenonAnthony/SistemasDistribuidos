@@ -44,11 +44,11 @@ public class TelaGerente extends JFrame {
 	private String campoDeTexto_1;
 	private String campoDeTexto_2;
 	private String campoDePreco;
-	
-
 	private DefaultTableModel dtm;
-	
-	
+	JLabel lblNewLabel = new JLabel("Tela do Gerente");
+	JButton btnNewButton_1_1 = new JButton("Card\u00E1pio");
+	JButton btnNewButton_1 = new JButton("Equipe");
+	JButton btnNewButton_1_1_1 = new JButton("Clientes");
 
 	public static int getLinha() {
 		return linha;
@@ -57,7 +57,6 @@ public class TelaGerente extends JFrame {
 	public static void setLinha(int linha) {
 		TelaGerente.linha = linha;
 	}
-	
 
 	public static int getLinhaCliente() {
 		return linhaCliente;
@@ -66,26 +65,6 @@ public class TelaGerente extends JFrame {
 	public static void setLinhaCliente(int linhaCliente) {
 		TelaGerente.linhaCliente = linhaCliente;
 	}
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					TelaGerente frame = new TelaGerente();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 
 	public void atualizarJTableFuncionarios() {
 		int tamanho = PopUpFuncionario.getCf().getRepositorioFuncionario().getFuncionarios().size();
@@ -134,23 +113,49 @@ public class TelaGerente extends JFrame {
 		}
 	}
 
-	
-	public static Funcionario funcLogado()
-	{
+	public static Funcionario funcLogado() {
 		Funcionario desgracado = new Funcionario();
-		for(int i = 0;  i < PopUpFuncionario.getCf().getRepositorioFuncionario().getFuncionarios().size();i++)
-		{
-			if(PopUpFuncionario.getCf().getRepositorioFuncionario().getFuncionarios().get(i).getLogado())
-			{
+		for (int i = 0; i < PopUpFuncionario.getCf().getRepositorioFuncionario().getFuncionarios().size(); i++) {
+			if (PopUpFuncionario.getCf().getRepositorioFuncionario().getFuncionarios().get(i).getLogado()) {
 				desgracado = PopUpFuncionario.getCf().getRepositorioFuncionario().getFuncionarios().get(i);
 				return desgracado;
 			}
 		}
 		return null;
 	}
-	
-	
+
+	public void definirTela() {
+		if (TelaDeLogin.getAux().equals("Funcionario")) {
+			lblNewLabel.setText("Tela do Funcionario");
+			btnNewButton_1.setVisible(false); // botao Equipe
+			btnNewButton_1_1.setVisible(false); // botao Cardapio
+
+		}
+	}
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					TelaGerente frame = new TelaGerente();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+
 	public TelaGerente() {
+
+		definirTela();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1280, 720);
 		contentPane = new JPanel();
@@ -164,7 +169,6 @@ public class TelaGerente extends JFrame {
 		contentPane.add(panel);
 		panel.setLayout(null);
 
-		JLabel lblNewLabel = new JLabel("Tela do Gerente");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 35));
 		lblNewLabel.setBounds(41, 11, 678, 43);
 		panel.add(lblNewLabel);
@@ -176,7 +180,6 @@ public class TelaGerente extends JFrame {
 		contentPane.add(panel_1);
 		panel_1.setLayout(null);
 
-		JButton btnNewButton_1 = new JButton("Equipe");
 		btnNewButton_1.setBounds(10, 42, 161, 72);
 		panel_1.add(btnNewButton_1);
 		btnNewButton_1.addActionListener(new ActionListener() {
@@ -192,7 +195,6 @@ public class TelaGerente extends JFrame {
 		});
 		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 24));
 
-		JButton btnNewButton_1_1_1 = new JButton("Clientes");
 		btnNewButton_1_1_1.setBounds(10, 125, 161, 72);
 		panel_1.add(btnNewButton_1_1_1);
 		btnNewButton_1_1_1.addActionListener(new ActionListener() {
@@ -214,7 +216,7 @@ public class TelaGerente extends JFrame {
 		lblNewLabel_1.setBounds(10, 11, 109, 20);
 		panel_1.add(lblNewLabel_1);
 
-		JButton btnNewButton_1_1 = new JButton("Card\u00E1pio");
+		
 		btnNewButton_1_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				contador = 3;
@@ -225,7 +227,7 @@ public class TelaGerente extends JFrame {
 				System.out.println(contador);
 				atualizarJTableProdutos();
 				linhaCliente = -1;
-				
+
 			}
 		});
 		btnNewButton_1_1.setBounds(10, 208, 161, 72);
@@ -258,14 +260,14 @@ public class TelaGerente extends JFrame {
 					System.out.println(campoDeTexto_1);
 					campoDeTexto_2 = dtm.getValueAt(linhaCliente, 2).toString();
 					System.out.println(campoDeTexto_2);
-					
+
 				} else if (contador == 3) {
 					linha = table.getSelectedRow();
 					campoDeTexto = dtm.getValueAt(linha, 0).toString();
 					System.out.println(campoDeTexto);
 					campoDePreco = dtm.getValueAt(linha, 1).toString();
 					campoDeTexto_2 = dtm.getValueAt(linha, 2).toString();
-					
+
 				}
 			}
 		});
@@ -317,7 +319,7 @@ public class TelaGerente extends JFrame {
 									.remover(PopUpCliente.getCc().getRepositorioClientes().getClientes().get(i));
 							System.out.println(PopUpCliente.getCc());
 						}
-						
+
 					}
 
 				} else if (contador == 3) {
@@ -327,7 +329,7 @@ public class TelaGerente extends JFrame {
 							PopUpProduto.getCp()
 									.remover(PopUpProduto.getCp().getRepositorioProdutos().getProdutos().get(i));
 							System.out.println(PopUpProduto.getCp());
-							
+
 						}
 
 					}
@@ -335,11 +337,9 @@ public class TelaGerente extends JFrame {
 				}
 			}
 		});
-
+		JButton btnNewButton_2_2 = new JButton("Atualizar");
 		btnNewButton_2_1.setBounds(428, 536, 89, 23);
 		panel_1.add(btnNewButton_2_1);
-
-		JButton btnNewButton_2_2 = new JButton("Atualizar");
 		btnNewButton_2_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (contador == 1) {
@@ -354,8 +354,10 @@ public class TelaGerente extends JFrame {
 				}
 				if (contador == 2) {
 					PopUpCliente.getCc().getRepositorioClientes().getClientes().get(linhaCliente).setNome(campoDeTexto);
-					PopUpCliente.getCc().getRepositorioClientes().getClientes().get(linhaCliente).setCpf(campoDeTexto_1);
-					PopUpCliente.getCc().getRepositorioClientes().getClientes().get(linhaCliente).setEndereco(campoDeTexto_2);
+					PopUpCliente.getCc().getRepositorioClientes().getClientes().get(linhaCliente)
+							.setCpf(campoDeTexto_1);
+					PopUpCliente.getCc().getRepositorioClientes().getClientes().get(linhaCliente)
+							.setEndereco(campoDeTexto_2);
 
 				}
 				if (contador == 3) {
@@ -390,9 +392,6 @@ public class TelaGerente extends JFrame {
 			}
 		});
 
-		
-		
-		
 		btnNewButton_2_3.setBounds(659, 536, 89, 23);
 		panel_1.add(btnNewButton_2_3);
 
@@ -422,7 +421,7 @@ public class TelaGerente extends JFrame {
 		gbc_lblNewLabel_3.gridy = 1;
 		panel_2.add(lblNewLabel_3, gbc_lblNewLabel_3);
 
-		JLabel lblNewLabel_5 = new JLabel(this.funcLogado().getNome());
+		JLabel lblNewLabel_5 = new JLabel(TelaGerente.funcLogado().getNome());
 		GridBagConstraints gbc_lblNewLabel_5 = new GridBagConstraints();
 		gbc_lblNewLabel_5.insets = new Insets(0, 0, 5, 0);
 		gbc_lblNewLabel_5.gridx = 1;
@@ -436,7 +435,7 @@ public class TelaGerente extends JFrame {
 		gbc_lblNewLabel_4.gridy = 2;
 		panel_2.add(lblNewLabel_4, gbc_lblNewLabel_4);
 
-		JLabel lblNewLabel_6 = new JLabel(this.funcLogado().getCpf());
+		JLabel lblNewLabel_6 = new JLabel(TelaGerente.funcLogado().getCpf());
 		GridBagConstraints gbc_lblNewLabel_6 = new GridBagConstraints();
 		gbc_lblNewLabel_6.gridx = 1;
 		gbc_lblNewLabel_6.gridy = 2;

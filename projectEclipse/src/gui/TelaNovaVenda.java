@@ -311,6 +311,7 @@ public class TelaNovaVenda extends JFrame {
 
 						JOptionPane.showMessageDialog(null, "Venda Finalizada!");
 						dispose();
+						
 						TelaGerente tg = new TelaGerente();
 						tg.setVisible(true);
 						System.out.println(cv);

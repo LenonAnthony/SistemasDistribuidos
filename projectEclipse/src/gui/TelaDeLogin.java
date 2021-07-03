@@ -23,8 +23,15 @@ public class TelaDeLogin extends JFrame {
 	private JFrame frame;
 	private JTextField password;
 	private JTextField login;
-	private String aux;
+	private static String aux;
 
+	public static String getAux() {
+		return aux;
+	}
+
+	public static void setAux(String aux) {
+		TelaDeLogin.aux = aux;
+	}
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -83,28 +90,21 @@ public class TelaDeLogin extends JFrame {
 				Funcionario f = new Funcionario("", "", "", login.getText(), password.getText(), 0);
 				System.out.println(PopUpFuncionario.getCf());
 				if (PopUpFuncionario.getCf().existeLoginSenha(f)) {
-					for(int i = 0; i<PopUpFuncionario.getCf().getRepositorioFuncionario().getFuncionarios().size();i++)
-					{
-						if (PopUpFuncionario.getCf().existeLoginSenha(f))
-						{
-							PopUpFuncionario.getCf().getRepositorioFuncionario().getFuncionarios().get(i).setLogado(true);
-							aux = PopUpFuncionario.getCf().getRepositorioFuncionario().getFuncionarios().get(i).getTipo();
-							
+					for (int i = 0; i < PopUpFuncionario.getCf().getRepositorioFuncionario().getFuncionarios()
+							.size(); i++) {
+						if (PopUpFuncionario.getCf().existeLoginSenha(f)) {
+							PopUpFuncionario.getCf().getRepositorioFuncionario().getFuncionarios().get(i)
+									.setLogado(true);
+							aux = PopUpFuncionario.getCf().getRepositorioFuncionario().getFuncionarios().get(i)
+									.getTipo();
+
 						}
 					}
-					
+
 					JOptionPane.showMessageDialog(null, "Logado com Sucesso.");
 					frame.dispose();
-					if(aux.equals("Gerente"))
-					{
-						TelaGerente tg = new TelaGerente();
-						tg.setVisible(true);	
-					}
-					else 
-					{
-						TelaDeFuncionario tf = new TelaDeFuncionario();
-						tf.setVisible(true);
-					}
+					TelaGerente tg = new TelaGerente();
+					tg.setVisible(true);
 
 				} else {
 					JOptionPane.showMessageDialog(null, "Dados Incorretos.");

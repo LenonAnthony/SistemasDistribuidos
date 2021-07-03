@@ -27,13 +27,26 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class TelaDeFuncionario extends JFrame {
 
 	private JPanel contentPane;
 	private JTable table;
-
+	private static int linhaClienteFuncionario = -1;
+	private String campoDeTexto;
+	private String campoDeTexto_1;
+	private String campoDeTexto_2;
 	private DefaultTableModel dtm;
+
+	public static int getLinhaClienteFuncionario() {
+		return linhaClienteFuncionario;
+	}
+
+	public static void setLinhaClienteFuncionario(int linhaClienteFuncionario) {
+		TelaDeFuncionario.linhaClienteFuncionario = linhaClienteFuncionario;
+	}
 
 	/**
 	 * Launch the application.
@@ -147,6 +160,15 @@ public class TelaDeFuncionario extends JFrame {
 		panel_3.add(scrollPane);
 
 		table = new JTable();
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				linhaClienteFuncionario = table.getSelectedRow();
+				campoDeTexto = dtm.getValueAt(linhaClienteFuncionario, 0).toString();
+				campoDeTexto_1 = dtm.getValueAt(linhaClienteFuncionario, 1).toString();
+				campoDeTexto_2 = dtm.getValueAt(linhaClienteFuncionario, 2).toString();
+			}
+		});
 		scrollPane.setViewportView(table);
 		String aux1[] = new String[] { "Nome", "CPF", "Endereco", "Pontos" };
 		dtm = new DefaultTableModel(aux1, 0);
@@ -172,7 +194,6 @@ public class TelaDeFuncionario extends JFrame {
 		JButton btnNewButton_2_2 = new JButton("Atualizar");
 		btnNewButton_2_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
 				atualizarJTableClientes();
 			}
 		});
@@ -184,6 +205,12 @@ public class TelaDeFuncionario extends JFrame {
 		panel_3.add(btnNewButton_2_3);
 
 		JButton btnNewButton = new JButton("Nova Venda");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TelaNovaVenda tnv = new TelaNovaVenda();
+				tnv.setVisible(true);
+			}
+		});
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 38));
 		btnNewButton.setBounds(1019, 86, 235, 584);
 		contentPane.add(btnNewButton);
