@@ -21,8 +21,8 @@ public class RepositorioTesteMain {
 		RepositorioFuncionarios rf = new RepositorioFuncionarios();
 		Produto p1 = new Produto("X-Burger", "descricao", 1, 10, true);
 		Produto p2 = new Produto("X-Burger2", "descricao", 2, 12, true);
-		Funcionario f1 = new Funcionario("Chagas", "000", "Funcionario", "user", "123", 1200);
-		Funcionario f2 = new Funcionario("Yagod", "001", "Funcionario", "user", "123", 1500);
+		Funcionario f1 = new Funcionario("Chagas", "000", "Funcionario", "user", "123");
+		Funcionario f2 = new Funcionario("Yagod", "001", "Funcionario", "user", "123");
 		RepositorioVendas rv = new RepositorioVendas();
 		ArrayList<Produto> produtos = new ArrayList<>();
 		produtos.add(p1);

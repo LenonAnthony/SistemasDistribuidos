@@ -83,7 +83,7 @@ public class PopUpFuncionario extends JFrame {
 					JOptionPane.showMessageDialog(null, "Favor, preencher tudo.");
 				} else {
 					Funcionario f = new Funcionario(textField.getText(), textField_1.getText(), textField_4.getText(),
-							textField_2.getText(), textField_3.getText(), 0);
+							textField_2.getText(), textField_3.getText());
 
 					if (cf.existeLoginSenha(f)) {
 						JOptionPane.showMessageDialog(null, "Funcionário já existe.");

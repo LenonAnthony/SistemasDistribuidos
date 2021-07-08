@@ -5,25 +5,22 @@ public class Funcionario extends Pessoa {
 	private String login;
 	private String senha;
 	private String tipo;
-	private double salario;
 
 	private boolean logado;
-	
-	public Funcionario()
-	{
-		
+
+	public Funcionario() {
+
 	}
 
-	public Funcionario(String nome, String cpf, String tipo, String login, String senha, double salario) {
+	public Funcionario(String nome, String cpf, String tipo, String login, String senha) {
 
 		super(nome, cpf);
 		setTipo(tipo);
 		setLogin(login);
 		setSenha(senha);
-		setSalario(salario);
 
 	}
-	
+
 	public boolean getLogado() {
 		return logado;
 	}
@@ -31,7 +28,6 @@ public class Funcionario extends Pessoa {
 	public void setLogado(boolean logado) {
 		this.logado = logado;
 	}
-
 
 	public String getLogin() {
 
@@ -81,22 +77,6 @@ public class Funcionario extends Pessoa {
 
 	}
 
-	public double getSalario() {
-
-		return salario;
-
-	}
-
-	public void setSalario(double salario) {
-
-		if (salario > 0) {
-
-			this.salario = salario;
-
-		}
-
-	}
-	
 	public boolean verificaAcesso(Object obj) {
 
 		boolean resultado = false;
@@ -129,8 +109,6 @@ public class Funcionario extends Pessoa {
 				return false;
 		} else if (!login.equals(other.login))
 			return false;
-		if (Double.doubleToLongBits(salario) != Double.doubleToLongBits(other.salario))
-			return false;
 		if (senha == null) {
 			if (other.senha != null)
 				return false;
@@ -147,8 +125,7 @@ public class Funcionario extends Pessoa {
 	@Override
 	public String toString() {
 
-		return super.toString() + " | Tipo: " + tipo + " | Login: " + login + " | Senha: " + senha + " | Salário: R$ "
-				+ salario;
+		return super.toString() + " | Tipo: " + tipo + " | Login: " + login + " | Senha: " + senha;
 
 	}
 

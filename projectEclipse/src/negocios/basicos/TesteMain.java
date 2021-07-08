@@ -13,7 +13,7 @@ public class TesteMain {
 		Cliente c1 = new Cliente("Lenon", "88899933300", "Olinda", 0);
 		Produto p1 = new Produto("X-Burger", "descricao", 1, 10, true);
 		Produto p2 = new Produto("X-Burger2", "descricao", 2, 12, true);
-		Funcionario f1 = new Funcionario("Chagas", "000", "Funcionario", "user", "123", 1200);
+		Funcionario f1 = new Funcionario("Chagas", "000", "Funcionario", "user", "123");
 
 		ControladorCliente cc = new ControladorCliente();
 		ControladorProduto cp = new ControladorProduto();

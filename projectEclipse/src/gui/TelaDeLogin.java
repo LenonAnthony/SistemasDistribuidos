@@ -126,7 +126,7 @@ public class TelaDeLogin extends JFrame {
 		logarButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				Funcionario f = new Funcionario("", "", "", login.getText(), password.getText(), 0);
+				Funcionario f = new Funcionario("", "", "", login.getText(), password.getText());
 				System.out.println(PopUpFuncionario.getCf());
 				if (PopUpFuncionario.getCf().existeLoginSenha(f)) {
 					for (int i = 0; i < PopUpFuncionario.getCf().getRepositorioFuncionario().getFuncionarios()
