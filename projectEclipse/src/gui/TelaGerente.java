@@ -417,8 +417,7 @@ public class TelaGerente extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				TelaDeLogin telaLogin = new TelaDeLogin();
-				telaLogin.setVisible(true);
-				
+				telaLogin.getFrame().setVisible(true);
 				dispose();
 			}
 		});

@@ -32,6 +32,14 @@ public class TelaDeLogin extends JFrame {
 		TelaDeLogin.aux = aux;
 	}
 
+	public JFrame getFrame() {
+		return frame;
+	}
+
+	public void setFrame(JFrame frame) {
+		this.frame = frame;
+	}
+
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -133,11 +141,10 @@ public class TelaDeLogin extends JFrame {
 					}
 
 					JOptionPane.showMessageDialog(null, "Logado com Sucesso.");
-					TelaDeLogin tl = new TelaDeLogin();	
-					tl.frame.setVisible(true);
-					/*
-					 * TelaGerente tg = new TelaGerente(); tg.setVisible(true);
-					 */
+
+					frame.dispose();
+					TelaGerente tg = new TelaGerente();
+					tg.setVisible(true);
 
 				} else {
 					JOptionPane.showMessageDialog(null, "Dados Incorretos.");
