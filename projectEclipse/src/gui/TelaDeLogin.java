@@ -20,7 +20,6 @@ public class TelaDeLogin extends JFrame {
 
 	private PopUpFuncionario popf = new PopUpFuncionario();
 	private JFrame frame;
-	
 	private JTextField password;
 	private JTextField login;
 	private static String aux;
@@ -134,8 +133,8 @@ public class TelaDeLogin extends JFrame {
 					}
 
 					JOptionPane.showMessageDialog(null, "Logado com Sucesso.");
-					TelaDeLogin tl = new TelaDeLogin();
-					tl.setVisible(true);
+					TelaDeLogin tl = new TelaDeLogin();	
+					tl.frame.setVisible(true);
 					/*
 					 * TelaGerente tg = new TelaGerente(); tg.setVisible(true);
 					 */
