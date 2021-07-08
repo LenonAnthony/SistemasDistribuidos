@@ -168,11 +168,10 @@ public class TelaGerente extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		setBackground(new Color(255, 145, 145));
-		
-		
+
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(89, 39, 39));
-		//panel.setBackground(SystemColor.activeCaption);
+		// panel.setBackground(SystemColor.activeCaption);
 		panel.setBounds(10, 11, 768, 65);
 		contentPane.add(panel);
 		panel.setLayout(null);
@@ -185,8 +184,8 @@ public class TelaGerente extends JFrame {
 
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(new Color(168, 25, 25));
-		//panel_1.setBackground(new Color(11, 122, 117));
-		
+		// panel_1.setBackground(new Color(11, 122, 117));
+
 		panel_1.setBounds(10, 87, 989, 583);
 		contentPane.add(panel_1);
 		panel_1.setLayout(null);
@@ -229,7 +228,6 @@ public class TelaGerente extends JFrame {
 		lblNewLabel_1.setBounds(10, 43, 161, 31);
 		panel_1.add(lblNewLabel_1);
 
-		
 		btnNewButton_1_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				contador = 3;
@@ -253,7 +251,7 @@ public class TelaGerente extends JFrame {
 		panel_1.add(scrollPane);
 		scrollPane.setBackground(new Color(244, 219, 216));
 		table = new JTable();
-	
+
 		table.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -412,16 +410,15 @@ public class TelaGerente extends JFrame {
 
 		btnNewButton_2_3.setBounds(849, 536, 130, 36);
 		panel_1.add(btnNewButton_2_3);
-		
+
 		JButton btnNewButton_3 = new JButton("Sair");
 		btnNewButton_3.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				//Pepino para ser resolvido posteriormente
+				TelaDeLogin telaLogin = new TelaDeLogin();
+				telaLogin.setVisible(true);
 				dispose();
-				TelaDeLogin tnv = new TelaDeLogin();
-				tnv.setVisible(true);
 			}
 		});
 		btnNewButton_3.setBounds(10, 542, 76, 30);
@@ -431,7 +428,7 @@ public class TelaGerente extends JFrame {
 		panel_2.setForeground(Color.LIGHT_GRAY);
 		panel_2.setBorder(UIManager.getBorder("PasswordField.border"));
 		panel_2.setBackground(new Color(138, 34, 34));
-		//panel_2.setBackground(SystemColor.info);
+		// panel_2.setBackground(SystemColor.info);
 		panel_2.setBounds(788, 11, 466, 64);
 		contentPane.add(panel_2);
 		GridBagLayout gbl_panel_2 = new GridBagLayout();
@@ -497,6 +494,7 @@ public class TelaGerente extends JFrame {
 		contentPane.add(btnNewButton_1_2);
 		btnNewButton_1_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+
 				TelaControleVendas tcv = new TelaControleVendas();
 				tcv.setVisible(true);
 				dispose();
