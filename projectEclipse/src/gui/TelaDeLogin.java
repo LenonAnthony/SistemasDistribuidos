@@ -82,6 +82,7 @@ public class TelaDeLogin extends JFrame {
 		frame.setBounds(100, 100, 338, 355);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		frame.setLocationRelativeTo(null);
 		frame.setTitle("Tela De Login - Pope's Dance");
 
 		JPanel panel = new JPanel();
