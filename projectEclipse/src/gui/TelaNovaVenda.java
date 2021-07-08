@@ -83,6 +83,7 @@ public class TelaNovaVenda extends JFrame {
 			public void run() {
 				try {
 					TelaNovaVenda frame = new TelaNovaVenda();
+					frame.setLocationRelativeTo(null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -320,6 +321,7 @@ public class TelaNovaVenda extends JFrame {
 						dispose();
 						
 						TelaGerente tg = new TelaGerente();
+						tg.setLocationRelativeTo(null);
 						tg.setVisible(true);
 						System.out.println(cv);
 					}
@@ -364,6 +366,7 @@ public class TelaNovaVenda extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 				TelaGerente tg = new TelaGerente();
+				tg.setLocationRelativeTo(null);
 				tg.setVisible(true);
 			}
 		});

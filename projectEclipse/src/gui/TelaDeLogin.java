@@ -95,6 +95,7 @@ public class TelaDeLogin extends JFrame {
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				PopUpFuncionario popf = new PopUpFuncionario();
+				popf.setLocationRelativeTo(null);
 				popf.setVisible(true);
 			}
 		});
@@ -145,6 +146,7 @@ public class TelaDeLogin extends JFrame {
 
 					frame.dispose();
 					TelaGerente tg = new TelaGerente();
+					tg.setLocationRelativeTo(null);
 					tg.setVisible(true);
 
 				} else {

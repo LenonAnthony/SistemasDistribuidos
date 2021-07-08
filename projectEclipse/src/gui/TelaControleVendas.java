@@ -52,6 +52,7 @@ public class TelaControleVendas extends JFrame {
 			public void run() {
 				try {
 					TelaControleVendas frame = new TelaControleVendas();
+					frame.setLocationRelativeTo(null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -317,6 +318,7 @@ public class TelaControleVendas extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 				TelaGerente tg = new TelaGerente();
+				tg.setLocationRelativeTo(null);
 				tg.setVisible(true);
 			}
 		});

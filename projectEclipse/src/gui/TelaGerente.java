@@ -291,14 +291,17 @@ public class TelaGerente extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if (contador == 1) {
 					PopUpFuncionario popf = new PopUpFuncionario();
+					popf.setLocationRelativeTo(null);
 					popf.setVisible(true);
 
 				} else if (contador == 2) {
 					PopUpCliente popc = new PopUpCliente();
+					popc.setLocationRelativeTo(null);
 					popc.setVisible(true);
 
 				} else if (contador == 3) {
 					PopUpProduto popp = new PopUpProduto();
+					popp.setLocationRelativeTo(null);
 					popp.setVisible(true);
 				}
 			}
@@ -393,14 +396,17 @@ public class TelaGerente extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if (contador == 1) {
 					PopUpBuscaFuncionario popbf = new PopUpBuscaFuncionario();
+					popbf.setLocationRelativeTo(null);
 					popbf.setVisible(true);
 
 				} else if (contador == 2) {
 					PopUpBuscaCliente popbc = new PopUpBuscaCliente();
+					popbc.setLocationRelativeTo(null);
 					popbc.setVisible(true);
 
 				} else if (contador == 3) {
 					PopUpBuscaProduto popbp = new PopUpBuscaProduto();
+					popbp.setLocationRelativeTo(null);
 					popbp.setVisible(true);
 
 				}
@@ -417,6 +423,7 @@ public class TelaGerente extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				TelaDeLogin telaLogin = new TelaDeLogin();
+				telaLogin.setLocationRelativeTo(null);
 				telaLogin.getFrame().setVisible(true);
 				dispose();
 			}
@@ -483,6 +490,7 @@ public class TelaGerente extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 				TelaNovaVenda tnv = new TelaNovaVenda();
+				tnv.setLocationRelativeTo(null);
 				tnv.setVisible(true);
 			}
 		});
@@ -496,6 +504,7 @@ public class TelaGerente extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 
 				TelaControleVendas tcv = new TelaControleVendas();
+				tcv.setLocationRelativeTo(null);
 				tcv.setVisible(true);
 				dispose();
 			}
