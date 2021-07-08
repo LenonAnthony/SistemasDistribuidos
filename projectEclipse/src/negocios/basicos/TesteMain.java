@@ -29,6 +29,7 @@ public class TesteMain {
 		double y = car1.gerarValorTotal();
 		
 		System.out.println(y);
+		System.out.println("Ola");
 	}
 
 }
