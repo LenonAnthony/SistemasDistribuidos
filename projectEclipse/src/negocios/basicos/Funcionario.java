@@ -125,7 +125,7 @@ public class Funcionario extends Pessoa {
 	@Override
 	public String toString() {
 
-		return super.toString() + " | Tipo: " + tipo + " | Login: " + login + " | Senha: " + senha;
+		return super.toString() + " | Tipo: " + tipo + " | Login: " + login + " | Senha: " + senha+"| Logado: " +this.getLogado();
 
 	}
 

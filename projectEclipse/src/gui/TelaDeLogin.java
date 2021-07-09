@@ -133,7 +133,11 @@ public class TelaDeLogin extends JFrame {
 				if (PopUpFuncionario.getCf().existeLoginSenha(f)) {
 					for (int i = 0; i < PopUpFuncionario.getCf().getRepositorioFuncionario().getFuncionarios()
 							.size(); i++) {
-						if (PopUpFuncionario.getCf().existeLoginSenha(f)) {
+						if (PopUpFuncionario.getCf().existeLoginSenha(f)
+								&& PopUpFuncionario.getCf().getRepositorioFuncionario().getFuncionarios().get(i)
+										.getLogin().equals(login.getText())
+								&& PopUpFuncionario.getCf().getRepositorioFuncionario().getFuncionarios().get(i)
+										.getSenha().equals(password.getText())) {
 							PopUpFuncionario.getCf().getRepositorioFuncionario().getFuncionarios().get(i)
 									.setLogado(true);
 							aux = PopUpFuncionario.getCf().getRepositorioFuncionario().getFuncionarios().get(i)

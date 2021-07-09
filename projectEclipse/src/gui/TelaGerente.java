@@ -155,6 +155,7 @@ public class TelaGerente extends JFrame {
 	 */
 
 	public TelaGerente() {
+
 		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaGerente.class.getResource("/images/IconPope.png")));
 		setResizable(false);
 		setTitle("Tela Operacional - Pope's Dance");
@@ -217,6 +218,7 @@ public class TelaGerente extends JFrame {
 				atualizarJTableClientes();
 				linhaCliente = -1;
 				System.out.println(linhaCliente);
+				System.out.println(funcLogado());
 			}
 		});
 		btnNewButton_1_1_1.setFont(new Font("Tahoma", Font.PLAIN, 24));
@@ -421,7 +423,11 @@ public class TelaGerente extends JFrame {
 		btnNewButton_3.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				for (int i = 0; i < PopUpFuncionario.getCf().getRepositorioFuncionario().getFuncionarios()
+						.size(); i++) {
+					PopUpFuncionario.getCf().getRepositorioFuncionario().getFuncionarios().get(i).setLogado(false);
+					System.out.println(PopUpFuncionario.getCf().getRepositorioFuncionario().getFuncionarios().get(i));
+				}
 				TelaDeLogin telaLogin = new TelaDeLogin();
 				telaLogin.setLocationRelativeTo(null);
 				telaLogin.getFrame().setVisible(true);
