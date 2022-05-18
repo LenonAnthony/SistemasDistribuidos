@@ -23,6 +23,7 @@ import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.ResolverStyle;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
@@ -145,7 +146,7 @@ public class TelaControleVendas extends JFrame {
 			for (int i = 0; i < tamanho; i++) {
 
 				LocalDate dataVenda = LocalDate.of(arrays.get(i).getDatahora().getYear(),
-						arrays.get(i).getDatahora().getMonth(), arrays.get(i).getDatahora().getDayOfYear());
+						arrays.get(i).getDatahora().getMonthValue(), arrays.get(i).getDatahora().getDayOfMonth());
 
 				if (dataInicio.isBefore(dataVenda) && dataFim.isAfter(dataVenda)) {
 					Object[] objs = { arrays.get(i).getFuncionario().getNome(),
