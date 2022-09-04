@@ -1,10 +1,13 @@
 package dados;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import negocios.basicos.Funcionario;
 
-public class RepositorioFuncionarios {
+public class RepositorioFuncionarios implements Serializable {
+	
+	private static final long serialVersionUID = -1919414877885418528L;
 	private ArrayList<Funcionario> funcionarios = new ArrayList<>();
 	private int tamanho;
 
@@ -70,7 +73,7 @@ public class RepositorioFuncionarios {
 			existe = true;
 			System.out.println("A conta existe");
 		} else {
-			System.out.println("A conta não existe");
+			System.out.println("A conta nï¿½o existe");
 		}
 		return existe;
 	}
@@ -82,7 +85,7 @@ public class RepositorioFuncionarios {
 			existe = true;
 			System.out.println("A conta existe");
 		} else {
-			System.out.println("A conta não existe");
+			System.out.println("A conta nï¿½o existe");
 		}
 		return existe;
 	}
@@ -93,7 +96,7 @@ public class RepositorioFuncionarios {
 			this.funcionarios.remove(i);
 			System.out.println("Funcionario removido.");
 		} else {
-			System.out.println("Funcionario não encontrado. Portanto, não foi removido.");
+			System.out.println("Funcionario nï¿½o encontrado. Portanto, nï¿½o foi removido.");
 		}
 		tamanho = this.funcionarios.size();
 	}

@@ -102,7 +102,7 @@ public class PopUpBuscaFuncionario extends JFrame {
 					}
 				}
 				if (!achou) {
-					JOptionPane.showMessageDialog(null, "Funcionario não Encontrado!.");
+					JOptionPane.showMessageDialog(null, "Funcionario nï¿½o Encontrado!.");
 				}
 				dispose();
 			}

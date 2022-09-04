@@ -32,6 +32,7 @@ import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.rmi.RemoteException;
 import java.awt.Toolkit;
 
 public class TelaGerente extends JFrame {
@@ -127,7 +128,7 @@ public class TelaGerente extends JFrame {
 
 	public void definirTela() {
 		if (TelaDeLogin.getAux().equals("Funcionario")) {
-			lblNewLabel.setText("Tela Operacional Do Funcionário");
+			lblNewLabel.setText("Tela Operacional Do Funcionï¿½rio");
 			btnNewButton_1.setVisible(false); // botao Equipe
 			btnNewButton_1_1.setVisible(false); // botao Cardapio
 
@@ -292,9 +293,16 @@ public class TelaGerente extends JFrame {
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (contador == 1) {
-					PopUpFuncionario popf = new PopUpFuncionario();
-					popf.setLocationRelativeTo(null);
-					popf.setVisible(true);
+					PopUpFuncionario popf;
+					try {
+						popf = new PopUpFuncionario();
+						popf.setLocationRelativeTo(null);
+						popf.setVisible(true);
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					
 
 				} else if (contador == 2) {
 					PopUpCliente popc = new PopUpCliente();
@@ -428,10 +436,17 @@ public class TelaGerente extends JFrame {
 					PopUpFuncionario.getCf().getRepositorioFuncionario().getFuncionarios().get(i).setLogado(false);
 					System.out.println(PopUpFuncionario.getCf().getRepositorioFuncionario().getFuncionarios().get(i));
 				}
-				TelaDeLogin telaLogin = new TelaDeLogin();
-				telaLogin.setLocationRelativeTo(null);
-				telaLogin.getFrame().setVisible(true);
-				dispose();
+				TelaDeLogin telaLogin;
+				try {
+					telaLogin = new TelaDeLogin();
+					telaLogin.setLocationRelativeTo(null);
+					telaLogin.getFrame().setVisible(true);
+					dispose();
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
 			}
 		});
 		btnNewButton_3.setBounds(10, 542, 76, 30);

@@ -7,23 +7,32 @@ import javax.swing.JPanel;
 import java.awt.Color;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.rmi.Naming;
+import java.rmi.RemoteException;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
+import java.awt.HeadlessException;
+
 import javax.swing.JTextField;
 import javax.swing.UIManager;
+
+import negocios.ControladorFuncionario;
 import negocios.basicos.Funcionario;
+import negocios.interfaces.CFInterface;
+
 import javax.swing.JLabel;
 import java.awt.Toolkit;
 import javax.swing.UIManager.*;
 
 public class TelaDeLogin extends JFrame {
 
-	private PopUpFuncionario popf = new PopUpFuncionario();
 	private JFrame frame;
 	private JTextField password;
 	private JTextField login;
 	private static String aux;
-
+	private static CFInterface cf1;
+	
+	
 	public static String getAux() {
 		return aux;
 	}
@@ -55,15 +64,17 @@ public class TelaDeLogin extends JFrame {
 
 	/**
 	 * Create the application.
+	 * @throws RemoteException 
 	 */
-	public TelaDeLogin() {
+	public TelaDeLogin() throws Exception {
 		initialize();
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	private void initialize() throws Exception {
+		
 		// mudando o Look and feel do programa.
 		try {
 			for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
@@ -94,9 +105,16 @@ public class TelaDeLogin extends JFrame {
 		button.setBounds(10, 282, 104, 23);
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				PopUpFuncionario popf = new PopUpFuncionario();
-				popf.setLocationRelativeTo(null);
-				popf.setVisible(true);
+				PopUpFuncionario popf;
+				try {
+					popf = new PopUpFuncionario();
+					popf.setLocationRelativeTo(null);
+					popf.setVisible(true);
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
 			}
 		});
 		panel.setLayout(null);
@@ -129,32 +147,43 @@ public class TelaDeLogin extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 
 				Funcionario f = new Funcionario("", "", "", login.getText(), password.getText());
-				System.out.println(PopUpFuncionario.getCf());
-				if (PopUpFuncionario.getCf().existeLoginSenha(f)) {
-					for (int i = 0; i < PopUpFuncionario.getCf().getRepositorioFuncionario().getFuncionarios()
-							.size(); i++) {
-						if (PopUpFuncionario.getCf().existeLoginSenha(f)
-								&& PopUpFuncionario.getCf().getRepositorioFuncionario().getFuncionarios().get(i)
-										.getLogin().equals(login.getText())
-								&& PopUpFuncionario.getCf().getRepositorioFuncionario().getFuncionarios().get(i)
-										.getSenha().equals(password.getText())) {
-							PopUpFuncionario.getCf().getRepositorioFuncionario().getFuncionarios().get(i)
-									.setLogado(true);
-							aux = PopUpFuncionario.getCf().getRepositorioFuncionario().getFuncionarios().get(i)
-									.getTipo();
+				try {
+					System.out.println(PopUpFuncionario.getCf1().getRepositorioFuncionario());
+				} catch (RemoteException e2) {
+					// TODO Auto-generated catch block
+					e2.printStackTrace();
+				}
+				try {
+					if (PopUpFuncionario.getCf1().existeLoginSenha(f)) {
+						System.out.println("teste");
+						for (int i = 0; i < PopUpFuncionario.getCf1().getRepositorioFuncionario().getFuncionarios()
+								.size(); i++) {
+							if (PopUpFuncionario.getCf1().existeLoginSenha(f)
+									&& PopUpFuncionario.getCf1().getRepositorioFuncionario().getFuncionarios().get(i)
+											.getLogin().equals(login.getText())
+									&& PopUpFuncionario.getCf1().getRepositorioFuncionario().getFuncionarios().get(i)
+											.getSenha().equals(password.getText())) {
+								PopUpFuncionario.getCf().getRepositorioFuncionario().getFuncionarios().get(i)
+										.setLogado(true);	
+								aux = PopUpFuncionario.getCf1().getRepositorioFuncionario().getFuncionarios().get(i)
+										.getTipo();
 
+							}
 						}
+
+						JOptionPane.showMessageDialog(null, "Logado com Sucesso.");
+
+						frame.dispose();
+						TelaGerente tg = new TelaGerente();
+						tg.setLocationRelativeTo(null);
+						tg.setVisible(true);
+
+					} else {
+						JOptionPane.showMessageDialog(null, "Dados Incorretos.");
 					}
-
-					JOptionPane.showMessageDialog(null, "Logado com Sucesso.");
-
-					frame.dispose();
-					TelaGerente tg = new TelaGerente();
-					tg.setLocationRelativeTo(null);
-					tg.setVisible(true);
-
-				} else {
-					JOptionPane.showMessageDialog(null, "Dados Incorretos.");
+				} catch (HeadlessException | RemoteException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
 				}
 
 			}

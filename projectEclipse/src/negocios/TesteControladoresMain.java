@@ -1,5 +1,6 @@
 package negocios;
 
+import java.rmi.RemoteException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
@@ -11,7 +12,7 @@ import negocios.basicos.Venda;
 
 public class TesteControladoresMain {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws RemoteException {
 		LocalDateTime datahora = LocalDateTime.now();
 		boolean aprovado = true;
 		Cliente c1 = new Cliente("Lenon", "88899933300", "Olinda", 0);

@@ -10,9 +10,12 @@ import javax.swing.border.EmptyBorder;
 
 import negocios.ControladorFuncionario;
 import negocios.basicos.Funcionario;
+import negocios.interfaces.CFInterface;
 
 import java.awt.SystemColor;
 import java.awt.GridBagLayout;
+import java.awt.HeadlessException;
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -22,12 +25,16 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.rmi.Naming;
+import java.rmi.RemoteException;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
 
 public class PopUpFuncionario extends JFrame {
-
-	public static ControladorFuncionario cf = new ControladorFuncionario();
+	
+	public ControladorFuncionario cfteste = new ControladorFuncionario();
+	public static ControladorFuncionario cf;
+	private static CFInterface cf1;
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTextField textField_1;
@@ -37,6 +44,14 @@ public class PopUpFuncionario extends JFrame {
 
 	public static ControladorFuncionario getCf() {
 		return cf;
+	}
+
+	public static CFInterface getCf1() {
+		return cf1;
+	}
+
+	public static void setCf1(CFInterface cf1) {
+		PopUpFuncionario.cf1 = cf1;
 	}
 
 	public static void setCf(ControladorFuncionario cf) {
@@ -51,6 +66,7 @@ public class PopUpFuncionario extends JFrame {
 			public void run() {
 
 				try {
+					
 					PopUpFuncionario frame = new PopUpFuncionario();
 					frame.setVisible(true);
 
@@ -64,7 +80,11 @@ public class PopUpFuncionario extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public PopUpFuncionario() {
+	public PopUpFuncionario() throws Exception {
+		
+		cf = new ControladorFuncionario();
+		cf1 = (CFInterface) Naming.lookup("rmi://localhost:1099/CF");
+		Naming.rebind("rmi://localhost:1099/CF", cf);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(PopUpFuncionario.class.getResource("/images/IconPope.png")));
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -74,7 +94,6 @@ public class PopUpFuncionario extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-
 		JButton btnNewButton = new JButton("Confirmar");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -85,17 +104,25 @@ public class PopUpFuncionario extends JFrame {
 					Funcionario f = new Funcionario(textField.getText(), textField_1.getText(), textField_4.getText(),
 							textField_2.getText(), textField_3.getText());
 
-					if (cf.existeLoginSenha(f)) {
-						JOptionPane.showMessageDialog(null, "Funcionário já existe.");
-					} else {
-						cf.cadastrar(f);
-						dispose();
-						System.out.println(cf);
+					try {
+						if (cf1.existeLoginSenha(f)) {
+							JOptionPane.showMessageDialog(null, "Funcionario ja existe.");
+						} else {
+							cf.cadastrar(f);
+							dispose();
+							System.out.println(cf.getRepositorioFuncionario().getFuncionarios());
+							System.out.println(cf1.getRepositorioFuncionario().getFuncionarios());
 
+						}
+					} catch (HeadlessException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (RemoteException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
 					}
-
 				}
-			
+
 			}
 		});
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 30));
@@ -158,7 +185,7 @@ public class PopUpFuncionario extends JFrame {
 		textField_4.setToolTipText("Valores permitidos: \"Gerente\" ou \"Funcionario\"");
 		panel.add(textField_4);
 		textField_4.setColumns(10);
-		
+
 		JButton btnNewButton_1 = new JButton("Cancelar");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

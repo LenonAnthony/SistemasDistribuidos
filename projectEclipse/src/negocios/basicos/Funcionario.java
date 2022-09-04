@@ -1,24 +1,30 @@
 package negocios.basicos;
+import java.io.Serializable;
+import java.util.Objects;
 
-public class Funcionario extends Pessoa {
-
+public class Funcionario extends Pessoa implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4937811051786662973L;
+	private String nome;
+	private String cpf;
 	private String login;
 	private String senha;
 	private String tipo;
-
 	private boolean logado;
 
 	public Funcionario() {
 
 	}
 
-	public Funcionario(String nome, String cpf, String tipo, String login, String senha) {
+	public Funcionario(String nome, String cpf, String tipo, String login, String senha){
 
-		super(nome, cpf);
+		setNome(nome);
+		setCpf(cpf);
 		setTipo(tipo);
 		setLogin(login);
 		setSenha(senha);
-
 	}
 
 	public boolean getLogado() {
@@ -77,6 +83,22 @@ public class Funcionario extends Pessoa {
 
 	}
 
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+
 	public boolean verificaAcesso(Object obj) {
 
 		boolean resultado = false;
@@ -96,36 +118,29 @@ public class Funcionario extends Pessoa {
 	}
 
 	@Override
+	public int hashCode() {
+		return Objects.hash(cpf, logado, login, nome, senha, tipo);
+	}
+
+	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if (!super.equals(obj))
+		if (obj == null)
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
 		Funcionario other = (Funcionario) obj;
-		if (login == null) {
-			if (other.login != null)
-				return false;
-		} else if (!login.equals(other.login))
-			return false;
-		if (senha == null) {
-			if (other.senha != null)
-				return false;
-		} else if (!senha.equals(other.senha))
-			return false;
-		if (tipo == null) {
-			if (other.tipo != null)
-				return false;
-		} else if (!tipo.equals(other.tipo))
-			return false;
-		return true;
+		return Objects.equals(cpf, other.cpf) && logado == other.logado && Objects.equals(login, other.login)
+				&& Objects.equals(nome, other.nome) && Objects.equals(senha, other.senha)
+				&& Objects.equals(tipo, other.tipo);
 	}
 
 	@Override
 	public String toString() {
 
-		return super.toString() + " | Tipo: " + tipo + " | Login: " + login + " | Senha: " + senha+"| Logado: " +this.getLogado();
+		return "Nome: " + nome + " | CPF: " + cpf + " | Tipo: " + tipo + " | Login: " + login + " | Senha: " + senha
+				+ " | Logado: " + this.getLogado();
 
 	}
 

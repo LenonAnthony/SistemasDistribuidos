@@ -1,5 +1,6 @@
 package negocios.basicos;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import negocios.ControladorCliente;
@@ -9,7 +10,7 @@ import negocios.ControladorVenda;
 
 public class TesteMain {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws RemoteException {
 		Cliente c1 = new Cliente("Lenon", "88899933300", "Olinda", 0);
 		Produto p1 = new Produto("X-Burger", "descricao", 1, 10, true);
 		Produto p2 = new Produto("X-Burger2", "descricao", 2, 12, true);
