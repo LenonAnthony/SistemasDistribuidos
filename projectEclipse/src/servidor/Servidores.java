@@ -7,7 +7,7 @@ import negocios.ControladorFuncionario;
 
 public class Servidores {
 	public static void main(String[] args) throws Exception {
-
+//s
 		try {
 			Registry registry = LocateRegistry.createRegistry(1099);
 			registry.rebind("CF", new ControladorFuncionario());

@@ -42,6 +42,7 @@ public class PopUpFuncionario extends JFrame {
 	private JTextField textField_3;
 	private JTextField textField_4;
 
+
 	public static ControladorFuncionario getCf() {
 		return cf;
 	}

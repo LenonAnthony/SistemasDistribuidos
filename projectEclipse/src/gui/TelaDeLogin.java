@@ -74,7 +74,7 @@ public class TelaDeLogin extends JFrame {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() throws Exception {
-		
+		//s
 		// mudando o Look and feel do programa.
 		try {
 			for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {

@@ -36,7 +36,7 @@ import java.rmi.RemoteException;
 import java.awt.Toolkit;
 
 public class TelaGerente extends JFrame {
-
+//s
 	int contador = 0;
 	private JPanel contentPane;
 	private JTable table;

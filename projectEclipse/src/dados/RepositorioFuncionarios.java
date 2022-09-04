@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import negocios.basicos.Funcionario;
 
 public class RepositorioFuncionarios implements Serializable {
-	
+	//s
 	private static final long serialVersionUID = -1919414877885418528L;
 	private ArrayList<Funcionario> funcionarios = new ArrayList<>();
 	private int tamanho;

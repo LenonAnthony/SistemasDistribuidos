@@ -6,7 +6,7 @@ import dados.RepositorioFuncionarios;
 import negocios.basicos.Funcionario;
 
 public interface CFInterface extends Remote {
-
+//s
 	public void cadastrar(Funcionario f) throws RemoteException;
 
 	public void descadastrar(Funcionario f) throws RemoteException;

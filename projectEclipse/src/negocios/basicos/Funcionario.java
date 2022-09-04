@@ -5,7 +5,7 @@ import java.util.Objects;
 public class Funcionario extends Pessoa implements Serializable {
 	/**
 	 * 
-	 */
+	 *///s
 	private static final long serialVersionUID = -4937811051786662973L;
 	private String nome;
 	private String cpf;

@@ -12,7 +12,7 @@ public class ControladorFuncionario extends UnicastRemoteObject implements CFInt
 	private static final long serialVersionUID = -5662800212687063957L;
 	private RepositorioFuncionarios repositorioFuncionario;
 	private int tamanho;
-
+//s
 	public ControladorFuncionario() throws RemoteException {
 		this.repositorioFuncionario = new RepositorioFuncionarios();
 	}

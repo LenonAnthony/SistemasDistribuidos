@@ -9,7 +9,7 @@ public class CFImp {
 	private static ControladorFuncionario c;
 
 	public static void main(String[] args) throws Exception {
-
+//s
 		c = new ControladorFuncionario();
 		cf1 = (CFInterface) Naming.lookup("rmi://localhost:1099/CF");
 		Funcionario f1 = new Funcionario("Chagas", "000", "Funcionario", "user", "123");
