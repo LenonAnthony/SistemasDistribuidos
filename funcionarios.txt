@@ -3,3 +3,4 @@ chagas 2 Funcionario chagas 2 false
 lenon 3 Gerente lenon 3 false
 fodase 4 Funcionario fodase 4 false
 
+:D
