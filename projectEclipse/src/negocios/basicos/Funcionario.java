@@ -143,5 +143,11 @@ public class Funcionario extends Pessoa implements Serializable {
 				+ " | Logado: " + this.getLogado();
 
 	}
+	
+	public String toStringF() {
+
+        return  nome + " " + cpf + " " + tipo + " " + login + " " + senha+ " " + this.getLogado();
+
+    }
 
 }
