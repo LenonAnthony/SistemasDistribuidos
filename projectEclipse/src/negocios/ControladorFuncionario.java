@@ -15,6 +15,7 @@ public class ControladorFuncionario extends UnicastRemoteObject implements CFInt
 //s
 	public ControladorFuncionario() throws RemoteException {
 		
+		
 			this.repositorioFuncionario = new RepositorioFuncionarios();
 		
 	}

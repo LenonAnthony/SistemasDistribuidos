@@ -15,6 +15,7 @@ public class Funcionario extends Pessoa implements Serializable {
 	private boolean logado;
 
 	public Funcionario() {
+		
 
 	}
 

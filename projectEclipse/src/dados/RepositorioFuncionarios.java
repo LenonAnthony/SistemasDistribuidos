@@ -17,6 +17,7 @@ public class RepositorioFuncionarios implements Serializable {
 	private int tamanho;
 
 	public RepositorioFuncionarios()  {
+		
 		BufferedReader br;
         try {
             br = new BufferedReader(new FileReader("funcionarios.txt"));
