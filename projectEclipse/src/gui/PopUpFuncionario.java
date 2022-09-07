@@ -34,7 +34,6 @@ import java.awt.Toolkit;
 
 public class PopUpFuncionario extends JFrame {
 
-	public ControladorFuncionario cfteste = new ControladorFuncionario();
 	public static ControladorFuncionario cf;
 	private static CFInterface cf1;
 	private JPanel contentPane;

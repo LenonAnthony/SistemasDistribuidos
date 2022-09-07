@@ -1,14 +1,19 @@
 package negocios;
 
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
+
 import dados.RepositorioProdutos;
 import negocios.basicos.Produto;
+import negocios.interfaces.CPInterface;
 
-public class ControladorProduto {
+public class ControladorProduto extends UnicastRemoteObject implements CPInterface {
 
+	private static final long serialVersionUID = -4086474365074661265L;
 	private RepositorioProdutos repositorioProdutos;
 	private int tamanho;
 
-	public ControladorProduto() {
+	public ControladorProduto() throws RemoteException {
 		this.repositorioProdutos = new RepositorioProdutos();
 	}
 
@@ -20,7 +25,7 @@ public class ControladorProduto {
 				System.out.println("Portanto, criado com sucesso!");
 				tamanho = tamanho + 1;
 			} else {
-				System.out.println("Portanto, não foi criado!");
+				System.out.println("Portanto, nï¿½o foi criado!");
 
 			}
 		}

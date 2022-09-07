@@ -8,8 +8,11 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import negocios.ControladorFuncionario;
 import negocios.ControladorProduto;
 import negocios.basicos.Produto;
+import negocios.interfaces.CFInterface;
+import negocios.interfaces.CPInterface;
 
 import java.awt.SystemColor;
 import java.awt.GridBagLayout;
@@ -22,12 +25,17 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.net.MalformedURLException;
+import java.rmi.Naming;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
 
 public class PopUpProduto extends JFrame {
 
-	public static ControladorProduto cp = new ControladorProduto();
+	public static ControladorProduto cp;
+	private static CPInterface cp1;
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTextField textField_1;
@@ -39,6 +47,36 @@ public class PopUpProduto extends JFrame {
 
 	public static void setCp(ControladorProduto cp) {
 		PopUpProduto.cp = cp;
+	}
+	
+	public static CPInterface getCp1() {
+		return cp1;
+	}
+
+	public static void setCp1(CPInterface cp1) {
+		PopUpProduto.cp1 = cp1;
+	}
+	
+	public static void inicializar() {
+		try {
+			cp = new ControladorProduto();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			cp1 = (CPInterface) Naming.lookup("rmi://localhost:1100/CP");
+		} catch (MalformedURLException | RemoteException | NotBoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			Naming.rebind("rmi://localhost:1100/CP", cp);
+		} catch (RemoteException | MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 
 	/**
@@ -59,9 +97,15 @@ public class PopUpProduto extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @throws RemoteException 
 	 */
 	// TESTE
-	public PopUpProduto() {
+	public PopUpProduto() throws Exception {
+		
+		cp = new ControladorProduto();
+		cp1 = (CPInterface)Naming.lookup("rmi://localhost:1100/CP");
+		Naming.rebind("rmi://localhost:1100/CP", cp);
+		
 		setIconImage(Toolkit.getDefaultToolkit().getImage(PopUpProduto.class.getResource("/images/IconPope.png")));
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -116,13 +160,13 @@ public class PopUpProduto extends JFrame {
 					JOptionPane.showMessageDialog(null, "Favor, preencher tudo.");
 				} else {
 					if (Double.parseDouble(textField_1.getText()) <= 0) {
-						JOptionPane.showMessageDialog(null, "Valor do Produto não pode ser negativo ou nulo.");
+						JOptionPane.showMessageDialog(null, "Valor do Produto nï¿½o pode ser negativo ou nulo.");
 					} else {
 						Produto p = new Produto(textField.getText(), textField_2.getText(), 1,
 								Double.parseDouble(textField_1.getText()), true);
 						JOptionPane.showMessageDialog(null, "Produto adicionado!");
 						cp.cadastrar(p);
-						System.out.println(cp);
+						System.out.println(cp1);
 						dispose();
 					}
 				}
@@ -144,10 +188,12 @@ public class PopUpProduto extends JFrame {
 		contentPane.add(btnNewButton_1);
 
 		// String nome, String descricao, int quantidade, double preco, boolean estoqu
-		// Produto p1 = new Produto("hamburguer", "2 pães, 1 carne e queijo prato", 1,
+		// Produto p1 = new Produto("hamburguer", "2 pï¿½es, 1 carne e queijo prato", 1,
 		// 10.0, true);
 		// cp.getRepositorioProdutos().cadastrarProduto(p1);
 
 	}
+
+	
 
 }

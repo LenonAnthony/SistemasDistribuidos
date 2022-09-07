@@ -1,20 +1,61 @@
 package dados;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.PrintStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 
+import negocios.basicos.Funcionario;
 import negocios.basicos.Produto;
 
-public class RepositorioProdutos {
+public class RepositorioProdutos implements Serializable {
 
+	private static final long serialVersionUID = -7693241962439731138L;
 	ArrayList<Produto> produtos = new ArrayList<>();
 	private int tamanho;
 
 	public RepositorioProdutos() {
+		
+		BufferedReader br;
+        try {
+            br = new BufferedReader(new FileReader("produtos.txt"));
+            for(String line; (line = br.readLine()) != null; ) { 
+                String[] splited = line.split("\s+");
+                String nome = splited[0];
+                String descricao = splited[1];
+                int quantidade = Integer.parseInt(splited[2]);
+                double preco = Double.parseDouble(splited[3]);
+                Boolean estoque = Boolean.parseBoolean(splited[4]);
+                Produto p = new Produto(nome, descricao, quantidade, preco, estoque);
+                cadastrarProduto(p);
+            }
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+
+        }
+
+        System.out.println(this.produtos);
 
 	}
 
 	public void cadastrarProduto(Produto p) {
 		this.produtos.add(p);
+		
+		PrintStream ps;
+        try {
+            ps = new PrintStream("produtos.txt");
+            for(int i = 0; i < this.produtos.size(); i++) {
+                ps.println(this.produtos.get(i).toStringP());
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+		
+		
 		tamanho = this.produtos.size();
 	}
 
@@ -48,7 +89,7 @@ public class RepositorioProdutos {
 			existe = true;
 			System.out.println("A conta existe");
 		} else {
-			System.out.println("A conta não existe");
+			System.out.println("A conta nï¿½o existe");
 		}
 		return existe;
 	}
@@ -59,9 +100,23 @@ public class RepositorioProdutos {
 			this.produtos.remove(i);
 			System.out.println("Cliente removido.");
 		} else {
-			System.out.println("Cliente não encontrado. Portanto, não foi removido.");
+			System.out.println("Cliente nï¿½o encontrado. Portanto, nï¿½o foi removido.");
 		}
 		tamanho = this.produtos.size();
+	}
+	
+	public void atualiza() {
+		PrintStream ps;
+		try {
+			ps = new PrintStream("produtos.txt");
+			for(int i = 0; i < this.produtos.size(); i++) {
+				ps.println(this.produtos.get(i).toStringP());
+			}
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 	public ArrayList<Produto> getProdutos() {

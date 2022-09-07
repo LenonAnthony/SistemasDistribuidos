@@ -1,7 +1,13 @@
 package negocios.basicos;
 
-public class Produto {
+import java.io.Serializable;
 
+public class Produto extends Pessoa implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6095603705554800496L;
 	private String nome;
 	private String descricao;
 	private int quantidade;
@@ -127,9 +133,15 @@ public class Produto {
 	@Override
 	public String toString() {
 
-		return "\nNome: " + nome + " | Descrição: " + descricao + " | Quantidade: " + quantidade + " | Preço: R$ "
-				+ preco + " | Preço Total: R$ " + precoFinal;
+		return "\nNome: " + nome + " | Descriï¿½ï¿½o: " + descricao + " | Quantidade: " + quantidade + " | Preï¿½o: R$ "
+				+ preco + " | Preï¿½o Total: R$ " + precoFinal;
 
 	}
+	
+	public String toStringP() {
+
+        return  nome + " " + descricao + " " + quantidade + " " + preco + " " + estoque + " " + precoFinal; 
+
+    }
 
 }

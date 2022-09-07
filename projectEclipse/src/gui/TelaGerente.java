@@ -69,7 +69,7 @@ public class TelaGerente extends JFrame {
 	}
 
 	public void atualizarJTableFuncionarios() {
-		
+
 		int tamanho;
 		try {
 			PopUpFuncionario.getCf1().getRepositorioFuncionario().atualiza();
@@ -109,18 +109,26 @@ public class TelaGerente extends JFrame {
 	}
 
 	public void atualizarJTableProdutos() {
-		int tamanho = PopUpProduto.getCp().getRepositorioProdutos().getProdutos().size();
-		if (tamanho == 0) {
+		int tamanho;
+		try {
+			tamanho = PopUpProduto.getCp1().getRepositorioProdutos().getProdutos().size();
 
-		} else {
-			ArrayList<Produto> arrays = new ArrayList<>();
-			arrays.addAll(PopUpProduto.getCp().getRepositorioProdutos().getProdutos());
-			for (int i = 0; i < tamanho; i++) {
-				Object[] objs = { arrays.get(i).getNome(), arrays.get(i).getPreco(), arrays.get(i).getDescricao() };
-				dtm.addRow(objs);
-				table.setModel(dtm);
+			if (tamanho == 0) {
+
+			} else {
+				ArrayList<Produto> arrays = new ArrayList<>();
+				arrays.addAll(PopUpProduto.getCp1().getRepositorioProdutos().getProdutos());
+				for (int i = 0; i < tamanho; i++) {
+					Object[] objs = { arrays.get(i).getNome(), arrays.get(i).getPreco(), arrays.get(i).getDescricao() };
+					dtm.addRow(objs);
+					table.setModel(dtm);
+				}
 			}
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+
 	}
 
 	public static Funcionario funcLogado() {
@@ -317,9 +325,16 @@ public class TelaGerente extends JFrame {
 					popc.setVisible(true);
 
 				} else if (contador == 3) {
-					PopUpProduto popp = new PopUpProduto();
-					popp.setLocationRelativeTo(null);
-					popp.setVisible(true);
+					PopUpProduto popp;
+					try {
+						popp = new PopUpProduto();
+						popp.setLocationRelativeTo(null);
+						popp.setVisible(true);
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					
 				}
 			}
 		});

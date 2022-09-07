@@ -145,6 +145,7 @@ public class TelaDeLogin extends JFrame {
 		logarButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				PopUpFuncionario.inicializar();	
+				PopUpProduto.inicializar();
 				Funcionario f = new Funcionario("", "", "", login.getText(), password.getText());
 				try {
 					System.out.println(PopUpFuncionario.getCf1().getRepositorioFuncionario());
