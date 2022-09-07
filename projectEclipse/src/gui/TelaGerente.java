@@ -69,17 +69,25 @@ public class TelaGerente extends JFrame {
 	}
 
 	public void atualizarJTableFuncionarios() {
-		int tamanho = PopUpFuncionario.getCf().getRepositorioFuncionario().getFuncionarios().size();
-		if (tamanho == 0) {
+		
+		int tamanho;
+		try {
+			PopUpFuncionario.getCf1().getRepositorioFuncionario().atualiza();
+			tamanho = PopUpFuncionario.getCf1().getRepositorioFuncionario().getFuncionarios().size();
+			if (tamanho == 0) {
 
-		} else {
-			ArrayList<Funcionario> arrays = new ArrayList<>();
-			arrays.addAll(PopUpFuncionario.getCf().getRepositorioFuncionario().getFuncionarios());
-			for (int i = 0; i < tamanho; i++) {
-				Object[] objs = { arrays.get(i).getNome(), arrays.get(i).getCpf(), arrays.get(i).getTipo() };
-				dtm.addRow(objs);
-				table.setModel(dtm);
+			} else {
+				ArrayList<Funcionario> arrays = new ArrayList<>();
+				arrays.addAll(PopUpFuncionario.getCf().getRepositorioFuncionario().getFuncionarios());
+				for (int i = 0; i < tamanho; i++) {
+					Object[] objs = { arrays.get(i).getNome(), arrays.get(i).getCpf(), arrays.get(i).getTipo() };
+					dtm.addRow(objs);
+					table.setModel(dtm);
+				}
 			}
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 
@@ -302,7 +310,6 @@ public class TelaGerente extends JFrame {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
-					
 
 				} else if (contador == 2) {
 					PopUpCliente popc = new PopUpCliente();
@@ -446,7 +453,7 @@ public class TelaGerente extends JFrame {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				
+
 			}
 		});
 		btnNewButton_3.setBounds(10, 542, 76, 30);
