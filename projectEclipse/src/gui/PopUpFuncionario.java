@@ -25,13 +25,15 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.net.MalformedURLException;
 import java.rmi.Naming;
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
 
 public class PopUpFuncionario extends JFrame {
-	
+
 	public ControladorFuncionario cfteste = new ControladorFuncionario();
 	public static ControladorFuncionario cf;
 	private static CFInterface cf1;
@@ -42,6 +44,27 @@ public class PopUpFuncionario extends JFrame {
 	private JTextField textField_3;
 	private JTextField textField_4;
 
+	public static void inicializar() {
+		try {
+			cf = new ControladorFuncionario();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			cf1 = (CFInterface) Naming.lookup("rmi://localhost:1099/CF");
+		} catch (MalformedURLException | RemoteException | NotBoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			Naming.rebind("rmi://localhost:1099/CF", cf);
+		} catch (RemoteException | MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
 
 	public static ControladorFuncionario getCf() {
 		return cf;
@@ -67,7 +90,7 @@ public class PopUpFuncionario extends JFrame {
 			public void run() {
 
 				try {
-					
+
 					PopUpFuncionario frame = new PopUpFuncionario();
 					frame.setVisible(true);
 
@@ -82,7 +105,7 @@ public class PopUpFuncionario extends JFrame {
 	 * Create the frame.
 	 */
 	public PopUpFuncionario() throws Exception {
-		
+
 		cf = new ControladorFuncionario();
 		cf1 = (CFInterface) Naming.lookup("rmi://localhost:1099/CF");
 		Naming.rebind("rmi://localhost:1099/CF", cf);

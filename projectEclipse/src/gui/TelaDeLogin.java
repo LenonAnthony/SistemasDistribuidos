@@ -30,7 +30,6 @@ public class TelaDeLogin extends JFrame {
 	private JTextField password;
 	private JTextField login;
 	private static String aux;
-	private static CFInterface cf1;
 	
 	
 	public static String getAux() {
@@ -145,7 +144,7 @@ public class TelaDeLogin extends JFrame {
 		panel.add(logarButton);
 		logarButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				PopUpFuncionario.inicializar();	
 				Funcionario f = new Funcionario("", "", "", login.getText(), password.getText());
 				try {
 					System.out.println(PopUpFuncionario.getCf1().getRepositorioFuncionario());
