@@ -95,8 +95,8 @@ public class PopUpBuscaFuncionario extends JFrame {
 
 				int tamanho = PopUpFuncionario.getCf().getRepositorioFuncionario().getFuncionarios().size();
 				for (int i = 0; i < tamanho; i++) {
-					if (textField.getText().equals(arrays.get(i).getNome())
-							&& textField_1.getText().equals(arrays.get(i).getCpf())) {
+					if (textField.getText().equalsIgnoreCase(arrays.get(i).getNome())
+							&& textField_1.getText().equalsIgnoreCase(arrays.get(i).getCpf())) {
 						JOptionPane.showMessageDialog(null, "Funcionario Encontrado!.");
 						achou = true;
 					}

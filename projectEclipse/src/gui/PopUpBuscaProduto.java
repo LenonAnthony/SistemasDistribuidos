@@ -86,13 +86,13 @@ public class PopUpBuscaProduto extends JFrame {
 
 				int tamanho = PopUpProduto.getCp().getRepositorioProdutos().getProdutos().size();
 				for (int i = 0; i < tamanho; i++) {
-					if (textField.getText().equals(arrays.get(i).getNome())) {
+					if (textField.getText().equalsIgnoreCase(arrays.get(i).getNome())) {
 						JOptionPane.showMessageDialog(null, "Produto Encontrado!.");
 						achou = true;
 					}
 				}
 				if (!achou) {
-					JOptionPane.showMessageDialog(null, "Produto não Encontrado!.");
+					JOptionPane.showMessageDialog(null, "Produto nï¿½o Encontrado!.");
 				}
 				dispose();
 			}

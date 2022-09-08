@@ -97,8 +97,8 @@ public class PopUpBuscaCliente extends JFrame {
 				int tamanho = PopUpCliente.getCc().getRepositorioClientes().getClientes().size();
 				for (int i = 0; i < tamanho; i++) {
 
-					if (textField.getText().equals(arrays.get(i).getNome())
-							&& textField_1.getText().equals(arrays.get(i).getCpf())) {
+					if (textField.getText().equalsIgnoreCase(arrays.get(i).getNome())
+							&& textField_1.getText().equalsIgnoreCase(arrays.get(i).getCpf())) {
 
 						JOptionPane.showMessageDialog(null, "Cliente Encontrado!.");
 						achou = true;
@@ -106,7 +106,7 @@ public class PopUpBuscaCliente extends JFrame {
 					}
 				}
 				if (!achou) {
-					JOptionPane.showMessageDialog(null, "Cliente não Encontrado!.");
+					JOptionPane.showMessageDialog(null, "Cliente nï¿½o Encontrado!.");
 
 				}
 				dispose();
