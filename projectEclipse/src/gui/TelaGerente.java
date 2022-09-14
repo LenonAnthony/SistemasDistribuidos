@@ -92,9 +92,10 @@ public class TelaGerente extends JFrame {
 	}
 
 	public void atualizarJTableClientes() {
-		PopUpCliente.getCc().getRepositorioClientes().atualiza();
+		
 		int tamanho;
 		try {
+			PopUpCliente.getCc().getRepositorioClientes().atualiza();
 			tamanho = PopUpCliente.getCc1().getRepositorioClientes().getClientes().size();
 			if (tamanho == 0) { 
 
@@ -327,10 +328,17 @@ public class TelaGerente extends JFrame {
 					}
 
 				} else if (contador == 2) {
-					PopUpCliente popc = new PopUpCliente();
-					popc.setLocationRelativeTo(null);
-					popc.setVisible(true);
-
+					PopUpCliente popc;
+					try {
+						popc = new PopUpCliente();
+						popc.setLocationRelativeTo(null);
+						popc.setVisible(true);
+						
+					} catch (Exception e2) {
+						// TODO Auto-generated catch block
+						e2.printStackTrace();
+					}
+					
 				} else if (contador == 3) {
 					PopUpProduto popp;
 					try {
@@ -371,16 +379,21 @@ public class TelaGerente extends JFrame {
 					}
 
 				} else if (contador == 2) {
-					for (int i = 0; i < PopUpCliente.getCc().getRepositorioClientes().getClientes().size(); i++) {
-						if (campoDeTexto
-								.equals(PopUpCliente.getCc().getRepositorioClientes().getClientes().get(i).getNome())
-								&& campoDeTexto_1.equals(
-										PopUpCliente.getCc().getRepositorioClientes().getClientes().get(i).getCpf())) {
-							PopUpCliente.getCc()
-									.remover(PopUpCliente.getCc().getRepositorioClientes().getClientes().get(i));
-							System.out.println(PopUpCliente.getCc());
-						}
+					try {
+						for (int i = 0; i < PopUpCliente.getCc1().getRepositorioClientes().getClientes().size(); i++) {
+							if (campoDeTexto.equals(
+									PopUpCliente.getCc1().getRepositorioClientes().getClientes().get(i).getNome())
+									&& campoDeTexto_1.equals(
+											PopUpCliente.getCc1().getRepositorioClientes().getClientes().get(i).getCpf())) {
+								PopUpCliente.getCc()
+										.remover(PopUpCliente.getCc1().getRepositorioClientes().getClientes().get(i));
+								System.out.println(PopUpCliente.getCc());
+							}
 
+						}
+					} catch (RemoteException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
 					}
 
 				} else if (contador == 3) {

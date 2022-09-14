@@ -1,5 +1,4 @@
-joao 1 Gerente joao 1 false
+joao 1 Gerente joao 1 true
 chagas 2 Funcionario chagas 2 false
 lenon 3 Gerente lenon 3 false
-louise 4 Gerente louise 4 false
-a a Gerente a a true
+louise 4 Funcionario louise 4 false

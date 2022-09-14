@@ -1,6 +1,7 @@
 package negocios.basicos;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class Cliente implements Serializable{
 
@@ -79,23 +80,15 @@ public class Cliente implements Serializable{
 
 	@Override
 	public boolean equals(Object obj) {
-
-		boolean resultado = false;
-
-		if (obj instanceof Cliente) {
-
-			Cliente c = (Cliente) obj;
-
-			if (super.equals(c) && this.endereco.equalsIgnoreCase(c.endereco) && this.pontos == c.pontos) {
-
-				resultado = true;
-
-			}
-
-		}
-
-		return resultado;
-
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Cliente other = (Cliente) obj;
+		return Objects.equals(cpf, other.cpf) && Objects.equals(endereco, other.endereco)
+				&& Objects.equals(nome, other.nome) && pontos == other.pontos;
 	}
 
 	@Override

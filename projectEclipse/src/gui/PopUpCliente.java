@@ -98,13 +98,12 @@ public class PopUpCliente extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public PopUpCliente() {
-		try {
-			cc = new ControladorCliente();
-		} catch (RemoteException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+	public PopUpCliente() throws Exception {
+		
+		cc = new ControladorCliente();
+		cc1 = (CCInterface) Naming.lookup("rmi://localhost:1101/CC");
+		Naming.rebind("rmi://localhost:1101/CC", cc);
+		
 		setIconImage(Toolkit.getDefaultToolkit().getImage(PopUpCliente.class.getResource("/images/IconPope.png")));
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
