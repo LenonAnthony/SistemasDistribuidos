@@ -2,7 +2,7 @@ package negocios.basicos;
 
 import java.io.Serializable;
 
-public class Cliente extends Pessoa implements Serializable{
+public class Cliente implements Serializable{
 
 	/**
 	 * 
@@ -53,8 +53,25 @@ public class Cliente extends Pessoa implements Serializable{
 		}
 
 	}
+	
 
-	// FALTANDO ESSE MÉTODO.
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+
+	// FALTANDO ESSE Mï¿½TODO.
 	public void addPontos() {
 		this.pontos ++;
 
@@ -84,7 +101,7 @@ public class Cliente extends Pessoa implements Serializable{
 	@Override
 	public String toString() {
 
-		return "Nome: " + nome + " | CPF: " + cpf + " | Endereço: " + endereco + " | Pontos acumulados: " + pontos;
+		return "Nome: " + nome + " | CPF: " + cpf + " | Endereï¿½o: " + endereco + " | Pontos acumulados: " + pontos;
 
 	}
 	

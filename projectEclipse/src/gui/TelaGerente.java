@@ -122,7 +122,6 @@ public class TelaGerente extends JFrame {
 			PopUpProduto.getCp().getRepositorioProdutos().atualiza();
 			tamanho = PopUpProduto.getCp1().getRepositorioProdutos().getProdutos().size();
 			if (tamanho == 0) {
-
 			} else {
 				ArrayList<Produto> arrays = new ArrayList<>();
 				arrays.addAll(PopUpProduto.getCp().getRepositorioProdutos().getProdutos());
