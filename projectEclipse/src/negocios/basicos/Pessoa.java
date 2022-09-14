@@ -76,5 +76,10 @@ public abstract class Pessoa {
 		return " Nome: " + nome + " | CPF: " + cpf;
 
 	}
+	
+	public String toStringP()
+	{
+		return nome + " " + cpf + " ";
+	}
 
 }

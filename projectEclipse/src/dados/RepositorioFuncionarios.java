@@ -21,7 +21,7 @@ public class RepositorioFuncionarios implements Serializable {
 		BufferedReader br;
         try {
             br = new BufferedReader(new FileReader("funcionarios.txt"));
-            for(String line; (line = br.readLine()) != null; ) { 
+            for(String line; (line = br.readLine()) != null; ) {  
                 String[] splited = line.split("\s+");
                 String nome = splited[0];
                 String cpf = splited[1];

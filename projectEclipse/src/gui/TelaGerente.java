@@ -92,19 +92,27 @@ public class TelaGerente extends JFrame {
 	}
 
 	public void atualizarJTableClientes() {
-		int tamanho = PopUpCliente.getCc().getRepositorioClientes().getClientes().size();
-		if (tamanho == 0) {
+		PopUpCliente.getCc().getRepositorioClientes().atualiza();
+		int tamanho;
+		try {
+			tamanho = PopUpCliente.getCc1().getRepositorioClientes().getClientes().size();
+			if (tamanho == 0) { 
 
-		} else {
-			ArrayList<Cliente> arrays = new ArrayList<>();
-			arrays.addAll(PopUpCliente.getCc().getRepositorioClientes().getClientes());
-			for (int i = 0; i < tamanho; i++) {
-				Object[] objs = { arrays.get(i).getNome(), arrays.get(i).getCpf(), arrays.get(i).getEndereco(),
-						arrays.get(i).getPontos() };
-				dtm.addRow(objs);
-				table.setModel(dtm);
+			} else {
+				ArrayList<Cliente> arrays = new ArrayList<>();
+				arrays.addAll(PopUpCliente.getCc().getRepositorioClientes().getClientes());
+				for (int i = 0; i < tamanho; i++) {
+					Object[] objs = { arrays.get(i).getNome(), arrays.get(i).getCpf(), arrays.get(i).getEndereco(),
+							arrays.get(i).getPontos() };
+					dtm.addRow(objs);
+					table.setModel(dtm);
+				}
 			}
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+		
 
 	}
 

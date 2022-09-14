@@ -11,6 +11,8 @@ import javax.swing.border.EmptyBorder;
 import negocios.ControladorCliente;
 import negocios.ControladorFuncionario;
 import negocios.basicos.Cliente;
+import negocios.interfaces.CCInterface;
+import negocios.interfaces.CFInterface;
 
 import java.awt.SystemColor;
 
@@ -23,16 +25,29 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.event.ActionListener;
+import java.net.MalformedURLException;
+import java.rmi.Naming;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
 
 public class PopUpCliente extends JFrame {
 
-	public static ControladorCliente cc = new ControladorCliente();
+	public static ControladorCliente cc;
+	public static CCInterface cc1;
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
+
+	public static CCInterface getCc1() {
+		return cc1;
+	}
+
+	public static void setCc1(CCInterface cc1) {
+		PopUpCliente.cc1 = cc1;
+	}
 
 	public static ControladorCliente getCc() {
 		return cc;
@@ -40,6 +55,28 @@ public class PopUpCliente extends JFrame {
 
 	public static void setCc(ControladorCliente cc) {
 		PopUpCliente.cc = cc;
+	}
+	
+	public static void inicializar() {
+		try {
+			cc = new ControladorCliente();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			cc1 = (CCInterface) Naming.lookup("rmi://localhost:1101/CC");
+		} catch (MalformedURLException | RemoteException | NotBoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			Naming.rebind("rmi://localhost:1101/CC", cc);
+		} catch (RemoteException | MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 
 	/**
@@ -62,6 +99,12 @@ public class PopUpCliente extends JFrame {
 	 * Create the frame.
 	 */
 	public PopUpCliente() {
+		try {
+			cc = new ControladorCliente();
+		} catch (RemoteException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		setIconImage(Toolkit.getDefaultToolkit().getImage(PopUpCliente.class.getResource("/images/IconPope.png")));
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

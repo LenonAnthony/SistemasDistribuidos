@@ -1,14 +1,23 @@
 package negocios.basicos;
 
-public class Cliente extends Pessoa {
+import java.io.Serializable;
 
+public class Cliente extends Pessoa implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8036476078905499298L; 
+	private String nome;
+	private String cpf;
 	private int pontos = 0;
 	private String endereco;
 
 	public Cliente(String nome, String cpf, String endereco, int pontos) {
 
-		super(nome, cpf);
-		setEndereco(endereco);
+		this.nome = nome;
+		this.cpf = cpf;
+		this.setEndereco(endereco);
 		setPontos(pontos);
 
 	}
@@ -16,7 +25,7 @@ public class Cliente extends Pessoa {
 	public int getPontos() {
 
 		return pontos;
-
+ 
 	}
 
 	public void setPontos(int pontos) {
@@ -75,8 +84,14 @@ public class Cliente extends Pessoa {
 	@Override
 	public String toString() {
 
-		return super.toString() + " | Endereço: " + endereco + " | Pontos acumulados: " + pontos;
+		return "Nome: " + nome + " | CPF: " + cpf + " | Endereço: " + endereco + " | Pontos acumulados: " + pontos;
 
 	}
+	
+	public String toStringC() {
+
+		return  nome + " " + cpf + " " + endereco + " " + pontos;
+
+    }
 
 }

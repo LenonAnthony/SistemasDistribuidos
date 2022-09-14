@@ -1,17 +1,23 @@
 package negocios;
 
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
+
 import dados.RepositorioClientes;
 import negocios.basicos.Cliente;
+import negocios.interfaces.CCInterface;
 
-public class ControladorCliente {
+public class ControladorCliente extends UnicastRemoteObject implements CCInterface{
 
+	private static final long serialVersionUID = -8936092397883043351L;
 	private RepositorioClientes repositorioClientes;
 	private int tamanho;
 
-	public ControladorCliente() {
+	public ControladorCliente() throws RemoteException{
+	
 		this.repositorioClientes = new RepositorioClientes();
 	}
-
+ 
 	public void cadastrar(Cliente c) {
 		if (c != null) {
 			if (!this.repositorioClientes.existe(c)) {

@@ -18,7 +18,7 @@ public class ControladorFuncionario extends UnicastRemoteObject implements CFInt
 		
 			this.repositorioFuncionario = new RepositorioFuncionarios();
 		
-	}
+	} 
 
 	public void cadastrar(Funcionario f) {
 		if (f != null) {
