@@ -16,7 +16,7 @@ public class Funcionario extends Pessoa implements Serializable {
 
 	public Funcionario() {
 		
-
+ 
 	}
 
 	public Funcionario(String nome, String cpf, String tipo, String login, String senha){

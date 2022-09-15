@@ -21,7 +21,7 @@ public class Produto extends Pessoa implements Serializable {
 		setDescricao(descricao);
 		setQuantidade(quantidade);
 		setPreco(preco);
-		this.estoque = estoque;
+		this.estoque = estoque; 
 		setPrecoFinal(preco * quantidade);
 
 	}

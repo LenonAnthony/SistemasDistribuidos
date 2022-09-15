@@ -17,7 +17,7 @@ public class TesteControladoresMain {
 	public static void main(String[] args) throws RemoteException {
 		String datahora = LocalDateTime.now().toString();
 		boolean aprovado = true;
-		Cliente c1 = new Cliente("Lenon", "88899933300", "Olinda", 0);
+		Cliente c1 = new Cliente("Lenon", "88899933300", "Olinda", 0); 
 		Cliente c2 = new Cliente("Joao", "88899933400", "Olinda", 0);
 		Cliente c3 = new Cliente("Lenon", "88899933300", "Olinda", 0);
 		Produto p1 = new Produto("X-Burger", "descricao", 1, 10, true);
@@ -28,7 +28,7 @@ public class TesteControladoresMain {
 		ControladorProduto cp = new ControladorProduto();
 		ControladorVenda cv = new ControladorVenda();
 		ControladorFuncionario cf = new ControladorFuncionario();
-		cf.cadastrar(f1);
+		cf.cadastrar(f1);  
 		//System.out.println(cf);
 		
 		ArrayList<Produto> produtos = new ArrayList<>();

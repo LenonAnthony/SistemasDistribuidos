@@ -43,7 +43,7 @@ public class CFImp {
 		c.cadastrar(c2);
 		c.cadastrar(c3);
 		System.out.println(cc1.getRepositorioClientes().getClientes());
-		System.out.println(c);
+		System.out.println(c);   
 		
 		
 		Produto p1 = new Produto("X-Burger", "descricao", 1, 10, true);
@@ -65,7 +65,7 @@ public class CFImp {
 		produtos.add(p1);
 		produtos.add(p2);
 		
-		Carrinho car1 = new Carrinho(c1, produtos);
+		Carrinho car1 =  new Carrinho(c1, produtos);
 //s
 		f = new ControladorFuncionario();
 		cf1 = (CFInterface) Naming.lookup("rmi://localhost:1099/CF");

@@ -24,7 +24,7 @@ public class Carrinho implements Serializable {
 
 		return cliente;
 
-	}
+	} 
 
 	public void setCliente(Cliente cliente) {
 

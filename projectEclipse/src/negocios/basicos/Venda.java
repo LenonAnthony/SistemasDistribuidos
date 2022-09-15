@@ -93,10 +93,10 @@ public class Venda implements Serializable {
 		}
 
 		return resultado;
-
+ 
 	}
 
-	@Override
+	@Override 
 	public String toString() {
 
 		return "Venda: " + this.carrinho.getProdutos().toString() + " | Valor Final:"

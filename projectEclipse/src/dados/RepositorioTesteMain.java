@@ -13,7 +13,7 @@ public class RepositorioTesteMain {
 
 	public static void main(String[] args) {
 
-		LocalDateTime datahora = LocalDateTime.now();
+		LocalDateTime datahora = LocalDateTime.now(); 
 		boolean aprovado = true;
 		RepositorioClientes rc = new RepositorioClientes();
 		Cliente c1 = new Cliente("Lenon", "88899933300", "Olinda", 0);
@@ -34,7 +34,7 @@ public class RepositorioTesteMain {
 		//rv.adicionarVenda(v1);
 		System.out.println(rv);
 		
-		
+		 
 		rf.cadastrarFuncionario(f1);
 		rc.cadastrarCliente(c1);
 		rc.cadastrarCliente(c2);

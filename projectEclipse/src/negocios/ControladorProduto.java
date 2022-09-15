@@ -14,7 +14,7 @@ public class ControladorProduto extends UnicastRemoteObject implements CPInterfa
 	private int tamanho;
 
 	public ControladorProduto() throws RemoteException {
-		this.repositorioProdutos = new RepositorioProdutos();
+		this.repositorioProdutos = new RepositorioProdutos(); 
 	}
 
 	public void cadastrar(Produto p) {
@@ -26,7 +26,7 @@ public class ControladorProduto extends UnicastRemoteObject implements CPInterfa
 				tamanho = tamanho + 1;
 			} else {
 				System.out.println("Portanto, n�o foi criado!");
-
+ 
 			}
 		}
 	}

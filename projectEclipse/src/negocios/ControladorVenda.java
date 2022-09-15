@@ -27,7 +27,7 @@ public class ControladorVenda extends UnicastRemoteObject implements CVInterface
 
 			}
 		}
-	}
+	} 
 
 	public void descadastrar(Venda v) {
 		this.repositorioVendas.procurar(v);

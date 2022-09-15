@@ -55,7 +55,7 @@ public class RepositorioVendas implements Serializable {
                 	String nome = (splited[j]);
                 	j++;
                 	String descricao = splited[j];
-                	j++;
+                	j++; 
                 	int quantidade = Integer.parseInt(splited[j]);
                     j++;
                 	double preco = Double.parseDouble(splited[j]);
