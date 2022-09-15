@@ -41,6 +41,11 @@ public class ControladorProduto extends UnicastRemoteObject implements CPInterfa
 		}
 
 	}
+	
+	public Produto pegaPeloNome(String p)
+	{
+		return this.repositorioProdutos.pegaPeloNome(p);
+	}
 
 	public Produto procurar(Produto p) {
 		return this.repositorioProdutos.procurar(p);

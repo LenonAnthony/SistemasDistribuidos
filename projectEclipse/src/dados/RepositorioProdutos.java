@@ -118,6 +118,22 @@ public class RepositorioProdutos implements Serializable {
 		}
 		
 	}
+	
+	
+	public Produto pegaPeloNome (String nome)
+	{
+		
+		for(int i = 0; i<this.produtos.size(); i++)
+		{
+			if(this.produtos.get(i).getNome().equals(nome))
+			{
+				return this.produtos.get(i);
+			}
+		}
+		
+		return null;
+		
+	}
 
 	public ArrayList<Produto> getProdutos() {
 		return produtos;

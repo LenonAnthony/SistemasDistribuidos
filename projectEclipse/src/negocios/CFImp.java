@@ -1,13 +1,18 @@
 package negocios;
 
 import java.rmi.Naming;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 import negocios.interfaces.CCInterface;
 import negocios.interfaces.CFInterface;
 import negocios.interfaces.CPInterface;
+import negocios.interfaces.CVInterface;
+import negocios.basicos.Carrinho;
 import negocios.basicos.Cliente;
 import negocios.basicos.Funcionario;
 import negocios.basicos.Produto;
+import negocios.basicos.Venda;
 
 public class CFImp {
 	private static CFInterface cf1;
@@ -18,6 +23,10 @@ public class CFImp {
 	
 	private static CCInterface cc1;
 	private static ControladorCliente c;
+	
+	private static CVInterface cv1;
+	private static ControladorVenda v;
+	
 
 	public static void main(String[] args) throws Exception {
 		
@@ -36,7 +45,7 @@ public class CFImp {
 		System.out.println(cc1.getRepositorioClientes().getClientes());
 		System.out.println(c);
 		
-		/*
+		
 		Produto p1 = new Produto("X-Burger", "descricao", 1, 10, true);
 		Produto p2 = new Produto("X-Burger2", "descricao", 2, 12, true);
 		Produto p3 = new Produto("Cabra", "cabrinha", 3, 30, false);
@@ -52,17 +61,32 @@ public class CFImp {
 		p.cadastrar(p4);
 		System.out.println(cp1.getRepositorioProdutos().getProdutos().get(0).toStringP());
 		
+		ArrayList<Produto> produtos = new ArrayList<>();
+		produtos.add(p1);
+		produtos.add(p2);
+		
+		Carrinho car1 = new Carrinho(c1, produtos);
 //s
-		c = new ControladorFuncionario();
+		f = new ControladorFuncionario();
 		cf1 = (CFInterface) Naming.lookup("rmi://localhost:1099/CF");
 		Funcionario f1 = new Funcionario("Chagas", "000", "Funcionario", "user", "123");
 		Funcionario f2 = new Funcionario("Chagas2", "0300", "Gerente", "user1", "1234");
-		Naming.rebind("rmi://localhost:1099/CF", c);
-		c.cadastrar(f1);
+		Naming.rebind("rmi://localhost:1099/CF", f);
+		f.cadastrar(f1);
 		System.out.println(cf1.getRepositorioFuncionario().getFuncionarios());
-		*/
 		
 		
+		String datahora = LocalDateTime.now().toString();
+		
+		boolean aprovado = true;
+		
+		
+		v = new ControladorVenda();
+		cv1 = (CVInterface) Naming.lookup("rmi://localhost:1102/CV");
+		Venda v1 = new Venda(car1, f1, datahora, aprovado);
+		Naming.rebind("rmi://localhost:1102/CV", v);
+		v.cadastrar(v1);
+		System.out.println(cv1.getRepositorioVendas().getVendas());
 		
 		
 	}

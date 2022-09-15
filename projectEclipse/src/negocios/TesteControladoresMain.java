@@ -11,9 +11,11 @@ import negocios.basicos.Produto;
 import negocios.basicos.Venda;
 
 public class TesteControladoresMain {
-
+	
+	
+	
 	public static void main(String[] args) throws RemoteException {
-		LocalDateTime datahora = LocalDateTime.now();
+		String datahora = LocalDateTime.now().toString();
 		boolean aprovado = true;
 		Cliente c1 = new Cliente("Lenon", "88899933300", "Olinda", 0);
 		Cliente c2 = new Cliente("Joao", "88899933400", "Olinda", 0);
@@ -27,26 +29,32 @@ public class TesteControladoresMain {
 		ControladorVenda cv = new ControladorVenda();
 		ControladorFuncionario cf = new ControladorFuncionario();
 		cf.cadastrar(f1);
-		System.out.println(cf);
+		//System.out.println(cf);
 		
 		ArrayList<Produto> produtos = new ArrayList<>();
 		produtos.add(p1);
 		produtos.add(p2);
 		Carrinho car1 = new Carrinho(c1, produtos);
 
+		
+		
 		Venda v1 = new Venda(car1, f1, datahora, aprovado);
 		Venda v2 = new Venda(car1, f1, datahora, aprovado);
 
 		cv.cadastrar(v1);
 
-		System.out.println(cv);
+		//System.out.println(cv);
 
 		cc.cadastrar(c1);
 		cc.cadastrar(c2);
 		cc.cadastrar(c3);
 		cp.cadastrar(p1);
 		cp.cadastrar(p2);
-		System.out.println(cp);
-
+		//System.out.println(cp);
+		
+		
+		System.out.println(v1.toStringV());
+		
+		
 	}
 }

@@ -2,6 +2,8 @@ package negocios.basicos;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 public class Venda implements Serializable {
 
@@ -11,10 +13,10 @@ public class Venda implements Serializable {
 	private static final long serialVersionUID = -1468436429614414965L;
 	private Carrinho carrinho;
 	private Funcionario funcionario;
-	private LocalDateTime datahora;
+	private String datahora;
 	private boolean aprovado;
-
-	public Venda(Carrinho carrinho, Funcionario funcionario, LocalDateTime datahora, boolean aprovado) {
+		
+	public Venda(Carrinho carrinho, Funcionario funcionario, String datahora, boolean aprovado) {
 		this.carrinho = carrinho;
 		this.funcionario = funcionario;
 		this.datahora = datahora;
@@ -42,13 +44,13 @@ public class Venda implements Serializable {
 		this.carrinho = carrinho;
 	}
 
-	public LocalDateTime getDatahora() {
+	public String getDatahora() {
 
 		return datahora;
 
 	}
 
-	public void setDatahora(LocalDateTime datahora) {
+	public void setDatahora(String datahora) {
 
 		this.datahora = datahora;
 
@@ -81,7 +83,7 @@ public class Venda implements Serializable {
 
 			Venda v = (Venda) obj;
 
-			if (this.funcionario.equals(v.funcionario) && this.datahora.isEqual(v.datahora)
+			if (this.funcionario.equals(v.funcionario) && this.datahora.equals(v.datahora)
 					&& this.aprovado == v.aprovado) {
 
 				resultado = true;
@@ -103,8 +105,26 @@ public class Venda implements Serializable {
 	}
 	
 	public String toStringV() {
-
-        return  carrinho + " " + funcionario + " " + datahora + " " + aprovado;
+	
+		String aux = "";
+		
+		for(int i = 0; i< this.carrinho.getProdutos().size(); i++)
+		{
+			aux += this.carrinho.getProdutos().get(i).getNome();
+			aux += " ";
+			aux += this.carrinho.getProdutos().get(i).getDescricao();
+			aux += " ";
+			aux +=this.carrinho.getProdutos().get(i).getQuantidade();
+			aux += " ";
+			aux += this.carrinho.getProdutos().get(i).getPreco();
+			aux += " ";
+			
+			
+		}
+		
+		System.out.println(aux);
+		
+        return  this.carrinho.getCliente().getCpf() + " " + this.carrinho.getCliente().getEndereco() +  " " + this.carrinho.getCliente().getNome() + " " + this.carrinho.getCliente().getPontos() + " " +  this.carrinho.getValorTotal()+ " " + funcionario.toStringF() + " " + datahora + " " + aprovado + " " + aux;
 
     }
 

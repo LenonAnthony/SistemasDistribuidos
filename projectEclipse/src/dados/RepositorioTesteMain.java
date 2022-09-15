@@ -30,8 +30,8 @@ public class RepositorioTesteMain {
 		
 		Carrinho car1 = new Carrinho(c1, produtos);
 		
-		Venda v1 = new Venda(car1, f1, datahora, aprovado);
-		rv.adicionarVenda(v1);
+		//Venda v1 = new Venda(car1, f1, datahora, aprovado);
+		//rv.adicionarVenda(v1);
 		System.out.println(rv);
 		
 		
