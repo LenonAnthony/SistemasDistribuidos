@@ -6,6 +6,7 @@ import java.rmi.registry.Registry;
 import negocios.ControladorCliente;
 import negocios.ControladorFuncionario;
 import negocios.ControladorProduto;
+import negocios.ControladorVenda;
 
 
 public class Servidores {
@@ -18,6 +19,8 @@ public class Servidores {
 			registry2.rebind("CP", new ControladorProduto());
 			Registry registry3 = LocateRegistry.createRegistry(1101);
 			registry3.rebind("CC", new ControladorCliente());
+			Registry registry4 = LocateRegistry.createRegistry(1102);
+			registry4.rebind("CV", new ControladorVenda());
 			
 		} catch (RemoteException ex) {
 			ex.printStackTrace();

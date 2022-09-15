@@ -1,17 +1,24 @@
 package dados;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 
+import negocios.basicos.Produto;
 import negocios.basicos.Venda;
 
-public class RepositorioVendas {
+public class RepositorioVendas implements Serializable {
 	
+	private static final long serialVersionUID = 7221116099443829541L;
 	ArrayList<Venda> vendas = new ArrayList<>();
 	private int tamanho;
 
 	public RepositorioVendas() {
+		
 	}
-
+	
 	public void adicionarVenda(Venda v) {
 		this.vendas.add(v);
 		tamanho = this.vendas.size();
@@ -48,7 +55,7 @@ public class RepositorioVendas {
 			existe = true;
 			System.out.println("A conta existe");
 		} else {
-			System.out.println("A conta não existe");
+			System.out.println("A conta nï¿½o existe");
 		}
 		return existe;
 	}
@@ -59,7 +66,7 @@ public class RepositorioVendas {
 			this.vendas.remove(i);
 			System.out.println("Cliente removido.");
 		} else {
-			System.out.println("Cliente não encontrado. Portanto, não foi removido.");
+			System.out.println("Cliente nï¿½o encontrado. Portanto, nï¿½o foi removido.");
 		}
 		tamanho = this.vendas.size();
 	}

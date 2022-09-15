@@ -1,13 +1,19 @@
 package negocios;
 
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
+
 import dados.RepositorioVendas;
 import negocios.basicos.Venda;
+import negocios.interfaces.CPInterface;
+import negocios.interfaces.CVInterface;
 
-public class ControladorVenda {
+public class ControladorVenda extends UnicastRemoteObject implements CVInterface {
 
+	private static final long serialVersionUID = -7358390655644495761L;
 	private RepositorioVendas repositorioVendas;
 
-	public ControladorVenda() {
+	public ControladorVenda() throws RemoteException {
 		this.repositorioVendas = new RepositorioVendas();
 	}
 
@@ -17,7 +23,7 @@ public class ControladorVenda {
 				this.repositorioVendas.adicionarVenda(v);
 				System.out.println("Portanto, criado com sucesso!");
 			} else {
-				System.out.println("Portanto, não foi criado!");
+				System.out.println("Portanto, nï¿½o foi criado!");
 
 			}
 		}
@@ -44,12 +50,7 @@ public class ControladorVenda {
 	public void remover(Venda v) {
 		this.repositorioVendas.remover(v);
 	}
-
-	@Override
-	public String toString() {
-		return repositorioVendas.toString();
-	}
-
+	
 	public RepositorioVendas getRepositorioVendas() {
 		return repositorioVendas;
 	}
@@ -58,4 +59,8 @@ public class ControladorVenda {
 		this.repositorioVendas = repositorioVendas;
 	}
 
+	@Override
+	public String toString() {
+		return repositorioVendas.toString();
+	}
 }

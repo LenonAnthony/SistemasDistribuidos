@@ -1,9 +1,14 @@
 package negocios.basicos;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class Venda {
+public class Venda implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1468436429614414965L;
 	private Carrinho carrinho;
 	private Funcionario funcionario;
 	private LocalDateTime datahora;
@@ -61,7 +66,7 @@ public class Venda {
 
 	}
 
-	// FALTANDO ESSE MÉTODO.
+	// FALTANDO ESSE Mï¿½TODO.
 	public void finalizaVenda(Venda v) {
 		v.setAprovado(true);
 
@@ -96,5 +101,11 @@ public class Venda {
 				+ this.getCarrinho().getValorTotal() + " | Funcionario Encarregado: " + this.getFuncionario().getNome();
 
 	}
+	
+	public String toStringV() {
+
+        return  carrinho + " " + funcionario + " " + datahora + " " + aprovado;
+
+    }
 
 }
