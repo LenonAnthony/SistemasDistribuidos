@@ -48,7 +48,7 @@ public class RepositorioProdutos implements Serializable {
 		PrintStream ps;
         try {
             ps = new PrintStream("produtos.txt");
-            for(int i = 0; i < this.produtos.size(); i++) {
+            for(int i = 0; i < this.produtos.size() -1; i++) {
                 ps.println(this.produtos.get(i).toStringP());
             }
         } catch (FileNotFoundException e) {

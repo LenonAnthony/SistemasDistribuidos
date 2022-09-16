@@ -25,6 +25,16 @@ public class Produto extends Pessoa implements Serializable {
 		setPrecoFinal(preco * quantidade);
 
 	}
+	
+	public Produto(String nome, int quantidade, double preco) {
+		
+		setNome(nome);
+		setDescricao("");
+		setQuantidade(quantidade);
+		setPreco(preco);
+		setEstoque(true);
+		setPrecoFinal(preco * quantidade);
+	}
 
 	public String getNome() {
 

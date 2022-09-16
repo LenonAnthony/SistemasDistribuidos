@@ -108,23 +108,22 @@ public class Venda implements Serializable {
 	
 		String aux = "";
 		
-		for(int i = 0; i< this.carrinho.getProdutos().size(); i++)
-		{
-			aux += this.carrinho.getProdutos().get(i).getNome();
-			aux += " ";
-			aux += this.carrinho.getProdutos().get(i).getDescricao();
-			aux += " ";
-			aux +=this.carrinho.getProdutos().get(i).getQuantidade();
-			aux += " ";
-			aux += this.carrinho.getProdutos().get(i).getPreco();
-			aux += " ";
+		for(int i = 0; i< this.carrinho.getProdutos().size(); i++) {
 			
+			aux += carrinho.getProdutos().get(i).getNome();
+			aux += " ";
+			aux += carrinho.getProdutos().get(i).getQuantidade();
+			aux += " ";
+			aux += carrinho.getProdutos().get(i).getPreco();
+			aux += " ";
 			
 		}
 		
 		System.out.println(aux);
 		
-        return  this.carrinho.getCliente().getCpf() + " " + this.carrinho.getCliente().getEndereco() +  " " + this.carrinho.getCliente().getNome() + " " + this.carrinho.getCliente().getPontos() + " " +  this.carrinho.getValorTotal()+ " " + funcionario.toStringF() + " " + datahora + " " + aprovado + " " + aux;
+        return carrinho.getCliente().getNome() + " " + carrinho.getCliente().getCpf() +  " " 
+        + funcionario.getNome() + " " + funcionario.getCpf() + " " + datahora + " " + carrinho.gerarValorTotal() + 
+        " " + aprovado + " " + aux;
 
     }
 

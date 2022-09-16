@@ -22,6 +22,16 @@ public class Cliente implements Serializable{
 		setPontos(pontos);
 
 	}
+	
+	public Cliente(String nome, String cpf) {
+		
+		setNome(nome);
+		setCpf(cpf);
+		setEndereco("");
+		setPontos(0);
+	}
+
+
 
 	public int getPontos() {
 

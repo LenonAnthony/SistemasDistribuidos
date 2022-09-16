@@ -31,7 +31,7 @@ public class CFImp {
 	public static void main(String[] args) throws Exception {
 		
 		
-		Cliente c1 = new Cliente("Lenon", "88899933300", "Olinda", 0);
+		Cliente c1 = new Cliente("Chagas", "88899933300", "Olinda", 0);
 		Cliente c2 = new Cliente("Joao", "88899933400", "Olinda", 0);
 		Cliente c3 = new Cliente("Lenon", "88899933300", "Olinda", 0);
 		
@@ -46,10 +46,9 @@ public class CFImp {
 		System.out.println(c);   
 		
 		
-		Produto p1 = new Produto("X-Burger", "descricao", 1, 10, true);
-		Produto p2 = new Produto("X-Burger2", "descricao", 2, 12, true);
+		Produto p1 = new Produto("X-Burger", "descricao", 1, 15, true);
+		Produto p2 = new Produto("X-Burger2", "descricao", 2, 14, true);
 		Produto p3 = new Produto("Cabra", "cabrinha", 3, 30, false);
-		Produto p4 = new Produto("Rola", "rolinha", 4, 40, false);
 		
 		
 		p = new ControladorProduto();
@@ -58,19 +57,18 @@ public class CFImp {
 		p.cadastrar(p1);
 		p.cadastrar(p2);
 		p.cadastrar(p3);
-		p.cadastrar(p4);
 		System.out.println(cp1.getRepositorioProdutos().getProdutos().get(0).toStringP());
 		
 		ArrayList<Produto> produtos = new ArrayList<>();
 		produtos.add(p1);
 		produtos.add(p2);
 		
-		Carrinho car1 =  new Carrinho(c1, produtos);
+		Carrinho car1 =  new Carrinho(c3, produtos);
 //s
 		f = new ControladorFuncionario();
 		cf1 = (CFInterface) Naming.lookup("rmi://localhost:1099/CF");
 		Funcionario f1 = new Funcionario("Chagas", "000", "Funcionario", "user", "123");
-		Funcionario f2 = new Funcionario("Chagas2", "0300", "Gerente", "user1", "1234");
+		Funcionario f2 = new Funcionario("Joao", "0300", "Gerente", "user1", "1234");
 		Naming.rebind("rmi://localhost:1099/CF", f);
 		f.cadastrar(f1);
 		System.out.println(cf1.getRepositorioFuncionario().getFuncionarios());
@@ -83,7 +81,7 @@ public class CFImp {
 		
 		v = new ControladorVenda();
 		cv1 = (CVInterface) Naming.lookup("rmi://localhost:1102/CV");
-		Venda v1 = new Venda(car1, f1, datahora, aprovado);
+		Venda v1 = new Venda(car1, f2, datahora, aprovado);
 		Naming.rebind("rmi://localhost:1102/CV", v);
 		v.cadastrar(v1);
 		System.out.println(cv1.getRepositorioVendas().getVendas());

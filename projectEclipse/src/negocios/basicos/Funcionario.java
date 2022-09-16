@@ -27,6 +27,18 @@ public class Funcionario extends Pessoa implements Serializable {
 		setLogin(login);
 		setSenha(senha);
 	}
+	
+	
+
+	public Funcionario(String nome, String cpf) {
+		
+		setNome(nome);
+		setCpf(cpf);
+		setTipo("");
+		setLogin("");
+		setSenha("");
+		
+	}
 
 	public boolean getLogado() {
 		return logado;

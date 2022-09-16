@@ -47,7 +47,7 @@ public class RepositorioClientes implements Serializable {
 		PrintStream ps;
         try {
             ps = new PrintStream("Clientes.txt");
-            for(int i = 0; i < this.clientes.size(); i++) {
+            for(int i = 0; i < this.clientes.size() -1; i++) {
                 ps.println(this.clientes.get(i).toStringC());
             }
         } catch (FileNotFoundException e) {
@@ -88,7 +88,7 @@ public class RepositorioClientes implements Serializable {
 			existe = true;
 			System.out.println("A conta existe");
 		} else {
-			System.out.println("A conta não existe");
+			System.out.println("A conta nï¿½o existe");
 		}
 		return existe;
 	}
@@ -99,7 +99,7 @@ public class RepositorioClientes implements Serializable {
 			this.clientes.remove(i);
 			System.out.println("Cliente removido.");
 		} else {
-			System.out.println("Cliente não encontrado. Portanto, não foi removido.");
+			System.out.println("Cliente nï¿½o encontrado. Portanto, nï¿½o foi removido.");
 		}
 		tamanho = this.clientes.size();
 	}
