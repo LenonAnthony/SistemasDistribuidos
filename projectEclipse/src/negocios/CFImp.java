@@ -46,8 +46,8 @@ public class CFImp {
 		System.out.println(c);   
 		
 		
-		Produto p1 = new Produto("X-Burger", "descricao", 1, 15, true);
-		Produto p2 = new Produto("X-Burger2", "descricao", 2, 14, true);
+		Produto p1 = new Produto("X-Burger", "descricao", 1, 35, true);
+		Produto p2 = new Produto("X-Burger2", "descricao", 2, 44, true);
 		Produto p3 = new Produto("Cabra", "cabrinha", 3, 30, false);
 		
 		
@@ -81,7 +81,7 @@ public class CFImp {
 		
 		v = new ControladorVenda();
 		cv1 = (CVInterface) Naming.lookup("rmi://localhost:1102/CV");
-		Venda v1 = new Venda(car1, f2, datahora, aprovado);
+		Venda v1 = new Venda(car1, f1, datahora, aprovado);
 		Naming.rebind("rmi://localhost:1102/CV", v);
 		v.cadastrar(v1);
 		System.out.println(cv1.getRepositorioVendas().getVendas());

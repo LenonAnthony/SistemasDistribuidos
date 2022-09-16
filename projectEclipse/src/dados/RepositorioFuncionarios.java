@@ -49,7 +49,7 @@ public class RepositorioFuncionarios implements Serializable {
 		PrintStream ps;
         try {
             ps = new PrintStream("funcionarios.txt");
-            for(int i = 0; i < this.funcionarios.size() -1; i++) {
+            for(int i = 0; i < this.funcionarios.size(); i++) {
                 ps.println(this.funcionarios.get(i).toStringF());
             }
         } catch (FileNotFoundException e) {

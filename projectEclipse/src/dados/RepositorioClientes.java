@@ -47,7 +47,7 @@ public class RepositorioClientes implements Serializable {
 		PrintStream ps;
         try {
             ps = new PrintStream("Clientes.txt");
-            for(int i = 0; i < this.clientes.size() -1; i++) {
+            for(int i = 0; i < this.clientes.size(); i++) {
                 ps.println(this.clientes.get(i).toStringC());
             }
         } catch (FileNotFoundException e) {
