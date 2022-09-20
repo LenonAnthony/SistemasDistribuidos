@@ -566,9 +566,15 @@ public class TelaGerente extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				TelaNovaVenda tnv = new TelaNovaVenda();
-				tnv.setLocationRelativeTo(null);
-				tnv.setVisible(true);
+				TelaNovaVenda tnv;
+				try {
+					tnv = new TelaNovaVenda();
+					tnv.setLocationRelativeTo(null);
+					tnv.setVisible(true);
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		btnNewButton.setBounds(1009, 86, 245, 501);
