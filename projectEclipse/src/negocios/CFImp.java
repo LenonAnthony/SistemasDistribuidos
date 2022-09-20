@@ -33,7 +33,7 @@ public class CFImp {
 		
 		Cliente c1 = new Cliente("Chagas", "88899933300", "Olinda", 0);
 		Cliente c2 = new Cliente("Joao33", "88899933400", "Olinda", 0);
-		Cliente c3 = new Cliente("Lenon", "88899933300", "Olinda", 0);
+		Cliente c3 = new Cliente("Lenon11", "88899933300", "Olinda", 0);
 		
 		c = new ControladorCliente();
 		
@@ -48,7 +48,7 @@ public class CFImp {
 		
 		Produto p1 = new Produto("X-Burger33", "descricao", 1, 35, true);
 		Produto p2 = new Produto("X-Burger2", "descricao", 2, 44, true);
-		Produto p3 = new Produto("Cabra", "cabrinha", 3, 30, false);
+		Produto p3 = new Produto("Cabra2211", "cabrinha", 3, 30, false);
 		
 		
 		p = new ControladorProduto();
@@ -67,7 +67,7 @@ public class CFImp {
 //s
 		f = new ControladorFuncionario();
 		cf1 = (CFInterface) Naming.lookup("rmi://localhost:1099/CF");
-		Funcionario f1 = new Funcionario("Chagas", "000", "Funcionario", "user", "123");
+		Funcionario f1 = new Funcionario("Chagas11", "000", "Funcionario", "user", "123");
 		Funcionario f2 = new Funcionario("Joao", "0300", "Gerente", "user1", "1234");
 		Funcionario f3 = new Funcionario("Joao233", "0300", "Gerente", "user1", "1234");
 		Naming.rebind("rmi://localhost:1099/CF", f);

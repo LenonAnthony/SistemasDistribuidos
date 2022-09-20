@@ -88,7 +88,7 @@ public class TelaControleVendas extends JFrame {
 				Object[] objs = { arrays.get(i).getFuncionario().getNome(),
 						arrays.get(i).getCarrinho().getCliente().getNome(),
 						arrays.get(i).getCarrinho().getCliente().getEndereco(), arrays.get(i).getDatahora(),
-						arrays.get(i).getCarrinho().getValorTotal() };
+						arrays.get(i).getCarrinho().gerarValorTotal() };
 				dtm.addRow(objs);
 			}
 
@@ -105,7 +105,7 @@ public class TelaControleVendas extends JFrame {
 					Object[] objs = { arrays.get(i).getFuncionario().getNome(),
 							arrays.get(i).getCarrinho().getCliente().getNome(),
 							arrays.get(i).getCarrinho().getCliente().getEndereco(), arrays.get(i).getDatahora(),
-							arrays.get(i).getCarrinho().getValorTotal() };
+							arrays.get(i).getCarrinho().gerarValorTotal() };
 					dtm.addRow(objs);
 				}
 			}
@@ -123,7 +123,7 @@ public class TelaControleVendas extends JFrame {
 					Object[] objs = { arrays.get(i).getFuncionario().getNome(),
 							arrays.get(i).getCarrinho().getCliente().getNome(),
 							arrays.get(i).getCarrinho().getCliente().getEndereco(), arrays.get(i).getDatahora(),
-							arrays.get(i).getCarrinho().getValorTotal() };
+							arrays.get(i).getCarrinho().gerarValorTotal() };
 					dtm.addRow(objs);
 				}
 			}
@@ -141,7 +141,7 @@ public class TelaControleVendas extends JFrame {
 					Object[] objs = { arrays.get(i).getFuncionario().getNome(),
 							arrays.get(i).getCarrinho().getCliente().getNome(),
 							arrays.get(i).getCarrinho().getCliente().getEndereco(), arrays.get(i).getDatahora(),
-							arrays.get(i).getCarrinho().getValorTotal() };
+							arrays.get(i).getCarrinho().gerarValorTotal() };
 					dtm.addRow(objs);
 				}
 			}
@@ -153,7 +153,7 @@ public class TelaControleVendas extends JFrame {
 			ArrayList<Venda> arrays = new ArrayList<>();
 			arrays.addAll(TelaNovaVenda.getCv().getRepositorioVendas().getVendas());
 
-			DateTimeFormatter form = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+			DateTimeFormatter form = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 			LocalDate dataInicio = LocalDate.parse(txtInicio.getText(), form);
 			LocalDate dataFim = LocalDate.parse(txtFim.getText(), form);
 
@@ -214,12 +214,13 @@ public class TelaControleVendas extends JFrame {
 						arrays.get(i).getDatahora().charAt(9);
 				
 				LocalDate dataVenda = LocalDate.of(Integer.parseInt(ano), mes, Integer.parseInt(dia));
-				if (dataInicio.isBefore(dataVenda) && dataFim.isAfter(dataVenda)) {
+				if (dataInicio.isBefore(dataVenda.plusDays(1)) && dataFim.isAfter(dataVenda.minusDays(1))) {
+					
 					
 					Object[] objs = { arrays.get(i).getFuncionario().getNome(),
 							arrays.get(i).getCarrinho().getCliente().getNome(),
 							arrays.get(i).getCarrinho().getCliente().getEndereco(), arrays.get(i).getDatahora(),
-							arrays.get(i).getCarrinho().getValorTotal() };
+							arrays.get(i).getCarrinho().gerarValorTotal() };
 					dtm.addRow(objs);
 				}
 			}
@@ -228,6 +229,13 @@ public class TelaControleVendas extends JFrame {
 	
 	public TelaControleVendas() {
 		
+		TelaNovaVenda.inicializar();
+		try {
+			atualizar();
+		} catch (RemoteException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
 		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaControleVendas.class.getResource("/images/IconPope.png")));
 		setTitle("Controle de Vendas - Pope's Dance");
@@ -357,13 +365,13 @@ public class TelaControleVendas extends JFrame {
 		bg.add(radioLimpa);
 
 		txtInicio = new JTextField();
-		txtInicio.setToolTipText("DD/MM/AAAA");
+		txtInicio.setToolTipText("ano-mês-dia");
 		txtInicio.setBounds(10, 383, 134, 27);
 		panel.add(txtInicio);
 		txtInicio.setColumns(10);
 
 		txtFim = new JTextField();
-		txtFim.setToolTipText("DD/MM/AAAA");
+		txtFim.setToolTipText("ano-mês-dia");
 		txtFim.setColumns(10);
 		txtFim.setBounds(165, 383, 134, 27);
 		panel.add(txtFim);
@@ -371,9 +379,6 @@ public class TelaControleVendas extends JFrame {
 		JButton btnNewButton = new JButton("Filtrar");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// atualizar a table em rela��o aos filtros
-				// ta com problema no valor final.
-				// att essa func�o
 				try {
 					atualizar();
 				} catch (RemoteException e1) {

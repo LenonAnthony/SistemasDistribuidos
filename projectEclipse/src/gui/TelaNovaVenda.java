@@ -36,7 +36,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.net.MalformedURLException;
 import java.rmi.Naming;
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.time.LocalDateTime;
 import java.awt.Toolkit;
@@ -45,8 +47,29 @@ public class TelaNovaVenda extends JFrame {
 
 	private static ControladorVenda cv;
 	public static CVInterface cv1;
+	
 
-	// cansei
+	public static void inicializar() {
+		try {
+			cv = new ControladorVenda();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			cv1 = (CVInterface) Naming.lookup("rmi://localhost:1102/CV");
+		} catch (MalformedURLException | RemoteException | NotBoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			Naming.rebind("rmi://localhost:1102/CV", cv);
+		} catch (RemoteException | MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
 	public static ControladorVenda getCv() {
 		return cv;
 	}
