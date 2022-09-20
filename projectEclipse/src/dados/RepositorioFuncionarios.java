@@ -11,51 +11,17 @@ import java.util.ArrayList;
 import negocios.basicos.Funcionario;
 
 public class RepositorioFuncionarios implements Serializable {
-	//s
+	// s
 	private static final long serialVersionUID = -1919414877885418528L;
 	private ArrayList<Funcionario> funcionarios = new ArrayList<>();
 	private int tamanho;
 
-	public RepositorioFuncionarios()  {
-		
-		BufferedReader br;
-        try {
-            br = new BufferedReader(new FileReader("funcionarios.txt"));
-            for(String line; (line = br.readLine()) != null; ) {  
-                String[] splited = line.split("\s+");
-                String nome = splited[0];
-                String cpf = splited[1];
-                String tipo = splited[2];
-                String login = splited[3];
-                String senha = splited[4];
-                Boolean logado = Boolean.parseBoolean(splited[5]);
-                Funcionario f = new Funcionario(nome, cpf, tipo, login, senha);
-                cadastrarFuncionario(f);
-            }
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-
-        }
-
-        System.out.println(this.funcionarios);
-
-	} 
-	
+	public RepositorioFuncionarios() {
+		System.out.println(this.funcionarios);
+	}
 
 	public void cadastrarFuncionario(Funcionario f) {
-		this.funcionarios.add(f);		
-		
-		PrintStream ps;
-        try {
-            ps = new PrintStream("funcionarios.txt");
-            for(int i = 0; i < this.funcionarios.size(); i++) {
-                ps.println(this.funcionarios.get(i).toStringF());
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-		
+		this.funcionarios.add(f);
 		tamanho = this.funcionarios.size();
 	}
 
@@ -105,7 +71,6 @@ public class RepositorioFuncionarios implements Serializable {
 		return resultado;
 	}
 
-
 	public boolean existe(Funcionario f) {
 		boolean existe = false;
 		int indice = this.procurarIndice(f);
@@ -140,19 +105,19 @@ public class RepositorioFuncionarios implements Serializable {
 		}
 		tamanho = this.funcionarios.size();
 	}
-	
+
 	public void atualiza() {
 		PrintStream ps;
 		try {
 			ps = new PrintStream("funcionarios.txt");
-			for(int i = 0; i < this.funcionarios.size(); i++) {
+			for (int i = 0; i < this.funcionarios.size(); i++) {
 				ps.println(this.funcionarios.get(i).toStringF());
 			}
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 	}
 
 	public ArrayList<Funcionario> getFuncionarios() {

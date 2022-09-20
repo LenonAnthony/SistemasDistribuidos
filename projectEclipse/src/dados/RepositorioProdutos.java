@@ -18,44 +18,11 @@ public class RepositorioProdutos implements Serializable {
 	private int tamanho;
 
 	public RepositorioProdutos() {
-		
-		BufferedReader br;
-        try {
-            br = new BufferedReader(new FileReader("produtos.txt"));
-            for(String line; (line = br.readLine()) != null; ) { 
-                String[] splited = line.split("\s+");
-                String nome = splited[0];
-                String descricao = splited[1];
-                int quantidade = Integer.parseInt(splited[2]);
-                double preco = Double.parseDouble(splited[3]);
-                Boolean estoque = Boolean.parseBoolean(splited[4]);
-                Produto p = new Produto(nome, descricao, quantidade, preco, estoque);
-                cadastrarProduto(p);
-            }
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-
-        }
-
-        System.out.println(this.produtos);
-
+		System.out.println(this.produtos);
 	}
 
 	public void cadastrarProduto(Produto p) {
 		this.produtos.add(p);
-		
-		PrintStream ps;
-        try {
-            ps = new PrintStream("produtos.txt");
-            for(int i = 0; i < this.produtos.size(); i++) {
-                ps.println(this.produtos.get(i).toStringP());
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-		
-		
 		tamanho = this.produtos.size();
 	}
 
@@ -104,35 +71,31 @@ public class RepositorioProdutos implements Serializable {
 		}
 		tamanho = this.produtos.size();
 	}
-	
+
 	public void atualiza() {
 		PrintStream ps;
 		try {
 			ps = new PrintStream("produtos.txt");
-			for(int i = 0; i < this.produtos.size(); i++) {
+			for (int i = 0; i < this.produtos.size(); i++) {
 				ps.println(this.produtos.get(i).toStringP());
 			}
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 	}
-	
-	
-	public Produto pegaPeloNome (String nome)
-	{
-		
-		for(int i = 0; i<this.produtos.size(); i++)
-		{
-			if(this.produtos.get(i).getNome().equals(nome))
-			{
+
+	public Produto pegaPeloNome(String nome) {
+
+		for (int i = 0; i < this.produtos.size(); i++) {
+			if (this.produtos.get(i).getNome().equals(nome)) {
 				return this.produtos.get(i);
 			}
 		}
-		
+
 		return null;
-		
+
 	}
 
 	public ArrayList<Produto> getProdutos() {
