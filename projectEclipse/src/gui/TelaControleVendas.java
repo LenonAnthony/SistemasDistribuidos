@@ -21,7 +21,9 @@ import javax.swing.JButton;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
+import java.rmi.RemoteException;
 import java.time.LocalDate;
+import java.time.Month;
 import java.time.format.DateTimeFormatter;
 import java.time.format.ResolverStyle;
 import java.util.ArrayList;
@@ -49,13 +51,18 @@ public class TelaControleVendas extends JFrame {
 	 * Launch the application.aa
 	 */
 	public static void main(String[] args) {
+		
 		EventQueue.invokeLater(new Runnable() {
+			
 			public void run() {
+				
 				try {
+					
 					TelaControleVendas frame = new TelaControleVendas();
 					frame.setLocationRelativeTo(null);
 					frame.setVisible(true);
 				} catch (Exception e) {
+					
 					e.printStackTrace();
 				}
 			}
@@ -64,14 +71,16 @@ public class TelaControleVendas extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @throws RemoteException 
 	 */
 	// da funcao recebe os filtros relativos aos botes e atualiza a tabela em funcao
 	// dos mesmos.
-	public void atualizar() {
+	public void atualizar() throws RemoteException {
 
 		if (filtroArea == false && filtroFuncionario == false && filtroCliente == false && filtroPeriodo == false) {
+			
 			dtm.setRowCount(0);
-			int tamanho = TelaNovaVenda.getCv().getRepositorioVendas().getVendas().size();
+			int tamanho = TelaNovaVenda.getCv1().getRepositorioVendas().getVendas().size();
 			ArrayList<Venda> arrays = new ArrayList<>();
 			arrays.addAll(TelaNovaVenda.getCv().getRepositorioVendas().getVendas());
 			for (int i = 0; i < tamanho; i++) {
@@ -81,61 +90,66 @@ public class TelaControleVendas extends JFrame {
 						arrays.get(i).getCarrinho().getCliente().getEndereco(), arrays.get(i).getDatahora(),
 						arrays.get(i).getCarrinho().getValorTotal() };
 				dtm.addRow(objs);
-
 			}
 
 		} else if (filtroArea) {
+			
 			dtm.setRowCount(0);
-			int tamanho = TelaNovaVenda.getCv().getRepositorioVendas().getVendas().size();
+			int tamanho = TelaNovaVenda.getCv1().getRepositorioVendas().getVendas().size();
 			ArrayList<Venda> arrays = new ArrayList<>();
 			arrays.addAll(TelaNovaVenda.getCv().getRepositorioVendas().getVendas());
 			for (int i = 0; i < tamanho; i++) {
+				
 				if (campoArea.getText().equalsIgnoreCase(arrays.get(i).getCarrinho().getCliente().getEndereco())) {
+					
 					Object[] objs = { arrays.get(i).getFuncionario().getNome(),
 							arrays.get(i).getCarrinho().getCliente().getNome(),
 							arrays.get(i).getCarrinho().getCliente().getEndereco(), arrays.get(i).getDatahora(),
 							arrays.get(i).getCarrinho().getValorTotal() };
 					dtm.addRow(objs);
-
 				}
-
 			}
+		
 		} else if (filtroFuncionario) {
+			
 			dtm.setRowCount(0);
-			int tamanho = TelaNovaVenda.getCv().getRepositorioVendas().getVendas().size();
+			int tamanho = TelaNovaVenda.getCv1().getRepositorioVendas().getVendas().size();
 			ArrayList<Venda> arrays = new ArrayList<>();
 			arrays.addAll(TelaNovaVenda.getCv().getRepositorioVendas().getVendas());
 			for (int i = 0; i < tamanho; i++) {
+				
 				if (campoFunc.getText().equalsIgnoreCase(arrays.get(i).getFuncionario().getNome())) {
+					
 					Object[] objs = { arrays.get(i).getFuncionario().getNome(),
 							arrays.get(i).getCarrinho().getCliente().getNome(),
 							arrays.get(i).getCarrinho().getCliente().getEndereco(), arrays.get(i).getDatahora(),
 							arrays.get(i).getCarrinho().getValorTotal() };
 					dtm.addRow(objs);
-
 				}
-
 			}
+		
 		} else if (filtroCliente) {
+			
 			dtm.setRowCount(0);
-			int tamanho = TelaNovaVenda.getCv().getRepositorioVendas().getVendas().size();
+			int tamanho = TelaNovaVenda.getCv1().getRepositorioVendas().getVendas().size();
 			ArrayList<Venda> arrays = new ArrayList<>();
 			arrays.addAll(TelaNovaVenda.getCv().getRepositorioVendas().getVendas());
 			for (int i = 0; i < tamanho; i++) {
+				
 				if (campoCliente.getText().equalsIgnoreCase(arrays.get(i).getCarrinho().getCliente().getNome())) {
+					
 					Object[] objs = { arrays.get(i).getFuncionario().getNome(),
 							arrays.get(i).getCarrinho().getCliente().getNome(),
 							arrays.get(i).getCarrinho().getCliente().getEndereco(), arrays.get(i).getDatahora(),
 							arrays.get(i).getCarrinho().getValorTotal() };
 					dtm.addRow(objs);
-
 				}
-
 			}
+		
 		} else if (filtroPeriodo) {
+			
 			dtm.setRowCount(0);
-
-			int tamanho = TelaNovaVenda.getCv().getRepositorioVendas().getVendas().size();
+			int tamanho = TelaNovaVenda.getCv1().getRepositorioVendas().getVendas().size();
 			ArrayList<Venda> arrays = new ArrayList<>();
 			arrays.addAll(TelaNovaVenda.getCv().getRepositorioVendas().getVendas());
 
@@ -144,25 +158,76 @@ public class TelaControleVendas extends JFrame {
 			LocalDate dataFim = LocalDate.parse(txtFim.getText(), form);
 
 			for (int i = 0; i < tamanho; i++) {
-
-				LocalDate dataVenda = LocalDate.of(arrays.get(i).getDatahora().getYear(),
-						arrays.get(i).getDatahora().getMonthValue(), arrays.get(i).getDatahora().getDayOfMonth());
-
+				
+				String ano = "" + arrays.get(i).getDatahora().charAt(0) + 
+						arrays.get(i).getDatahora().charAt(1) + 
+						arrays.get(i).getDatahora().charAt(2) + 
+						arrays.get(i).getDatahora().charAt(3);
+				
+				Month mes = null;
+				String valor = "" + arrays.get(i).getDatahora().charAt(5) + 
+						arrays.get(i).getDatahora().charAt(6);
+				
+				switch (valor) {
+				
+				case "01": mes = Month.JANUARY;
+				break;
+				
+				case "02": mes = Month.FEBRUARY;
+				break;
+				
+				case "03": mes = Month.MARCH;
+				break;
+				
+				case "04": mes = Month.APRIL;
+				break;
+				
+				case "05": mes = Month.MAY;
+				break;
+				
+				case "06": mes = Month.JUNE;
+				break;
+				
+				case "07": mes = Month.JULY;
+				break;
+				
+				case "08": mes = Month.AUGUST;
+				break;
+				
+				case "09": mes = Month.SEPTEMBER;
+				break;
+				
+				case "10": mes = Month.OCTOBER;
+				break;
+				
+				case "11": mes = Month.NOVEMBER;
+				break;
+				
+				case "12": mes = Month.DECEMBER;
+				break;
+				
+				default: System.out.println("?");
+				break;
+				}
+				
+				String dia = "" + arrays.get(i).getDatahora().charAt(8) + 
+						arrays.get(i).getDatahora().charAt(9);
+				
+				LocalDate dataVenda = LocalDate.of(Integer.parseInt(ano), mes, Integer.parseInt(dia));
 				if (dataInicio.isBefore(dataVenda) && dataFim.isAfter(dataVenda)) {
+					
 					Object[] objs = { arrays.get(i).getFuncionario().getNome(),
 							arrays.get(i).getCarrinho().getCliente().getNome(),
 							arrays.get(i).getCarrinho().getCliente().getEndereco(), arrays.get(i).getDatahora(),
 							arrays.get(i).getCarrinho().getValorTotal() };
 					dtm.addRow(objs);
-
 				}
-
 			}
 		}
-
 	}
-
+	
 	public TelaControleVendas() {
+		
 		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaControleVendas.class.getResource("/images/IconPope.png")));
 		setTitle("Controle de Vendas - Pope's Dance");
@@ -198,6 +263,7 @@ public class TelaControleVendas extends JFrame {
 		radioArea.setForeground(Color.LIGHT_GRAY);
 		radioArea.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				filtroArea = true;
 				filtroFuncionario = false;
 				filtroCliente = false;
@@ -206,16 +272,16 @@ public class TelaControleVendas extends JFrame {
 				campoCliente.setText("");
 				txtInicio.setText("");
 				txtFim.setText("");
-
 			}
 		});
+		
 		radioArea.setBounds(10, 55, 54, 23);
 		panel.add(radioArea);
-
 		JRadioButton radioFunc = new JRadioButton("Funcion\u00E1rio");
 		radioFunc.setForeground(Color.LIGHT_GRAY);
 		radioFunc.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				filtroArea = false;
 				filtroFuncionario = true;
 				filtroCliente = false;
@@ -226,13 +292,14 @@ public class TelaControleVendas extends JFrame {
 				txtFim.setText("");
 			}
 		});
+		
 		radioFunc.setBounds(10, 150, 94, 23);
 		panel.add(radioFunc);
-
 		JRadioButton radioCliente = new JRadioButton("Cliente");
 		radioCliente.setForeground(Color.LIGHT_GRAY);
 		radioCliente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				filtroArea = false;
 				filtroFuncionario = false;
 				filtroCliente = true;
@@ -243,13 +310,14 @@ public class TelaControleVendas extends JFrame {
 				txtFim.setText("");
 			}
 		});
+		
 		radioCliente.setBounds(10, 245, 66, 23);
 		panel.add(radioCliente);
-
 		JRadioButton radioPeriodo = new JRadioButton("Per\u00EDodo");
 		radioPeriodo.setForeground(Color.LIGHT_GRAY);
 		radioPeriodo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				filtroArea = false;
 				filtroFuncionario = false;
 				filtroCliente = false;
@@ -257,16 +325,16 @@ public class TelaControleVendas extends JFrame {
 				campoFunc.setText("");
 				campoCliente.setText("");
 				campoArea.setText("");
-
 			}
 		});
+		
 		radioPeriodo.setBounds(10, 339, 75, 23);
 		panel.add(radioPeriodo);
-
 		JRadioButton radioLimpa = new JRadioButton("Limpar Sele\u00E7\u00E3o");
 		radioLimpa.setForeground(Color.LIGHT_GRAY);
 		radioLimpa.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				filtroArea = false;
 				filtroFuncionario = false;
 				filtroCliente = false;
@@ -278,9 +346,9 @@ public class TelaControleVendas extends JFrame {
 				txtFim.setText("");
 			}
 		});
+		
 		radioLimpa.setBounds(94, 445, 126, 23);
 		panel.add(radioLimpa);
-
 		ButtonGroup bg = new ButtonGroup();
 		bg.add(radioArea);
 		bg.add(radioFunc);
@@ -303,13 +371,18 @@ public class TelaControleVendas extends JFrame {
 		JButton btnNewButton = new JButton("Filtrar");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// atualizar a table em relação aos filtros
+				// atualizar a table em relaï¿½ï¿½o aos filtros
 				// ta com problema no valor final.
-				// att essa funcão
-				atualizar();
-
+				// att essa funcï¿½o
+				try {
+					atualizar();
+				} catch (RemoteException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
+		
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 40));
 		btnNewButton.setBounds(10, 523, 289, 70);
 		panel.add(btnNewButton);
@@ -317,12 +390,14 @@ public class TelaControleVendas extends JFrame {
 		JButton btnNewButton_1 = new JButton("Fechar tela");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				dispose();
 				TelaGerente tg = new TelaGerente();
 				tg.setLocationRelativeTo(null);
 				tg.setVisible(true);
 			}
 		});
+		
 		btnNewButton_1.setBounds(10, 625, 289, 23);
 		panel.add(btnNewButton_1);
 
@@ -350,8 +425,5 @@ public class TelaControleVendas extends JFrame {
 		lblNewLabel_1_1.setForeground(Color.LIGHT_GRAY);
 		lblNewLabel_1_1.setBounds(165, 369, 134, 14);
 		panel.add(lblNewLabel_1_1);
-
-		
 	}
-	
 }

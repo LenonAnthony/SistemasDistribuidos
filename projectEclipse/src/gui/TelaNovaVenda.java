@@ -54,6 +54,14 @@ public class TelaNovaVenda extends JFrame {
 	public void setCv(ControladorVenda cv) {
 		TelaNovaVenda.cv = cv;
 	}
+	
+	public static CVInterface getCv1() {
+		return cv1;
+	}
+
+	public static void setCv1(CVInterface cv1) {
+		TelaNovaVenda.cv1 = cv1;
+	}
 
 	DefaultTableModel dtm;
 	DefaultTableModel dtm1;
