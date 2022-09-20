@@ -92,13 +92,12 @@ public class TelaGerente extends JFrame {
 	}
 
 	public void atualizarJTableClientes() {
-		
+
 		int tamanho;
 		try {
 			PopUpCliente.getCc().getRepositorioClientes().atualiza();
 			tamanho = PopUpCliente.getCc1().getRepositorioClientes().getClientes().size();
-			if (tamanho == 0) { 
-
+			if (tamanho == 0) {
 			} else {
 				ArrayList<Cliente> arrays = new ArrayList<>();
 				arrays.addAll(PopUpCliente.getCc().getRepositorioClientes().getClientes());
@@ -113,7 +112,6 @@ public class TelaGerente extends JFrame {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 
 	}
 
@@ -184,7 +182,6 @@ public class TelaGerente extends JFrame {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaGerente.class.getResource("/images/IconPope.png")));
 		setResizable(false);
 		setTitle("Tela Operacional - Pope's Dance");
-
 		definirTela();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1280, 720);
@@ -225,8 +222,8 @@ public class TelaGerente extends JFrame {
 				String aux2[] = new String[] { "Funcionario", "CPF", "Tipo" };
 				dtm = new DefaultTableModel(aux2, 0);
 				table.setModel(dtm);
-				atualizarJTableFuncionarios();
 				linhaCliente = -1;
+				atualizarJTableFuncionarios();
 			}
 		});
 		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 24));
@@ -333,12 +330,12 @@ public class TelaGerente extends JFrame {
 						popc = new PopUpCliente();
 						popc.setLocationRelativeTo(null);
 						popc.setVisible(true);
-						
+
 					} catch (Exception e2) {
 						// TODO Auto-generated catch block
 						e2.printStackTrace();
 					}
-					
+
 				} else if (contador == 3) {
 					PopUpProduto popp;
 					try {
@@ -349,7 +346,7 @@ public class TelaGerente extends JFrame {
 						// TODO Auto-generated catch block
 						e3.printStackTrace();
 					}
-					
+
 				}
 			}
 		});
@@ -364,11 +361,14 @@ public class TelaGerente extends JFrame {
 					try {
 						for (int i = 0; i < PopUpFuncionario.getCf1().getRepositorioFuncionario().getFuncionarios()
 								.size(); i++) {
-							if (campoDeTexto.equals(
-									PopUpFuncionario.getCf1().getRepositorioFuncionario().getFuncionarios().get(i).getNome())
+							if (campoDeTexto
+									.equals(PopUpFuncionario.getCf1().getRepositorioFuncionario().getFuncionarios()
+											.get(i).getNome())
 									&& campoDeTexto_1.equals(PopUpFuncionario.getCf1().getRepositorioFuncionario()
 											.getFuncionarios().get(i).getCpf())) {
 								PopUpFuncionario.getCf().remover(
+										PopUpFuncionario.getCf1().getRepositorioFuncionario().getFuncionarios().get(i));
+								PopUpFuncionario.getCf1().remover(
 										PopUpFuncionario.getCf1().getRepositorioFuncionario().getFuncionarios().get(i));
 								System.out.println(PopUpFuncionario.getCf());
 							}
@@ -383,9 +383,11 @@ public class TelaGerente extends JFrame {
 						for (int i = 0; i < PopUpCliente.getCc1().getRepositorioClientes().getClientes().size(); i++) {
 							if (campoDeTexto.equals(
 									PopUpCliente.getCc1().getRepositorioClientes().getClientes().get(i).getNome())
-									&& campoDeTexto_1.equals(
-											PopUpCliente.getCc1().getRepositorioClientes().getClientes().get(i).getCpf())) {
+									&& campoDeTexto_1.equals(PopUpCliente.getCc1().getRepositorioClientes()
+											.getClientes().get(i).getCpf())) {
 								PopUpCliente.getCc()
+										.remover(PopUpCliente.getCc1().getRepositorioClientes().getClientes().get(i));
+								PopUpCliente.getCc1()
 										.remover(PopUpCliente.getCc1().getRepositorioClientes().getClientes().get(i));
 								System.out.println(PopUpCliente.getCc());
 							}
@@ -401,8 +403,11 @@ public class TelaGerente extends JFrame {
 						for (int i = 0; i < PopUpProduto.getCp1().getRepositorioProdutos().getProdutos().size(); i++) {
 							if (campoDeTexto.equals(
 									PopUpProduto.getCp1().getRepositorioProdutos().getProdutos().get(i).getNome())) {
-								
-								PopUpProduto.getCp().remover(PopUpProduto.getCp1().getRepositorioProdutos().getProdutos().get(i));
+
+								PopUpProduto.getCp()
+										.remover(PopUpProduto.getCp1().getRepositorioProdutos().getProdutos().get(i));
+								PopUpProduto.getCp1()
+										.remover(PopUpProduto.getCp1().getRepositorioProdutos().getProdutos().get(i));
 								System.out.println(PopUpProduto.getCp());
 
 							}
@@ -441,7 +446,8 @@ public class TelaGerente extends JFrame {
 
 				}
 				if (contador == 3) {
-					PopUpProduto.getCp().getRepositorioProdutos().getProdutos().get(linha).setPreco(Double.parseDouble(campoDePreco));
+					PopUpProduto.getCp().getRepositorioProdutos().getProdutos().get(linha)
+							.setPreco(Double.parseDouble(campoDePreco));
 					PopUpProduto.getCp().getRepositorioProdutos().getProdutos().get(linha).setNome(campoDeTexto);
 					PopUpProduto.getCp().getRepositorioProdutos().getProdutos().get(linha).setDescricao(campoDeTexto_2);
 
@@ -483,10 +489,16 @@ public class TelaGerente extends JFrame {
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					for (int i = 0; i < PopUpFuncionario.getCf1().getRepositorioFuncionario().getFuncionarios()
+					PopUpFuncionario.getCf().getRepositorioFuncionario().atualiza();
+					for (int i = 0; i < PopUpFuncionario.getCf().getRepositorioFuncionario().getFuncionarios()
 							.size(); i++) {
-						PopUpFuncionario.getCf().getRepositorioFuncionario().getFuncionarios().get(i).setLogado(false);
-						System.out.println(PopUpFuncionario.getCf1().getRepositorioFuncionario().getFuncionarios().get(i));
+						if (PopUpFuncionario.getCf().getRepositorioFuncionario().getFuncionarios().get(i)
+								.getLogado() == true) {
+							PopUpFuncionario.getCf().getRepositorioFuncionario().getFuncionarios().get(i)
+									.setLogado(false);
+							System.out.println(
+									PopUpFuncionario.getCf1().getRepositorioFuncionario().getFuncionarios().get(i));
+						}
 					}
 				} catch (RemoteException e1) {
 					// TODO Auto-generated catch block

@@ -132,9 +132,10 @@ public class PopUpFuncionario extends JFrame {
 							JOptionPane.showMessageDialog(null, "Funcionario ja existe.");
 						} else {
 							cf.cadastrar(f);
-							dispose();
+							cf1.cadastrar(f);
 							System.out.println(cf.getRepositorioFuncionario().getFuncionarios());
 							System.out.println(cf1.getRepositorioFuncionario().getFuncionarios());
+							dispose();
 
 						}
 					} catch (HeadlessException e1) {

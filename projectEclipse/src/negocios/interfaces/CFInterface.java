@@ -29,4 +29,5 @@ public interface CFInterface extends Remote {
 
 	public void setTamanho(int tamanho) throws RemoteException;
 
+
 }

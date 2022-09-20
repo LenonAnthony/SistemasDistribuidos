@@ -117,7 +117,6 @@ public class RepositorioFuncionarios implements Serializable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 	}
 
 	public ArrayList<Funcionario> getFuncionarios() {

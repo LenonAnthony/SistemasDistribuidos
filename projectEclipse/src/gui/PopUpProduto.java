@@ -48,7 +48,7 @@ public class PopUpProduto extends JFrame {
 	public static void setCp(ControladorProduto cp) {
 		PopUpProduto.cp = cp;
 	}
-	
+
 	public static CPInterface getCp1() {
 		return cp1;
 	}
@@ -56,7 +56,7 @@ public class PopUpProduto extends JFrame {
 	public static void setCp1(CPInterface cp1) {
 		PopUpProduto.cp1 = cp1;
 	}
-	
+
 	public static void inicializar() {
 		try {
 			cp = new ControladorProduto();
@@ -97,15 +97,16 @@ public class PopUpProduto extends JFrame {
 
 	/**
 	 * Create the frame.
-	 * @throws RemoteException 
+	 * 
+	 * @throws RemoteException
 	 */
 	// TESTE
 	public PopUpProduto() throws Exception {
-		
+
 		cp = new ControladorProduto();
-		cp1 = (CPInterface)Naming.lookup("rmi://localhost:1100/CP");
+		cp1 = (CPInterface) Naming.lookup("rmi://localhost:1100/CP");
 		Naming.rebind("rmi://localhost:1100/CP", cp);
-		
+
 		setIconImage(Toolkit.getDefaultToolkit().getImage(PopUpProduto.class.getResource("/images/IconPope.png")));
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -165,7 +166,13 @@ public class PopUpProduto extends JFrame {
 						Produto p = new Produto(textField.getText(), textField_2.getText(), 1,
 								Double.parseDouble(textField_1.getText()), true);
 						JOptionPane.showMessageDialog(null, "Produto adicionado!");
-						cp.cadastrar(p);
+						try {
+							cp.cadastrar(p);
+							cp1.cadastrar(p);
+						} catch (RemoteException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
 						System.out.println(cp1);
 						dispose();
 					}
@@ -176,7 +183,7 @@ public class PopUpProduto extends JFrame {
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		btnNewButton.setBounds(218, 204, 171, 45);
 		contentPane.add(btnNewButton);
-		
+
 		JButton btnNewButton_1 = new JButton("Cancelar");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -193,7 +200,5 @@ public class PopUpProduto extends JFrame {
 		// cp.getRepositorioProdutos().cadastrarProduto(p1);
 
 	}
-
-	
 
 }

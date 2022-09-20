@@ -56,7 +56,7 @@ public class PopUpCliente extends JFrame {
 	public static void setCc(ControladorCliente cc) {
 		PopUpCliente.cc = cc;
 	}
-	
+
 	public static void inicializar() {
 		try {
 			cc = new ControladorCliente();
@@ -99,11 +99,11 @@ public class PopUpCliente extends JFrame {
 	 * Create the frame.
 	 */
 	public PopUpCliente() throws Exception {
-		
+
 		cc = new ControladorCliente();
 		cc1 = (CCInterface) Naming.lookup("rmi://localhost:1101/CC");
 		Naming.rebind("rmi://localhost:1101/CC", cc);
-		
+
 		setIconImage(Toolkit.getDefaultToolkit().getImage(PopUpCliente.class.getResource("/images/IconPope.png")));
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -129,8 +129,6 @@ public class PopUpCliente extends JFrame {
 		textField.setBounds(85, 31, 329, 27);
 		panel.add(textField);
 		textField.setColumns(10);
-		
-	
 
 		JLabel lblNewLabel_1 = new JLabel("CPF:");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -141,7 +139,6 @@ public class PopUpCliente extends JFrame {
 		textField_1.setBounds(85, 87, 329, 27);
 		panel.add(textField_1);
 		textField_1.setColumns(10);
-		
 
 		JLabel lblNewLabel_2 = new JLabel("Endere\u00E7o:");
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -162,20 +159,25 @@ public class PopUpCliente extends JFrame {
 					JOptionPane.showMessageDialog(null, "Favor, preencher tudo.");
 				} else {
 					Cliente c = new Cliente(textField.getText(), textField_1.getText(), textField_2.getText(), 0);
-					cc.cadastrar(c);
+					try {
+						cc.cadastrar(c);
+						cc1.cadastrar(c);
+					} catch (RemoteException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 					JOptionPane.showMessageDialog(null, "Cliente Cadastrado com Sucesso!");
 					System.out.println(cc);
 					dispose();
-					
+
 				}
-				
 
 			}
 		});
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		btnNewButton.setBounds(231, 210, 171, 45);
 		contentPane.add(btnNewButton);
-		
+
 		JButton btnNewButton_1 = new JButton("Cancelar");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
