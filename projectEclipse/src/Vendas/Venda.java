@@ -1,15 +1,12 @@
-package negocios.basicos;
+package Vendas;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
+
+import Basicos.Carrinho;
+import Funcionarios.Funcionario;
 
 public class Venda implements Serializable {
-
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = -1468436429614414965L;
 	private Carrinho carrinho;
 	private Funcionario funcionario;
@@ -17,6 +14,7 @@ public class Venda implements Serializable {
 	private boolean aprovado;
 		
 	public Venda(Carrinho carrinho, Funcionario funcionario, String datahora, boolean aprovado) {
+		
 		this.carrinho = carrinho;
 		this.funcionario = funcionario;
 		this.datahora = datahora;

@@ -1,13 +1,16 @@
-package dados;
+package Testes;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-import negocios.basicos.Carrinho;
-import negocios.basicos.Cliente;
-import negocios.basicos.Funcionario;
-import negocios.basicos.Produto;
-import negocios.basicos.Venda;
+import Basicos.Carrinho;
+import Clientes.Cliente;
+import Clientes.RepositorioClientes;
+import Funcionarios.Funcionario;
+import Funcionarios.RepositorioFuncionarios;
+import Produtos.Produto;
+import Vendas.RepositorioVendas;
+import Vendas.Venda;
 
 public class RepositorioTesteMain {
 

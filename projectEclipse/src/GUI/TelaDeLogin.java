@@ -1,4 +1,4 @@
-	package gui;
+package GUI;
 
 import java.awt.EventQueue;
 import javax.swing.JFrame;
@@ -15,14 +15,11 @@ import java.awt.HeadlessException;
 
 import javax.swing.JTextField;
 import javax.swing.UIManager;
-
-import negocios.ControladorFuncionario;
-import negocios.basicos.Funcionario;
-import negocios.interfaces.CFInterface;
-
 import javax.swing.JLabel;
 import java.awt.Toolkit;
 import javax.swing.UIManager.*;
+
+import Funcionarios.Funcionario;
 
 public class TelaDeLogin extends JFrame {
 
@@ -87,7 +84,7 @@ public class TelaDeLogin extends JFrame {
 		}
 
 		frame = new JFrame();
-		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(TelaDeLogin.class.getResource("/images/IconPope.png")));
+		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(TelaDeLogin.class.getResource("/Icone/IconPope.png")));
 		frame.setResizable(false);
 		frame.setBounds(100, 100, 338, 355);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

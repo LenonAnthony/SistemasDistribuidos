@@ -1,4 +1,4 @@
-package gui;
+package GUI;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -17,9 +17,9 @@ import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
-import negocios.basicos.Cliente;
-import negocios.basicos.Funcionario;
-import negocios.basicos.Produto;
+import Clientes.Cliente;
+import Funcionarios.Funcionario;
+import Produtos.Produto;
 
 import java.awt.Color;
 import java.awt.GridBagLayout;
@@ -72,7 +72,7 @@ public class TelaGerente extends JFrame {
 
 		int tamanho;
 		try {
-			PopUpFuncionario.getCf().getRepositorioFuncionario().atualiza();
+			PopUpFuncionario.getCf().atualiza();
 			tamanho = PopUpFuncionario.getCf1().getRepositorioFuncionario().getFuncionarios().size();
 			if (tamanho == 0) {
 
@@ -95,7 +95,7 @@ public class TelaGerente extends JFrame {
 
 		int tamanho;
 		try {
-			PopUpCliente.getCc().getRepositorioClientes().atualiza();
+			PopUpCliente.getCc().atualiza();;
 			tamanho = PopUpCliente.getCc1().getRepositorioClientes().getClientes().size();
 			if (tamanho == 0) {
 			} else {
@@ -118,7 +118,7 @@ public class TelaGerente extends JFrame {
 	public void atualizarJTableProdutos() {
 		int tamanho;
 		try {
-			PopUpProduto.getCp().getRepositorioProdutos().atualiza();
+			PopUpProduto.getCp().atualiza();;
 			tamanho = PopUpProduto.getCp1().getRepositorioProdutos().getProdutos().size();
 			if (tamanho == 0) {
 			} else {
@@ -179,7 +179,7 @@ public class TelaGerente extends JFrame {
 
 	public TelaGerente() {
 
-		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaGerente.class.getResource("/images/IconPope.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaGerente.class.getResource("/Icone/IconPope.png")));
 		setResizable(false);
 		setTitle("Tela Operacional - Pope's Dance");
 		definirTela();
@@ -489,7 +489,7 @@ public class TelaGerente extends JFrame {
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					PopUpFuncionario.getCf().getRepositorioFuncionario().atualiza();
+					PopUpFuncionario.getCf().atualiza();
 					for (int i = 0; i < PopUpFuncionario.getCf().getRepositorioFuncionario().getFuncionarios()
 							.size(); i++) {
 						if (PopUpFuncionario.getCf().getRepositorioFuncionario().getFuncionarios().get(i)

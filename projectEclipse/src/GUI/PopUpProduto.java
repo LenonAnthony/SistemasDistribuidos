@@ -1,4 +1,4 @@
-package gui;
+package GUI;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -8,11 +8,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import negocios.ControladorFuncionario;
-import negocios.ControladorProduto;
-import negocios.basicos.Produto;
-import negocios.interfaces.CFInterface;
-import negocios.interfaces.CPInterface;
+import Produtos.CPInterface;
+import Produtos.ControladorProduto;
+import Produtos.Produto;
 
 import java.awt.SystemColor;
 import java.awt.GridBagLayout;
@@ -107,7 +105,7 @@ public class PopUpProduto extends JFrame {
 		cp1 = (CPInterface) Naming.lookup("rmi://localhost:1100/CP");
 		Naming.rebind("rmi://localhost:1100/CP", cp);
 
-		setIconImage(Toolkit.getDefaultToolkit().getImage(PopUpProduto.class.getResource("/images/IconPope.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(PopUpProduto.class.getResource("/Icone/IconPope.png")));
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);

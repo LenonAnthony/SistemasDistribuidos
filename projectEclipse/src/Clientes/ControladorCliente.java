@@ -1,4 +1,4 @@
-package negocios;
+package Clientes;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -7,10 +7,6 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-
-import dados.RepositorioClientes;
-import negocios.basicos.Cliente;
-import negocios.interfaces.CCInterface;
 
 public class ControladorCliente extends UnicastRemoteObject implements CCInterface {
 
@@ -96,6 +92,20 @@ public class ControladorCliente extends UnicastRemoteObject implements CCInterfa
 
 	public void setRepositorioClientes(RepositorioClientes repositorioClientes) {
 		this.repositorioClientes = repositorioClientes;
+	}
+	
+	public void atualiza() {
+		PrintStream ps;
+		try {
+			ps = new PrintStream("Clientes.txt");
+			for (int i = 0; i < this.repositorioClientes.getTamanho(); i++) {
+				ps.println(this.repositorioClientes.getClientes().get(i).toStringC());
+			}
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 
 	@Override

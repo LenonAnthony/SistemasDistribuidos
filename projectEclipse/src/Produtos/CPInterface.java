@@ -1,15 +1,15 @@
-package negocios.interfaces;
+package Produtos;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
-import dados.RepositorioProdutos;
-import negocios.basicos.Produto;
 
 public interface CPInterface extends Remote {
 	
 	public void cadastrar(Produto p) throws RemoteException;
 	
 	public void descadastrar(Produto p) throws RemoteException;
+	
+	public Produto pegaPeloNome(String p) throws RemoteException;
 	
 	public Produto procurar(Produto p) throws RemoteException;
 	
@@ -24,4 +24,6 @@ public interface CPInterface extends Remote {
 	public int getTamanho() throws RemoteException;
 	
 	public void setTamanho(int tamanho) throws RemoteException;
+	
+	public void atualiza() throws RemoteException;
 }

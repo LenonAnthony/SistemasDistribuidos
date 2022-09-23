@@ -1,18 +1,22 @@
-package negocios;
+package Testes;
 
 import java.rmi.Naming;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-import negocios.interfaces.CCInterface;
-import negocios.interfaces.CFInterface;
-import negocios.interfaces.CPInterface;
-import negocios.interfaces.CVInterface;
-import negocios.basicos.Carrinho;
-import negocios.basicos.Cliente;
-import negocios.basicos.Funcionario;
-import negocios.basicos.Produto;
-import negocios.basicos.Venda;
+import Basicos.Carrinho;
+import Clientes.CCInterface;
+import Clientes.Cliente;
+import Clientes.ControladorCliente;
+import Funcionarios.CFInterface;
+import Funcionarios.ControladorFuncionario;
+import Funcionarios.Funcionario;
+import Produtos.CPInterface;
+import Produtos.ControladorProduto;
+import Produtos.Produto;
+import Vendas.CVInterface;
+import Vendas.ControladorVenda;
+import Vendas.Venda;
 
 public class CFImp {
 	private static CFInterface cf1;

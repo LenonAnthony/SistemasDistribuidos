@@ -1,21 +1,7 @@
-package dados;
+package Vendas;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.PrintStream;
 import java.io.Serializable;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-
-import negocios.ControladorProduto; 
-import negocios.basicos.Carrinho;
-import negocios.basicos.Cliente;
-import negocios.basicos.Funcionario;
-import negocios.basicos.Produto;
-import negocios.basicos.Venda;
 
 public class RepositorioVendas implements Serializable {
 	
@@ -24,6 +10,7 @@ public class RepositorioVendas implements Serializable {
 	private int tamanho;
 		
 	public RepositorioVendas(){	
+	
 	}
 	
 	public void adicionarVenda(Venda v) {

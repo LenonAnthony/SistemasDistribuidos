@@ -1,10 +1,7 @@
-package negocios.interfaces;
+package Vendas;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
-
-import dados.RepositorioVendas;
-import negocios.basicos.Venda;
 
 public interface CVInterface extends Remote {
 	

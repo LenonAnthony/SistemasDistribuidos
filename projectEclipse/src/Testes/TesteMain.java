@@ -1,12 +1,16 @@
-package negocios.basicos;
+package Testes;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-import negocios.ControladorCliente;
-import negocios.ControladorFuncionario;
-import negocios.ControladorProduto;
-import negocios.ControladorVenda;
+import Basicos.Carrinho;
+import Clientes.Cliente;
+import Clientes.ControladorCliente;
+import Funcionarios.ControladorFuncionario;
+import Funcionarios.Funcionario;
+import Produtos.ControladorProduto;
+import Produtos.Produto;
+import Vendas.ControladorVenda;
 
 public class TesteMain {
 

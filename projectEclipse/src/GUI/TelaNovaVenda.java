@@ -1,4 +1,4 @@
-package gui;
+package GUI;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -22,14 +22,14 @@ import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
-import negocios.ControladorCliente;
-import negocios.ControladorVenda;
-import negocios.basicos.Carrinho;
-import negocios.basicos.Cliente;
-import negocios.basicos.Produto;
-import negocios.basicos.Venda;
-import negocios.interfaces.CCInterface;
-import negocios.interfaces.CVInterface;
+import Basicos.Carrinho;
+import Clientes.CCInterface;
+import Clientes.Cliente;
+import Clientes.ControladorCliente;
+import Produtos.Produto;
+import Vendas.CVInterface;
+import Vendas.ControladorVenda;
+import Vendas.Venda;
 
 import javax.swing.JTextField;
 import javax.swing.JScrollPane;
@@ -201,7 +201,7 @@ public class TelaNovaVenda extends JFrame {
 		Naming.rebind("rmi://localhost:1102/CV", cv);
 		
 		setTitle("Nova Venda - Pope's Dance");
-		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaNovaVenda.class.getResource("/images/IconPope.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaNovaVenda.class.getResource("/Icone/IconPope.png")));
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1280, 720);

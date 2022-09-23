@@ -1,4 +1,4 @@
-package negocios.basicos;
+package Basicos;
 
 public abstract class Pessoa {
 

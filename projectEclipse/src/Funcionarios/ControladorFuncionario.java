@@ -1,4 +1,4 @@
-package negocios;
+package Funcionarios;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -7,10 +7,6 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-
-import dados.RepositorioFuncionarios;
-import negocios.basicos.Funcionario;
-import negocios.interfaces.CFInterface;
 
 public class ControladorFuncionario extends UnicastRemoteObject implements CFInterface {
 
@@ -108,6 +104,19 @@ public class ControladorFuncionario extends UnicastRemoteObject implements CFInt
 
 	public void setTamanho(int tamanho) {
 		this.tamanho = tamanho;
+	}
+	
+	public void atualiza() {
+		PrintStream ps;
+		try {
+			ps = new PrintStream("funcionarios.txt");
+			for (int i = 0; i < this.repositorioFuncionario.getTamanho(); i++) {
+				ps.println(this.repositorioFuncionario.getFuncionarios().get(i).toStringF());
+			}
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Override

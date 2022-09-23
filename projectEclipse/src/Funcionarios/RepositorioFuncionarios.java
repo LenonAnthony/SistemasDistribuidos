@@ -1,17 +1,10 @@
-package dados;
+package Funcionarios;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.PrintStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import negocios.basicos.Funcionario;
-
 public class RepositorioFuncionarios implements Serializable {
-	// s
+	
 	private static final long serialVersionUID = -1919414877885418528L;
 	private ArrayList<Funcionario> funcionarios = new ArrayList<>();
 	private int tamanho;
@@ -105,20 +98,7 @@ public class RepositorioFuncionarios implements Serializable {
 		}
 		tamanho = this.funcionarios.size();
 	}
-
-	public void atualiza() {
-		PrintStream ps;
-		try {
-			ps = new PrintStream("funcionarios.txt");
-			for (int i = 0; i < this.funcionarios.size(); i++) {
-				ps.println(this.funcionarios.get(i).toStringF());
-			}
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-
+	
 	public ArrayList<Funcionario> getFuncionarios() {
 		return funcionarios;
 	}

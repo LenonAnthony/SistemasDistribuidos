@@ -1,11 +1,12 @@
-package negocios.basicos;
+package Funcionarios;
+
 import java.io.Serializable;
 import java.util.Objects;
 
+import Basicos.Pessoa;
+
 public class Funcionario extends Pessoa implements Serializable {
-	/**
-	 * 
-	 *///s
+	
 	private static final long serialVersionUID = -4937811051786662973L;
 	private String nome;
 	private String cpf;
@@ -16,7 +17,6 @@ public class Funcionario extends Pessoa implements Serializable {
 
 	public Funcionario() {
 		
- 
 	}
 
 	public Funcionario(String nome, String cpf, String tipo, String login, String senha){
@@ -28,8 +28,6 @@ public class Funcionario extends Pessoa implements Serializable {
 		setSenha(senha);
 	}
 	
-	
-
 	public Funcionario(String nome, String cpf) {
 		
 		setNome(nome);

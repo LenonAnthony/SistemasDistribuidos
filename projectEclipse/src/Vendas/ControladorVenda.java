@@ -1,4 +1,4 @@
-package negocios;
+package Vendas;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -9,13 +9,10 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
-import dados.RepositorioVendas;
-import negocios.basicos.Carrinho;
-import negocios.basicos.Cliente;
-import negocios.basicos.Funcionario;
-import negocios.basicos.Produto;
-import negocios.basicos.Venda;
-import negocios.interfaces.CVInterface;
+import Basicos.Carrinho;
+import Clientes.Cliente;
+import Funcionarios.Funcionario;
+import Produtos.Produto;
 
 public class ControladorVenda extends UnicastRemoteObject implements CVInterface {
 

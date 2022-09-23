@@ -1,4 +1,4 @@
-package gui;
+package GUI;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -8,11 +8,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import negocios.ControladorCliente;
-import negocios.ControladorFuncionario;
-import negocios.basicos.Cliente;
-import negocios.interfaces.CCInterface;
-import negocios.interfaces.CFInterface;
+import Clientes.CCInterface;
+import Clientes.Cliente;
+import Clientes.ControladorCliente;
 
 import java.awt.SystemColor;
 
@@ -104,7 +102,7 @@ public class PopUpCliente extends JFrame {
 		cc1 = (CCInterface) Naming.lookup("rmi://localhost:1101/CC");
 		Naming.rebind("rmi://localhost:1101/CC", cc);
 
-		setIconImage(Toolkit.getDefaultToolkit().getImage(PopUpCliente.class.getResource("/images/IconPope.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(PopUpCliente.class.getResource("/Icone/IconPope.png")));
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);

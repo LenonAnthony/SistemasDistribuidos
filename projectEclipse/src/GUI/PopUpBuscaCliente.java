@@ -1,4 +1,4 @@
-package gui;
+package GUI;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -8,7 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import negocios.basicos.Cliente;
+import Clientes.Cliente;
 
 import java.awt.GridBagLayout;
 import javax.swing.JTextField;
@@ -51,7 +51,7 @@ public class PopUpBuscaCliente extends JFrame {
 	 */
 	public PopUpBuscaCliente() {
 		setResizable(false);
-		setIconImage(Toolkit.getDefaultToolkit().getImage(PopUpBuscaCliente.class.getResource("/images/IconPope.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(PopUpBuscaCliente.class.getResource("/Icone/IconPope.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();

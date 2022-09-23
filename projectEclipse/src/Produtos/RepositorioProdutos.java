@@ -1,15 +1,7 @@
-package dados;
+package Produtos;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.PrintStream;
 import java.io.Serializable;
 import java.util.ArrayList;
-
-import negocios.basicos.Funcionario;
-import negocios.basicos.Produto;
 
 public class RepositorioProdutos implements Serializable {
 
@@ -71,21 +63,7 @@ public class RepositorioProdutos implements Serializable {
 		}
 		tamanho = this.produtos.size();
 	}
-
-	public void atualiza() {
-		PrintStream ps;
-		try {
-			ps = new PrintStream("produtos.txt");
-			for (int i = 0; i < this.produtos.size(); i++) {
-				ps.println(this.produtos.get(i).toStringP());
-			}
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-	}
-
+	
 	public Produto pegaPeloNome(String nome) {
 
 		for (int i = 0; i < this.produtos.size(); i++) {

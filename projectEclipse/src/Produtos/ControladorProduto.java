@@ -1,4 +1,4 @@
-package negocios;
+package Produtos;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -7,10 +7,6 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-
-import dados.RepositorioProdutos;
-import negocios.basicos.Produto;
-import negocios.interfaces.CPInterface;
 
 public class ControladorProduto extends UnicastRemoteObject implements CPInterface {
 
@@ -101,6 +97,20 @@ public class ControladorProduto extends UnicastRemoteObject implements CPInterfa
 
 	public void setTamanho(int tamanho) {
 		this.tamanho = tamanho;
+	}
+	
+	public void atualiza() {
+		PrintStream ps;
+		try {
+			ps = new PrintStream("produtos.txt");
+			for (int i = 0; i < this.repositorioProdutos.getTamanho(); i++) {
+				ps.println(this.repositorioProdutos.getProdutos().get(i).toStringP());
+			}
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 
 	@Override

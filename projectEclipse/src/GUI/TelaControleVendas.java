@@ -1,4 +1,4 @@
-package gui;
+package GUI;
 
 import java.awt.EventQueue;
 
@@ -7,7 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
-import negocios.basicos.Venda;
+import Vendas.Venda;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -237,7 +237,7 @@ public class TelaControleVendas extends JFrame {
 			e2.printStackTrace();
 		}
 		setResizable(false);
-		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaControleVendas.class.getResource("/images/IconPope.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaControleVendas.class.getResource("/Icone/IconPope.png")));
 		setTitle("Controle de Vendas - Pope's Dance");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1280, 720);

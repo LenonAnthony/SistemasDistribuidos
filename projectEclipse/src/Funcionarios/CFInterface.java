@@ -1,9 +1,7 @@
-package negocios.interfaces;
+package Funcionarios;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
-import dados.RepositorioFuncionarios;
-import negocios.basicos.Funcionario;
 
 public interface CFInterface extends Remote {
 //s
@@ -28,6 +26,6 @@ public interface CFInterface extends Remote {
 	public int getTamanho() throws RemoteException;
 
 	public void setTamanho(int tamanho) throws RemoteException;
-
-
+	
+	public void atualiza() throws RemoteException;
 }

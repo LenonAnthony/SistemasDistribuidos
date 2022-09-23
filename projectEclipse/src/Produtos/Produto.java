@@ -1,12 +1,11 @@
-package negocios.basicos;
+package Produtos;
 
 import java.io.Serializable;
 
-public class Produto extends Pessoa implements Serializable {
+import Basicos.Pessoa;
 
-	/**
-	 * 
-	 */
+public class Produto extends Pessoa implements Serializable {
+	
 	private static final long serialVersionUID = -6095603705554800496L;
 	private String nome;
 	private String descricao;

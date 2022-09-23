@@ -1,4 +1,4 @@
-package gui;
+package GUI;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -7,7 +7,8 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import negocios.basicos.Funcionario;
+
+import Funcionarios.Funcionario;
 
 import java.awt.SystemColor;
 import java.awt.GridBagLayout;
@@ -50,7 +51,7 @@ public class PopUpBuscaFuncionario extends JFrame {
 	 * Create the frame.
 	 */
 	public PopUpBuscaFuncionario() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(PopUpBuscaFuncionario.class.getResource("/images/IconPope.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(PopUpBuscaFuncionario.class.getResource("/Icone/IconPope.png")));
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
