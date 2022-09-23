@@ -1,10 +1,7 @@
-package negocios.interfaces;
+package Clientes;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
-
-import dados.RepositorioClientes;
-import negocios.basicos.Cliente;
 
 public interface CCInterface extends Remote{
 	public void cadastrar(Cliente c) throws RemoteException;
@@ -24,6 +21,6 @@ public interface CCInterface extends Remote{
 	public RepositorioClientes getRepositorioClientes() throws RemoteException;
 	
 	public void setRepositorioClientes(RepositorioClientes repositorioClientes) throws RemoteException;
-
 	
+	public void atualiza() throws RemoteException;
 }

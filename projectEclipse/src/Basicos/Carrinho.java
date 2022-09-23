@@ -1,13 +1,12 @@
-package negocios.basicos;
+package Basicos;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import Clientes.Cliente;
+import Produtos.Produto;
 
 public class Carrinho implements Serializable {
-
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = -6233260944452945068L;
 	private Cliente cliente;
 	private ArrayList<Produto> produtos;
