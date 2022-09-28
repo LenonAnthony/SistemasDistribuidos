@@ -73,6 +73,7 @@ public class TelaGerente extends JFrame {
 		int tamanho;
 		try {
 			PopUpFuncionario.getCf().atualiza();
+			PopUpFuncionario.inicializar();
 			tamanho = PopUpFuncionario.getCf1().getRepositorioFuncionario().getFuncionarios().size();
 			if (tamanho == 0) {
 
@@ -95,7 +96,8 @@ public class TelaGerente extends JFrame {
 
 		int tamanho;
 		try {
-			PopUpCliente.getCc().atualiza();;
+			PopUpCliente.getCc().atualiza();
+			PopUpCliente.inicializar();
 			tamanho = PopUpCliente.getCc1().getRepositorioClientes().getClientes().size();
 			if (tamanho == 0) {
 			} else {
@@ -118,7 +120,8 @@ public class TelaGerente extends JFrame {
 	public void atualizarJTableProdutos() {
 		int tamanho;
 		try {
-			PopUpProduto.getCp().atualiza();;
+			PopUpProduto.getCp().atualiza();
+			PopUpProduto.inicializar();
 			tamanho = PopUpProduto.getCp1().getRepositorioProdutos().getProdutos().size();
 			if (tamanho == 0) {
 			} else {
